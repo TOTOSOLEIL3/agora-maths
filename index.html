@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGORA Maths — Révise le bac de spé maths en jouant</title>
+  <meta name="description" content="Révise le bac de spécialité maths (Terminale générale) en jouant : fiche de cours, formulaire, mini-jeux sur la dérivation. Gratuit, sans pub.">
+  <meta name="theme-color" content="#f4eddd">
+  <meta property="og:title" content="AGORA Maths — Révise le bac de spé maths en jouant 🧮">
+  <meta property="og:description" content="Trouve la dérivée, flashcards de formules, vrai/faux, quelle méthode : des mini-jeux pour réviser la dérivation sans t'en rendre compte.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="AGORA Maths">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- KaTeX : rendu des formules -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="maths.css?v=1">
+</head>
+<body>
+
+  <header class="site-header">
+    <button class="logo" data-nav="home" aria-label="Retour à l'accueil">
+      <span class="owl">🧮</span> AGORA <span class="logo-sub">maths</span>
+    </button>
+    <nav class="topnav">
+      <button data-jump="jeux">Jeux</button>
+      <button data-nav="fiche:derivation">Le cours</button>
+      <a href="https://agora-philo.fr" class="cross-link">↔ Philo</a>
+    </nav>
+    <div class="hud">
+      <span class="level-name" id="hud-level">Élève de la table</span>
+      <span class="xp-pill"><strong id="hud-xp">0</strong> XP</span>
+    </div>
+  </header>
+
+  <!-- ============ ACCUEIL ============ -->
+  <main id="view-home" class="view active">
+
+    <section class="hero">
+      <span class="bg-quote left" aria-hidden="true">∫</span>
+      <span class="bg-quote right" aria-hidden="true">∑</span>
+      <span class="stamp s1">100% gratuit</span>
+      <span class="stamp s2">Sans pub</span>
+      <span class="stamp s3">Spé maths · Tle générale</span>
+
+      <span class="surtitre">L'arène des fonctions · Bac de spé maths</span>
+      <h1>Révise la dérivation <span class="accent">en jouant<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M5 14 Q 75 4, 150 11 T 295 9"/></svg></span></h1>
+      <p class="pitch">Trouve la dérivée, retourne des flashcards de formules, démonte les pièges des théorèmes : quatre mini-jeux pour que $u'v + uv'$ devienne un réflexe.</p>
+      <div class="cta">
+        <a class="btn primary" href="#jeux">Entrer dans l'arène ↓</a>
+        <span class="countdown mono" id="countdown"></span>
+      </div>
+    </section>
+
+    <div class="demo-band mono">
+      🚧 Démo · chapitre <strong>Dérivation</strong> — les autres chapitres (suites, exp/ln, probas, géométrie…) arrivent ensuite.
+    </div>
+
+    <section class="games" id="jeux">
+      <div class="section-head">
+        <h2>Les épreuves</h2>
+        <span class="rule"></span>
+        <span class="mono">4 jeux · XP illimitée</span>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card" data-nav="derivees">
+          <span class="pictogram">📐</span>
+          <span class="num">JEU 01</span>
+          <h3>Trouve la dérivée</h3>
+          <p>Une fonction, quatre dérivées candidates. Repère la bonne — les pièges classiques sont là pour t'avoir.</p>
+          <span class="best" data-best="derivees">Record : —</span>
+        </button>
+
+        <button class="game-card" data-nav="flash">
+          <span class="pictogram">🃏</span>
+          <span class="num">JEU 02</span>
+          <h3>Flashcards de formules</h3>
+          <p>« Dérivée de $\ln(x)$ ? » Retourne la carte, vérifie, et avoue : tu la savais ou pas ?</p>
+          <span class="best" data-best="flash">Maîtrisées : —</span>
+        </button>
+
+        <button class="game-card" data-nav="vf">
+          <span class="pictogram">⚖️</span>
+          <span class="num">JEU 03</span>
+          <h3>Vrai ou Faux</h3>
+          <p>« $(uv)' = u'v'$ » — vraiment ? Démonte les contresens qui coûtent des points le jour J.</p>
+          <span class="best" data-best="vf">Record : —</span>
+        </button>
+
+        <button class="game-card" data-nav="methodes">
+          <span class="pictogram">🧭</span>
+          <span class="num">JEU 04</span>
+          <h3>Quelle méthode ?</h3>
+          <p>Montrer qu'une fonction est croissante, trouver une tangente, étudier la convexité… quelle stratégie pour quel exo ?</p>
+          <span class="best" data-best="methodes">Record : —</span>
+        </button>
+
+        <button class="game-card fiche-card" data-nav="fiche:derivation">
+          <span class="pictogram">📖</span>
+          <span class="num">LE COURS</span>
+          <h3>La fiche Dérivation</h3>
+          <p>Le cours, le formulaire complet, les méthodes types et le piège à éviter — tout pour réviser avant de jouer.</p>
+          <span class="best">Cours + formulaire</span>
+        </button>
+
+        <div class="game-card soon-card">
+          <span class="pictogram">🔜</span>
+          <span class="num">BIENTÔT</span>
+          <h3>Classement & battles</h3>
+          <p>Le classement entre potes et les duels en temps réel (comme sur AGORA philo) arrivent dès que la démo est validée.</p>
+          <span class="best">En préparation</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FICHE ============ -->
+  <main id="view-fiche" class="view">
+    <div class="fiche-shell" id="fiche-stage"></div>
+  </main>
+
+  <!-- ============ VUE DE JEU ============ -->
+  <main id="view-game" class="view">
+    <div class="game-shell">
+      <div class="game-topbar">
+        <button class="btn ghost" data-nav="home">← Quitter</button>
+        <h2 id="game-title"></h2>
+        <div class="progress-meta">
+          <span id="game-counter"></span>
+          <span class="streak" id="game-streak"></span>
+        </div>
+      </div>
+      <div class="progress-track"><div class="fill" id="game-progress"></div></div>
+      <div id="game-stage"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p class="quote">« Ce que nous connaissons est peu de chose, ce que nous ignorons est immense. »</p>
+    <p class="who">Pierre-Simon de Laplace</p>
+    <p class="madeby">AGORA Maths · révision du bac de spé maths · fait avec 🧮 et zéro publicité</p>
+  </footer>
+
+  <script src="data-maths.js?v=1"></script>
+  <script src="app-maths.js?v=1"></script>
+</body>
+</html>
