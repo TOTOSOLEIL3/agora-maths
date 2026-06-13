@@ -17,7 +17,7 @@
     },
     {
       "t": "Espérance, variance, écart-type",
-      "d": "L'espérance $E(X)=\\sum_i x_i\\,P(X=x_i)$ est la moyenne des valeurs pondérée par leurs probabilités (la valeur \"attendue\" en moyenne sur un grand nombre de répétitions). La variance mesure la dispersion autour de $E(X)$ : $V(X)=E\\big((X-E(X))^2\\big)$, ce qui se calcule en pratique avec la formule de König-Huygens $V(X)=E(X^2)-\\big(E(X)\\big)^2$. L'écart-type $\\sigma(X)=\\sqrt{V(X)}$ a la même unité que $X$."
+      "d": "L'espérance $E(X)=\\sum_i x_i\\,P(X=x_i)$ est la moyenne des valeurs pondérée par leurs probabilités (la valeur \"attendue\" en moyenne sur un grand nombre de répétitions). La variance mesure la dispersion autour de $E(X)$ : $V(X)=E\\big((X-E(X))^2\\big)$, ce qui se calcule en pratique avec la formule $V(X)=E(X^2)-\\big(E(X)\\big)^2$. L'écart-type $\\sigma(X)=\\sqrt{V(X)}$ a la même unité que $X$."
     },
     {
       "t": "Épreuve et schéma de Bernoulli",
@@ -35,7 +35,7 @@
   "formulaireTitre": "Formules à connaître par coeur",
   "formulaire": [
     ["Espérance", "$E(X)=\\displaystyle\\sum_i x_i\\,P(X=x_i)$"],
-    ["Variance (König-Huygens)", "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"],
+    ["Variance (formule de calcul)", "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"],
     ["Écart-type", "$\\sigma(X)=\\sqrt{V(X)}$"],
     ["Bernoulli : espérance / variance", "$E(X)=p\\,,\\quad V(X)=p(1-p)$"],
     ["Loi binomiale : probabilité", "$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$"],
@@ -173,7 +173,7 @@
     {"front": "Écart-type d'une loi binomiale ?", "back": "$\\sigma(X)=\\sqrt{np(1-p)}$"},
     {"front": "Espérance d'une variable de Bernoulli de paramètre $p$ ?", "back": "$E(X)=p$"},
     {"front": "Variance d'une variable de Bernoulli de paramètre $p$ ?", "back": "$V(X)=p(1-p)$"},
-    {"front": "Formule de König-Huygens pour la variance ?", "back": "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"},
+    {"front": "Formule de calcul de la variance $V(X)$ ?", "back": "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"},
     {"front": "Formule générale de l'espérance ?", "back": "$E(X)=\\displaystyle\\sum_i x_i\\,P(X=x_i)$"},
     {"front": "Probabilité d'au moins un succès, $X\\sim\\mathcal{B}(n,p)$ ?", "back": "$P(X\\ge 1)=1-(1-p)^n$"},
     {"front": "Coefficient binomial $\\binom{n}{k}$ ?", "back": "$\\dfrac{n!}{k!\\,(n-k)!}$"},
@@ -209,7 +209,7 @@
       "q": "On connaît la loi de $X$ par un tableau et on veut $V(X)$. Quelle démarche ?",
       "opts": ["Calculer $E(X)$ et $E(X^2)$ puis $V(X)=E(X^2)-E(X)^2$", "Faire $\\sqrt{E(X)}$", "Faire $np(1-p)$", "Additionner les probabilités"],
       "ok": 0,
-      "why": "Pour une loi quelconque, on applique König-Huygens : $V(X)=E(X^2)-\\big(E(X)\\big)^2$."
+      "why": "Pour une loi donnée par un tableau, on applique la formule $V(X)=E(X^2)-\\big(E(X)\\big)^2$."
     },
     {
       "q": "Pour calculer $P(X\\le 8)$ avec $X\\sim\\mathcal{B}(20\\,;0,3)$ rapidement, on utilise :",

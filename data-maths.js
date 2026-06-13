@@ -4589,7 +4589,7 @@ const CHAPITRES = [
       },
       {
         "t": "Espérance, variance, écart-type",
-        "d": "L'espérance $E(X)=\\sum_i x_i\\,P(X=x_i)$ est la moyenne des valeurs pondérée par leurs probabilités (la valeur \"attendue\" en moyenne sur un grand nombre de répétitions). La variance mesure la dispersion autour de $E(X)$ : $V(X)=E\\big((X-E(X))^2\\big)$, ce qui se calcule en pratique avec la formule de König-Huygens $V(X)=E(X^2)-\\big(E(X)\\big)^2$. L'écart-type $\\sigma(X)=\\sqrt{V(X)}$ a la même unité que $X$."
+        "d": "L'espérance $E(X)=\\sum_i x_i\\,P(X=x_i)$ est la moyenne des valeurs pondérée par leurs probabilités (la valeur \"attendue\" en moyenne sur un grand nombre de répétitions). La variance mesure la dispersion autour de $E(X)$ : $V(X)=E\\big((X-E(X))^2\\big)$, ce qui se calcule en pratique avec la formule $V(X)=E(X^2)-\\big(E(X)\\big)^2$. L'écart-type $\\sigma(X)=\\sqrt{V(X)}$ a la même unité que $X$."
       },
       {
         "t": "Épreuve et schéma de Bernoulli",
@@ -4611,7 +4611,7 @@ const CHAPITRES = [
         "$E(X)=\\displaystyle\\sum_i x_i\\,P(X=x_i)$"
       ],
       [
-        "Variance (König-Huygens)",
+        "Variance (formule de calcul)",
         "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"
       ],
       [
@@ -4854,7 +4854,7 @@ const CHAPITRES = [
         "back": "$V(X)=p(1-p)$"
       },
       {
-        "front": "Formule de König-Huygens pour la variance ?",
+        "front": "Formule de calcul de la variance $V(X)$ ?",
         "back": "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"
       },
       {
@@ -4962,7 +4962,7 @@ const CHAPITRES = [
           "Additionner les probabilités"
         ],
         "ok": 0,
-        "why": "Pour une loi quelconque, on applique König-Huygens : $V(X)=E(X^2)-\\big(E(X)\\big)^2$."
+        "why": "Pour une loi donnée par un tableau, on applique la formule $V(X)=E(X^2)-\\big(E(X)\\big)^2$."
       },
       {
         "q": "Pour calculer $P(X\\le 8)$ avec $X\\sim\\mathcal{B}(20\\,;0,3)$ rapidement, on utilise :",
