@@ -1,0 +1,251 @@
+{
+  "id": "geometrie-espace",
+  "tag": "Géométrie",
+  "title": "Géométrie dans l'espace",
+  "intro": "On passe du plan à l'espace : trois coordonnées au lieu de deux, mais les mêmes réflexes. Tu vas manipuler des vecteurs en 3D, tester si deux vecteurs sont colinéaires ou si trois sont coplanaires, puis décrire une droite par une représentation paramétrique. Le but : savoir si deux droites se croisent, sont parallèles ou ne se rencontrent jamais, et caractériser un plan par deux vecteurs directeurs. Pas de produit scalaire ici (c'est un autre chapitre) : on reste sur le calcul vectoriel et les positions relatives.",
+  "objectifs": [
+    "Calculer les coordonnées d'un vecteur $\\overrightarrow{AB}$, du milieu d'un segment, et reconnaître une base ou un repère de l'espace",
+    "Tester la colinéarité de deux vecteurs et la coplanarité de trois vecteurs",
+    "Écrire et lire une représentation paramétrique de droite (point + vecteur directeur)",
+    "Déterminer la position relative de deux droites (parallèles, sécantes, non coplanaires)",
+    "Étudier la position relative d'une droite et d'un plan",
+    "Caractériser un plan par un point et deux vecteurs directeurs non colinéaires"
+  ],
+  "cours": [
+    {
+      "t": "Vecteurs, base et repère de l'espace",
+      "d": "Les vecteurs de l'espace se manipulent comme dans le plan : addition, multiplication par un réel, relation de Chasles $\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{AC}$. Trois vecteurs $\\vec{i},\\vec{j},\\vec{k}$ forment une **base** de l'espace s'ils ne sont pas coplanaires : alors tout vecteur s'écrit de façon unique $\\vec{u}=x\\vec{i}+y\\vec{j}+z\\vec{k}$, et $(x;y;z)$ sont ses **coordonnées**. Un point $O$ et une base donnent un **repère** $(O;\\vec{i},\\vec{j},\\vec{k})$."
+    },
+    {
+      "t": "Coordonnées : vecteur AB et milieu",
+      "d": "Si $A(x_A;y_A;z_A)$ et $B(x_B;y_B;z_B)$, alors $\\overrightarrow{AB}\\;(x_B-x_A;\\,y_B-y_A;\\,z_B-z_A)$. Le milieu $I$ de $[AB]$ a pour coordonnées $\\left(\\dfrac{x_A+x_B}{2};\\dfrac{y_A+y_B}{2};\\dfrac{z_A+z_B}{2}\\right)$. On additionne deux vecteurs et on les multiplie par un réel coordonnée par coordonnée."
+    },
+    {
+      "t": "Colinéarité (2 vecteurs) et coplanarité (3 vecteurs)",
+      "d": "Deux vecteurs $\\vec{u}$ et $\\vec{v}$ ($\\vec{v}\\neq\\vec{0}$) sont **colinéaires** s'il existe un réel $k$ tel que $\\vec{u}=k\\,\\vec{v}$ : les coordonnées sont proportionnelles. Trois vecteurs $\\vec{u},\\vec{v},\\vec{w}$ sont **coplanaires** s'il existe des réels $a,b$ tels que $\\vec{w}=a\\vec{u}+b\\vec{v}$ (avec $\\vec{u},\\vec{v}$ non colinéaires). Attention : colinéarité concerne deux vecteurs, coplanarité concerne trois vecteurs."
+    },
+    {
+      "t": "Représentation paramétrique d'une droite",
+      "d": "La droite $\\mathcal{D}$ passant par $A(x_A;y_A;z_A)$ et de vecteur directeur $\\vec{u}\\,(a;b;c)\\neq\\vec{0}$ est l'ensemble des points $M$ tels que $\\overrightarrow{AM}=t\\,\\vec{u}$, $t\\in\\mathbb{R}$. D'où le système $\\begin{cases}x=x_A+t\\,a\\\\y=y_A+t\\,b\\\\z=z_A+t\\,c\\end{cases}$ avec $t\\in\\mathbb{R}$. Un point appartient à $\\mathcal{D}$ si et seulement s'il existe **une seule** valeur de $t$ qui marche pour les **trois** coordonnées."
+    },
+    {
+      "t": "Positions relatives",
+      "d": "Deux droites de l'espace sont : **parallèles** si leurs vecteurs directeurs sont colinéaires (confondues ou strictement parallèles), **sécantes** si elles ont exactement un point commun, ou **non coplanaires** si elles ne sont ni parallèles ni sécantes (elles ne sont pas dans un même plan). Une droite et un plan sont : sécants (un seul point commun), ou parallèles (la droite est incluse dans le plan, ou bien aucun point commun). Un plan est caractérisé par un point et **deux vecteurs directeurs non colinéaires**."
+    }
+  ],
+  "formulaireTitre": "Formules à connaître par cœur",
+  "formulaire": [
+    ["$\\overrightarrow{AB}$", "$(x_B-x_A;\\,y_B-y_A;\\,z_B-z_A)$"],
+    ["Milieu de $[AB]$", "$\\left(\\dfrac{x_A+x_B}{2};\\dfrac{y_A+y_B}{2};\\dfrac{z_A+z_B}{2}\\right)$"],
+    ["$\\vec{u}+\\vec{v}$", "$(x+x';\\,y+y';\\,z+z')$"],
+    ["$k\\,\\vec{u}$", "$(kx;\\,ky;\\,kz)$"],
+    ["Colinéaires $\\vec{u},\\vec{v}$", "$\\exists k\\in\\mathbb{R},\\ \\vec{u}=k\\,\\vec{v}$"],
+    ["Coplanaires $\\vec{u},\\vec{v},\\vec{w}$", "$\\exists a,b\\in\\mathbb{R},\\ \\vec{w}=a\\vec{u}+b\\vec{v}$"],
+    ["Repré. param. de $\\mathcal{D}(A,\\vec{u})$", "$\\begin{cases}x=x_A+t a\\\\y=y_A+t b\\\\z=z_A+t c\\end{cases},\\ t\\in\\mathbb{R}$"],
+    ["Relation de Chasles", "$\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{AC}$"],
+    ["$\\vec{u}\\,(a;b;c)$ dans la base", "$\\vec{u}=a\\vec{i}+b\\vec{j}+c\\vec{k}$"]
+  ],
+  "methodes": [
+    {
+      "t": "Tester si trois points $A,B,C$ sont alignés",
+      "etapes": [
+        "Calculer $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ en coordonnées.",
+        "Chercher un réel $k$ tel que $\\overrightarrow{AC}=k\\,\\overrightarrow{AB}$ (proportionnalité des coordonnées).",
+        "Si un même $k$ marche pour les 3 coordonnées : alignés. Sinon : non alignés."
+      ]
+    },
+    {
+      "t": "Vérifier qu'un point appartient à une droite",
+      "etapes": [
+        "Reporter les coordonnées du point dans le système paramétrique.",
+        "Résoudre la 1re équation pour trouver $t$.",
+        "Vérifier que ce même $t$ vérifie aussi la 2e et la 3e équation.",
+        "Si oui : le point est sur la droite ; si une seule équation échoue : il n'y est pas."
+      ]
+    },
+    {
+      "t": "Position relative de deux droites",
+      "etapes": [
+        "Comparer les vecteurs directeurs : s'ils sont colinéaires, les droites sont parallèles (vérifier un point commun pour distinguer confondues / strictement parallèles).",
+        "Sinon, égaler les deux systèmes paramétriques (paramètres $t$ et $t'$ différents) et résoudre.",
+        "Si le système admet une solution : droites sécantes (calculer le point). Si pas de solution : droites non coplanaires."
+      ]
+    },
+    {
+      "t": "Montrer que trois vecteurs sont coplanaires",
+      "etapes": [
+        "Vérifier que deux d'entre eux, $\\vec{u}$ et $\\vec{v}$, ne sont pas colinéaires.",
+        "Chercher $a,b$ tels que $\\vec{w}=a\\vec{u}+b\\vec{v}$ : poser le système sur les coordonnées.",
+        "Résoudre avec deux équations, puis vérifier la 3e. Si elle est satisfaite : coplanaires."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Dans un repère orthonormé, on donne $A(1;2;-1)$, $\\vec{u}\\,(2;-1;3)$. Donner une représentation paramétrique de la droite passant par $A$ de vecteur directeur $\\vec{u}$, puis dire si $B(5;0;5)$ lui appartient.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "On considère deux droites $\\mathcal{D}$ et $\\mathcal{D}'$ données par leurs représentations paramétriques. Démontrer qu'elles ne sont pas coplanaires.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "Étudier la position relative de la droite $\\mathcal{D}$ et du plan défini par trois points, en utilisant une représentation paramétrique.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Le piège classique : confondre colinéaire (propriété de DEUX vecteurs) et coplanaire (propriété de TROIS vecteurs). Autre piège : pour vérifier qu'un point est sur une droite, il faut que le MÊME $t$ marche sur les trois coordonnées. Trouver un $t$ qui colle pour $x$ et $y$ mais pas pour $z$ signifie que le point n'est PAS sur la droite. Et deux droites de directeurs non colinéaires ne sont pas forcément sécantes : dans l'espace, elles peuvent être non coplanaires.",
+  "qcm": [
+    {
+      "q": "Avec $A(1;3;-2)$ et $B(4;1;0)$, les coordonnées de $\\overrightarrow{AB}$ sont :",
+      "opts": ["$(3;-2;2)$", "$(5;4;-2)$", "$(-3;2;-2)$", "$(3;2;2)$"],
+      "ok": 0,
+      "why": "$\\overrightarrow{AB}=(4-1;\\,1-3;\\,0-(-2))=(3;-2;2)$."
+    },
+    {
+      "q": "Le milieu de $[AB]$ avec $A(2;-4;6)$ et $B(0;2;-2)$ est :",
+      "opts": ["$(2;-2;4)$", "$(1;-1;2)$", "$(1;-3;4)$", "$(2;-6;8)$"],
+      "ok": 1,
+      "why": "$\\left(\\frac{2+0}{2};\\frac{-4+2}{2};\\frac{6-2}{2}\\right)=(1;-1;2)$."
+    },
+    {
+      "q": "Les vecteurs $\\vec{u}\\,(2;-1;3)$ et $\\vec{v}\\,(-4;2;-6)$ sont :",
+      "opts": ["coplanaires seulement", "ni l'un ni l'autre", "colinéaires", "orthogonaux"],
+      "ok": 2,
+      "why": "$\\vec{v}=-2\\,\\vec{u}$, donc ils sont colinéaires (coordonnées proportionnelles de rapport $-2$)."
+    },
+    {
+      "q": "Une représentation paramétrique de la droite passant par $A(1;0;2)$ de vecteur directeur $\\vec{u}\\,(3;-1;2)$ est :",
+      "opts": ["$\\begin{cases}x=3+t\\\\y=-1\\\\z=2+2t\\end{cases}$", "$\\begin{cases}x=1+3t\\\\y=-t\\\\z=2+2t\\end{cases}$", "$\\begin{cases}x=3t\\\\y=-t\\\\z=2t\\end{cases}$", "$\\begin{cases}x=1+t\\\\y=-3t\\\\z=2+2t\\end{cases}$"],
+      "ok": 1,
+      "why": "On part du point $A(1;0;2)$ et on ajoute $t$ fois le directeur $(3;-1;2)$ : $x=1+3t,\\ y=0-t,\\ z=2+2t$."
+    },
+    {
+      "q": "La droite $\\mathcal{D}:\\begin{cases}x=2+t\\\\y=1-t\\\\z=3+2t\\end{cases}$ a pour vecteur directeur :",
+      "opts": ["$(2;1;3)$", "$(1;1;2)$", "$(1;-1;2)$", "$(2;-1;3)$"],
+      "ok": 2,
+      "why": "Le vecteur directeur se lit sur les coefficients de $t$ : $(1;-1;2)$."
+    },
+    {
+      "q": "Le point $B(4;-1;7)$ appartient-il à $\\mathcal{D}:\\begin{cases}x=2+t\\\\y=1-t\\\\z=3+2t\\end{cases}$ ?",
+      "opts": ["Oui, pour $t=2$", "Non", "Oui, pour $t=1$", "Oui, pour $t=4$"],
+      "ok": 0,
+      "why": "$x=4\\Rightarrow t=2$ ; alors $y=1-2=-1$ ✓ et $z=3+4=7$ ✓. Le même $t=2$ marche partout : $B\\in\\mathcal{D}$."
+    },
+    {
+      "q": "Deux droites dont les vecteurs directeurs ne sont PAS colinéaires et qui n'ont aucun point commun sont :",
+      "opts": ["confondues", "parallèles strictes", "sécantes", "non coplanaires"],
+      "ok": 3,
+      "why": "Directeurs non colinéaires + aucun point commun = droites non coplanaires (elles ne sont pas dans un même plan)."
+    },
+    {
+      "q": "Un plan de l'espace est caractérisé par :",
+      "opts": ["un point et deux vecteurs directeurs non colinéaires", "trois vecteurs colinéaires", "un seul vecteur directeur", "deux points seulement"],
+      "ok": 0,
+      "why": "Un plan est défini par un point et deux vecteurs directeurs non colinéaires (qui engendrent le plan)."
+    },
+    {
+      "q": "$\\vec{u}\\,(1;2;-1)$, $\\vec{v}\\,(0;1;1)$, $\\vec{w}\\,(2;3;-3)$. Sachant $\\vec{w}=2\\vec{u}-\\vec{v}$, ces trois vecteurs sont :",
+      "opts": ["colinéaires", "tous orthogonaux", "coplanaires", "une base de l'espace"],
+      "ok": 2,
+      "why": "$\\vec{w}$ est combinaison linéaire de $\\vec{u}$ et $\\vec{v}$ (non colinéaires) : les trois vecteurs sont coplanaires."
+    },
+    {
+      "q": "Trois vecteurs non coplanaires de l'espace forment :",
+      "opts": ["une droite", "une base de l'espace", "un plan", "rien de particulier"],
+      "ok": 1,
+      "why": "Trois vecteurs non coplanaires forment une base : tout vecteur de l'espace s'exprime de façon unique avec eux."
+    },
+    {
+      "q": "Les points $A(1;1;1)$, $B(3;2;0)$, $C(5;3;-1)$ sont :",
+      "opts": ["alignés", "non alignés", "confondus", "impossible à déterminer"],
+      "ok": 0,
+      "why": "$\\overrightarrow{AB}=(2;1;-1)$ et $\\overrightarrow{AC}=(4;2;-2)=2\\,\\overrightarrow{AB}$ : vecteurs colinéaires, donc $A,B,C$ alignés."
+    },
+    {
+      "q": "Deux droites dont les directeurs sont colinéaires et qui partagent un point sont :",
+      "opts": ["sécantes", "non coplanaires", "confondues", "perpendiculaires"],
+      "ok": 2,
+      "why": "Directeurs colinéaires (donc parallèles) + un point commun ⟹ les droites sont confondues."
+    }
+  ],
+  "flash": [
+    {"front": "Coordonnées de $\\overrightarrow{AB}$ ?", "back": "$(x_B-x_A;\\,y_B-y_A;\\,z_B-z_A)$"},
+    {"front": "Coordonnées du milieu de $[AB]$ ?", "back": "$\\left(\\dfrac{x_A+x_B}{2};\\dfrac{y_A+y_B}{2};\\dfrac{z_A+z_B}{2}\\right)$"},
+    {"front": "Quand $\\vec{u}$ et $\\vec{v}$ sont-ils colinéaires ?", "back": "Quand $\\exists k\\in\\mathbb{R},\\ \\vec{u}=k\\,\\vec{v}$ (coordonnées proportionnelles)"},
+    {"front": "Quand trois vecteurs sont-ils coplanaires ?", "back": "Quand $\\vec{w}=a\\vec{u}+b\\vec{v}$ avec $\\vec{u},\\vec{v}$ non colinéaires"},
+    {"front": "Représentation paramétrique de $\\mathcal{D}$ passant par $A$, directeur $\\vec{u}\\,(a;b;c)$ ?", "back": "$\\begin{cases}x=x_A+t a\\\\y=y_A+t b\\\\z=z_A+t c\\end{cases},\\ t\\in\\mathbb{R}$"},
+    {"front": "Comment lire le vecteur directeur sur une repré. paramétrique ?", "back": "Ce sont les coefficients du paramètre $t$ : $\\vec{u}\\,(a;b;c)$"},
+    {"front": "Condition pour qu'un point soit sur une droite ?", "back": "Une seule valeur de $t$ vérifie les 3 équations à la fois"},
+    {"front": "Deux droites parallèles : condition sur les directeurs ?", "back": "Leurs vecteurs directeurs sont colinéaires"},
+    {"front": "Que sont deux droites non parallèles et sans point commun ?", "back": "Des droites non coplanaires"},
+    {"front": "Qu'est-ce qui caractérise un plan ?", "back": "Un point et deux vecteurs directeurs non colinéaires"},
+    {"front": "Trois vecteurs non coplanaires forment… ?", "back": "Une base de l'espace"},
+    {"front": "Relation de Chasles ?", "back": "$\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{AC}$"}
+  ],
+  "vraifaux": [
+    {"q": "Deux vecteurs colinéaires ont des coordonnées proportionnelles.", "v": true, "why": "C'est la définition : $\\vec{u}=k\\,\\vec{v}$ équivaut à la proportionnalité des coordonnées."},
+    {"q": "La colinéarité est une propriété qui concerne trois vecteurs.", "v": false, "why": "La colinéarité concerne DEUX vecteurs. La coplanarité concerne trois vecteurs."},
+    {"q": "Dans l'espace, deux droites de directeurs non colinéaires sont forcément sécantes.", "v": false, "why": "Elles peuvent être non coplanaires : aucun point commun sans être parallèles."},
+    {"q": "Le vecteur directeur d'une droite donnée par sa représentation paramétrique se lit sur les coefficients de $t$.", "v": true, "why": "Dans $x=x_A+ta$, etc., les coefficients $(a;b;c)$ donnent le vecteur directeur."},
+    {"q": "Une représentation paramétrique d'une droite est unique.", "v": false, "why": "Elle dépend du point choisi et du vecteur directeur (multiple non nul). Une droite a une infinité de représentations paramétriques."},
+    {"q": "Pour qu'un point soit sur une droite, il suffit qu'une valeur de $t$ marche sur deux des trois coordonnées.", "v": false, "why": "Il faut que le MÊME $t$ vérifie les TROIS équations. Deux sur trois ne suffit pas."},
+    {"q": "Trois vecteurs non coplanaires forment une base de l'espace.", "v": true, "why": "Tout vecteur de l'espace s'écrit alors de manière unique comme combinaison linéaire de ces trois vecteurs."},
+    {"q": "Une droite incluse dans un plan est dite parallèle à ce plan.", "v": true, "why": "Au programme, une droite incluse dans un plan est un cas de parallélisme (intersection = la droite entière, pas un point unique)."},
+    {"q": "Si $\\vec{w}=2\\vec{u}-3\\vec{v}$, alors $\\vec{u},\\vec{v},\\vec{w}$ sont coplanaires.", "v": true, "why": "$\\vec{w}$ est une combinaison linéaire de $\\vec{u}$ et $\\vec{v}$ : les trois vecteurs sont coplanaires."},
+    {"q": "Deux droites confondues sont un cas particulier de droites parallèles.", "v": true, "why": "Parallèles = directeurs colinéaires ; avec un point commun elles sont confondues, sinon strictement parallèles."}
+  ],
+  "qmethode": [
+    {
+      "q": "On veut montrer que trois points $A,B,C$ sont alignés. Quelle méthode ?",
+      "opts": ["Montrer que $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ sont colinéaires", "Calculer le milieu de $[AB]$", "Trouver une équation de plan", "Vérifier qu'ils ont la même abscisse"],
+      "ok": 0,
+      "why": "Trois points sont alignés si et seulement si $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ sont colinéaires."
+    },
+    {
+      "q": "Pour savoir si un point appartient à une droite donnée en paramétrique, on…",
+      "opts": ["calcule le milieu", "reporte ses coordonnées et cherche un même $t$ pour les 3 équations", "vérifie une seule coordonnée", "calcule un déterminant 3×3"],
+      "ok": 1,
+      "why": "On reporte les coordonnées du point et on cherche une valeur unique de $t$ valable pour les trois équations."
+    },
+    {
+      "q": "Pour déterminer la position relative de deux droites non parallèles dans l'espace, on…",
+      "opts": ["regarde juste les directeurs", "égalise les deux systèmes paramétriques et on résout", "calcule deux milieux", "additionne les vecteurs directeurs"],
+      "ok": 1,
+      "why": "On égalise les systèmes (avec des paramètres distincts) : solution ⟹ sécantes ; pas de solution ⟹ non coplanaires."
+    },
+    {
+      "q": "Pour prouver que trois vecteurs sont coplanaires, on…",
+      "opts": ["montre qu'ils sont tous colinéaires", "cherche $a,b$ tels que $\\vec{w}=a\\vec{u}+b\\vec{v}$ et on vérifie les 3 coordonnées", "calcule trois milieux", "vérifie qu'ils ont la même norme"],
+      "ok": 1,
+      "why": "On exprime $\\vec{w}$ comme combinaison linéaire de $\\vec{u},\\vec{v}$ (non colinéaires) en résolvant le système sur les coordonnées."
+    },
+    {
+      "q": "Pour vérifier que deux droites sont parallèles, on…",
+      "opts": ["teste si leurs vecteurs directeurs sont colinéaires", "calcule l'intersection", "additionne leurs points de base", "vérifie qu'elles ont le même point de départ"],
+      "ok": 0,
+      "why": "Deux droites sont parallèles si et seulement si leurs vecteurs directeurs sont colinéaires."
+    },
+    {
+      "q": "Pour caractériser un plan passant par un point $A$, on cherche…",
+      "opts": ["un seul vecteur directeur", "deux vecteurs directeurs non colinéaires", "trois points alignés", "un vecteur colinéaire à $\\overrightarrow{OA}$"],
+      "ok": 1,
+      "why": "Un plan est défini par un point et deux vecteurs directeurs non colinéaires qui engendrent le plan."
+    },
+    {
+      "q": "On veut montrer qu'une droite est parallèle à un plan défini par deux directeurs $\\vec{v_1},\\vec{v_2}$. On vérifie que…",
+      "opts": ["le directeur de la droite est colinéaire à $\\vec{v_1}$", "le directeur de la droite est coplanaire avec $\\vec{v_1}$ et $\\vec{v_2}$", "la droite passe par l'origine", "les directeurs sont égaux"],
+      "ok": 1,
+      "why": "Le vecteur directeur de la droite doit être combinaison linéaire de $\\vec{v_1}$ et $\\vec{v_2}$ (coplanaire avec eux) pour que la droite soit parallèle au plan."
+    },
+    {
+      "q": "Distinguer deux droites confondues de deux droites strictement parallèles : on…",
+      "opts": ["compare seulement les directeurs", "teste si un point de l'une appartient à l'autre", "calcule deux milieux", "additionne les deux directeurs"],
+      "ok": 1,
+      "why": "Directeurs déjà colinéaires : on vérifie si un point de la première est sur la seconde. Si oui : confondues ; sinon : strictement parallèles."
+    }
+  ]
+}

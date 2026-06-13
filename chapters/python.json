@@ -1,0 +1,246 @@
+{
+  "id": "python",
+  "tag": "Transversal",
+  "title": "Algorithmique et Python",
+  "intro": "Python n'est pas un chapitre à part : c'est un outil qui traverse tout le programme. On s'en sert pour calculer des termes d'une suite, chercher un seuil, approcher une solution de $f(x)=0$ par dichotomie, simuler le hasard ou approcher une intégrale. Au bac, on te demande surtout de LIRE un programme (« que renvoie ce script ? »), de COMPLÉTER une ligne manquante, ou de dire ce que vaut une variable à la fin. Pas besoin d'être développeur : il faut maîtriser une dizaine de briques (variables, conditions, boucles for et while, fonctions, listes) et connaître 4-5 algorithmes classiques. Le piège numéro 1 : <code>range(n)</code> s'arrête à n-1.",
+  "objectifs": [
+    "Lire un programme Python et prédire ce qu'il affiche ou renvoie",
+    "Maîtriser les boucles for ... in range(...) et while, et savoir laquelle choisir",
+    "Écrire et compléter un algorithme de recherche de seuil avec une boucle while",
+    "Comprendre et compléter une dichotomie pour approcher une solution de $f(x)=0$",
+    "Calculer des termes et des sommes de suites, et manipuler des listes",
+    "Simuler le hasard avec le module random et approcher une intégrale (méthode des rectangles)"
+  ],
+  "cours": [
+    {
+      "t": "Variables, types et affectation",
+      "d": "Une variable se crée par <b>affectation</b> avec le signe <code>=</code> : <code>x = 5</code> range la valeur 5 dans la boîte x. Attention, <code>=</code> n'a rien à voir avec l'égalité maths : <code>x = x + 1</code> veut dire « prends l'ancien x, ajoute 1, remets le résultat dans x ». Les principaux types sont <code>int</code> (entier, ex. 3) et <code>float</code> (décimal, ex. 3.5). Les opérateurs utiles : <code>+ - *</code> classiques, <code>**</code> pour la puissance ($2^{10}$ s'écrit <code>2**10</code> et vaut 1024), <code>/</code> division qui donne toujours un float (<code>7/2</code> donne 3.5), <code>//</code> division entière (<code>17//5</code> donne 3, le quotient) et <code>%</code> modulo (<code>17%5</code> donne 2, le reste). Le test <code>n%2==0</code> détecte les nombres pairs."
+    },
+    {
+      "t": "Conditions : if / elif / else",
+      "d": "On exécute un bloc selon qu'une condition est vraie ou fausse. La condition est un test : <code>==</code> (égal), <code>!=</code> (différent), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Surtout ne pas confondre <code>=</code> (affecter) et <code>==</code> (tester). Exemple :<pre><code>if note &gt;= 10:\n    print(\"recu\")\nelif note &gt;= 8:\n    print(\"rattrapage\")\nelse:\n    print(\"ajourne\")</code></pre>L'<b>indentation</b> (les espaces en début de ligne) délimite les blocs : c'est obligatoire en Python, une indentation fausse casse le programme."
+    },
+    {
+      "t": "Boucles for et while",
+      "d": "La boucle <code>for</code> répète un bloc un nombre <b>connu</b> de fois : <code>for k in range(n):</code> fait varier k de 0 à n-1. Piège majeur : <code>range(5)</code> donne 0,1,2,3,4 (cinq valeurs, la borne 5 est <b>exclue</b>) et <code>range(2,7)</code> donne 2,3,4,5,6. On peut ajouter un pas : <code>range(10,0,-2)</code> donne 10,8,6,4,2. La boucle <code>while</code> répète <b>tant qu'</b>une condition est vraie, sans savoir d'avance combien de fois : c'est elle qu'on utilise pour chercher un seuil. Il faut garantir que la condition finira par devenir fausse, sinon boucle infinie."
+    },
+    {
+      "t": "Fonctions et listes",
+      "d": "Une <b>fonction</b> se définit avec <code>def</code> et renvoie un résultat avec <code>return</code> :<pre><code>def carre(x):\n    return x * x</code></pre>On l'appelle ensuite par <code>carre(4)</code> qui vaut 16. Dès que Python rencontre <code>return</code>, il sort de la fonction. Une <b>liste</b> stocke plusieurs valeurs : <code>L = [3, 7, 2]</code>, on accède au premier élément par <code>L[0]</code> (les indices commencent à 0), on connaît sa taille avec <code>len(L)</code> et on ajoute un élément à la fin avec <code>L.append(valeur)</code>. On la parcourt avec <code>for x in L:</code>."
+    },
+    {
+      "t": "Les algorithmes classiques en maths",
+      "d": "Quatre schémas reviennent sans cesse. <b>Seuil</b> : trouver le plus petit n tel qu'une suite dépasse une valeur, avec un <code>while</code> qui calcule les termes et un compteur. <b>Dichotomie</b> : approcher la solution de $f(x)=0$ sur $[a,b]$ (avec f continue changeant de signe) en coupant l'intervalle en deux à chaque étape, et en gardant la moitié où le signe change. <b>Suites et sommes</b> : mettre à jour un terme avec <code>u = ...</code> dans une boucle, en accumulant une somme <code>S = S + u</code>. <b>Simulation aléatoire</b> : avec <code>from random import randint, random</code> on imite un lancer de dé, un échantillon, une loi binomiale, et on estime des fréquences. La <b>méthode des rectangles</b> approche une intégrale en sommant des aires de rectangles."
+    }
+  ],
+  "formulaireTitre": "Mémo de syntaxe",
+  "formulaire": [
+    ["<code>x = 5</code>", "Affectation : range la valeur 5 dans la variable x (= n'est PAS un test)"],
+    ["<code>a == b</code> / <code>a != b</code>", "Tests d'égalité et de différence (== teste, = affecte)"],
+    ["<code>17 // 5</code> = 3, <code>17 % 5</code> = 2", "Division entière (quotient) et modulo (reste) ; <code>n%2==0</code> teste si n est pair"],
+    ["<code>2 ** 10</code> = 1024, <code>7 / 2</code> = 3.5", "Puissance, et division qui donne toujours un float"],
+    ["<code>for k in range(n):</code>", "Boucle qui fait varier k de 0 à n-1 (la borne n est EXCLUE)"],
+    ["<code>range(2, 7)</code> = 2,3,4,5,6", "De 2 inclus à 7 exclu ; <code>range(a, b, pas)</code> ajoute un pas"],
+    ["<code>while condition:</code>", "Répète TANT QUE la condition est vraie (nombre de tours inconnu)"],
+    ["<code>def f(x):</code> ... <code>return ...</code>", "Définit une fonction ; return renvoie le résultat et sort de la fonction"],
+    ["<code>L = []</code> puis <code>L.append(v)</code>", "Crée une liste vide puis ajoute v à la fin ; <code>L[0]</code>, <code>len(L)</code>"],
+    ["<code>from random import randint, random</code>", "<code>randint(1,6)</code> : entier de 1 à 6 inclus ; <code>random()</code> : flottant dans [0,1["]
+  ],
+  "methodes": [
+    {
+      "t": "Écrire un algorithme de SEUIL (while)",
+      "etapes": [
+        "Initialise le premier terme et un compteur : <code>u = u0</code> et <code>n = 0</code>",
+        "Tant que la condition de seuil n'est PAS encore atteinte, boucle : <code>while u &lt;= valeur:</code>",
+        "Dans la boucle, calcule le terme suivant (<code>u = ...</code>) ET incrémente le compteur (<code>n = n + 1</code>)",
+        "À la sortie, n contient le plus petit rang qui dépasse le seuil ; on l'affiche avec <code>print(n)</code>",
+        "Vérifie l'ordre des deux lignes : si tu mets n+=1 avant ou après u=..., teste sur les premiers termes"
+      ]
+    },
+    {
+      "t": "Compléter une DICHOTOMIE",
+      "etapes": [
+        "Vérifie que f est continue sur $[a,b]$ et que $f(a)$ et $f(b)$ sont de signes contraires",
+        "Calcule le milieu : <code>m = (a + b) / 2</code>",
+        "Regarde où est le changement de signe : si <code>f(a) * f(m) &lt;= 0</code>, la racine est dans $[a,m]$, donc <code>b = m</code> ; sinon <code>a = m</code>",
+        "Répète soit un nombre fixe de fois (<code>for</code>), soit jusqu'à la précision voulue (<code>while b - a &gt; 0.001</code>)",
+        "La valeur approchée de la solution est le dernier milieu, ou <code>(a+b)/2</code>"
+      ]
+    },
+    {
+      "t": "Lire un script « que vaut la variable à la fin ? »",
+      "etapes": [
+        "Note la valeur initiale de chaque variable",
+        "Déroule la boucle À LA MAIN sur un tableau : une ligne par tour, une colonne par variable",
+        "Attention au range : compte exactement combien de tours (range(5) = 5 tours, k = 0,1,2,3,4)",
+        "Repère bien l'indentation : une ligne hors de la boucle ne s'exécute qu'une fois, à la fin",
+        "La dernière valeur écrite dans le tableau est la réponse"
+      ]
+    },
+    {
+      "t": "Approcher une intégrale (méthode des rectangles)",
+      "etapes": [
+        "Choisis le nombre de rectangles n ; calcule le pas : <code>pas = (b - a) / n</code>",
+        "Initialise la somme à 0 : <code>S = 0</code>",
+        "Pour k de 0 à n-1, ajoute l'aire d'un rectangle : <code>S = S + f(a + k*pas) * pas</code> (rectangles à gauche)",
+        "À la fin, S approche $\\int_a^b f(x)\\,dx$ ; plus n est grand, meilleure est l'approximation"
+      ]
+    }
+  ],
+  "annales": [
+    {"y": 2024, "s": "Compléter un script de dichotomie approchant la solution de f(x)=0, et donner le nombre d'itérations", "loc": "Métropole"},
+    {"y": 2023, "s": "Recherche d'un seuil avec une boucle while sur une suite, lecture du résultat affiché", "loc": "Métropole"},
+    {"y": 2022, "s": "Simulation d'un échantillon avec random et estimation d'une fréquence (loi binomiale)", "loc": "Centres étrangers"}
+  ],
+  "piege": "Le piège n°1 : <code>range(n)</code> s'arrête à n-1, donc <code>range(5)</code> ne contient PAS 5 (il donne 0,1,2,3,4). Le piège n°2 : ne confonds jamais <code>=</code> (affecter une valeur) et <code>==</code> (tester une égalité, dans un if ou un while). Le piège n°3 : l'indentation décide ce qui est DANS la boucle ou DEHORS, une ligne mal indentée change tout le résultat. Enfin <code>/</code> donne un décimal (7/2 = 3.5) alors que <code>//</code> donne le quotient entier (7//2 = 3) : ne les confonds pas.",
+  "qcm": [
+    {
+      "q": "Que renvoie cette fonction ? <pre><code>def f(n):\n    s = 0\n    for k in range(1, 6):\n        s = s + k\n    return s\nprint(f(0))</code></pre>",
+      "opts": ["10", "15", "21", "6"],
+      "ok": 1,
+      "why": "range(1, 6) donne 1,2,3,4,5 (6 exclu). La somme 1+2+3+4+5 vaut 15."
+    },
+    {
+      "q": "Que vaut x à la fin ? <pre><code>x = 10\nfor k in range(4):\n    x = x // 2\nprint(x)</code></pre>",
+      "opts": ["0", "1", "2", "2.5"],
+      "ok": 0,
+      "why": "// est la division entière. 10//2=5, 5//2=2, 2//2=1, 1//2=0. Après 4 tours, x = 0."
+    },
+    {
+      "q": "Combien de tours fait cette boucle, et que vaut n à la fin ? <pre><code>n = 0\nu = 1\nwhile u &lt;= 1000:\n    u = 2*u + 3\n    n = n + 1\nprint(n)</code></pre>",
+      "opts": ["7", "8", "9", "boucle infinie"],
+      "ok": 1,
+      "why": "Les termes : 1, 5, 13, 29, 61, 125, 253, 509, 1021. Le terme 1021 > 1000 sort à n = 8."
+    },
+    {
+      "q": "Que vaut la liste L à la fin ? <pre><code>L = []\nfor k in range(1, 5):\n    L.append(k*k)\nprint(L)</code></pre>",
+      "opts": ["[0, 1, 4, 9]", "[1, 4, 9, 16, 25]", "[1, 4, 9, 16]", "[1, 2, 3, 4]"],
+      "ok": 2,
+      "why": "range(1,5) donne 1,2,3,4. On ajoute leurs carrés : 1, 4, 9, 16. Le 25 n'apparaît pas car 5 est exclu."
+    },
+    {
+      "q": "Que vaut <code>17 % 5</code> en Python ?",
+      "opts": ["3", "2", "3.4", "12"],
+      "ok": 1,
+      "why": "% est le modulo (le reste de la division euclidienne). 17 = 5×3 + 2, donc le reste est 2. (17 // 5 vaut 3.)"
+    },
+    {
+      "q": "Cette dichotomie cherche une solution de f(x)=0 avec f(x)=x²-2 sur [1,2]. Que vaut environ a (ou b) à la fin ? <pre><code>def f(x):\n    return x*x - 2\na = 1\nb = 2\nfor i in range(20):\n    m = (a + b) / 2\n    if f(a)*f(m) &lt;= 0:\n        b = m\n    else:\n        a = m\nprint((a+b)/2)</code></pre>",
+      "opts": ["1.5", "1.414", "2.0", "1.732"],
+      "ok": 1,
+      "why": "L'algorithme approche la racine de x²-2 = 0, c'est-à-dire $\\sqrt{2} \\approx 1{,}414$."
+    },
+    {
+      "q": "Quel est le rôle de la ligne <code>L.append(x)</code> ?",
+      "opts": ["Elle supprime x de la liste L", "Elle ajoute x à la fin de la liste L", "Elle remplace L par x", "Elle compte combien de fois x apparaît dans L"],
+      "ok": 1,
+      "why": "append ajoute l'élément x à la fin de la liste L. Pour la taille on utilise len(L)."
+    },
+    {
+      "q": "Que vaut c à la fin ? <pre><code>c = 0\nfor i in range(3):\n    for j in range(2):\n        c = c + 1\nprint(c)</code></pre>",
+      "opts": ["5", "6", "3", "2"],
+      "ok": 1,
+      "why": "La boucle externe tourne 3 fois, l'interne 2 fois à chaque tour : 3 × 2 = 6 incréments."
+    },
+    {
+      "q": "Que vaut <code>2 ** 10</code> ?",
+      "opts": ["20", "100", "1024", "512"],
+      "ok": 2,
+      "why": "** est l'opérateur puissance : $2^{10} = 1024$. (À ne pas confondre avec 2*10 = 20.)"
+    },
+    {
+      "q": "Que renvoie ce calcul de PGCD (algorithme d'Euclide) ? <pre><code>a = 48\nb = 36\nwhile b != 0:\n    a, b = b, a % b\nprint(a)</code></pre>",
+      "opts": ["6", "12", "4", "84"],
+      "ok": 1,
+      "why": "Euclide : (48,36) → (36,12) → (12,0). On s'arrête quand b=0 et a=12 = PGCD(48,36)."
+    },
+    {
+      "q": "Que vaut <code>list(range(2, 7))</code> ?",
+      "opts": ["[2, 3, 4, 5, 6, 7]", "[2, 3, 4, 5, 6]", "[3, 4, 5, 6, 7]", "[2, 7]"],
+      "ok": 1,
+      "why": "range(a, b) va de a inclus à b exclu : ici 2,3,4,5,6 (le 7 n'y est pas)."
+    },
+    {
+      "q": "Combien de tours pour atteindre une précision de 0,001 par dichotomie sur un intervalle de longueur 1 ? <pre><code>a = 1\nb = 2\nc = 0\nwhile b - a &gt; 0.001:\n    m = (a + b) / 2\n    # ... mise a jour de a ou b ...\n    c = c + 1\nprint(c)</code></pre>",
+      "opts": ["3", "10", "100", "1000"],
+      "ok": 1,
+      "why": "À chaque tour la longueur est divisée par 2. Il faut $1/2^n &lt; 0{,}001$, soit $2^n &gt; 1000$ : n = 10 ($2^{10}=1024$)."
+    }
+  ],
+  "flash": [
+    {"front": "Que donne <code>range(5)</code> dans une boucle for ?", "back": "Les entiers 0, 1, 2, 3, 4 (la borne 5 est exclue) — soit 5 valeurs."},
+    {"front": "Différence entre <code>=</code> et <code>==</code> ?", "back": "<code>=</code> affecte une valeur à une variable ; <code>==</code> teste si deux valeurs sont égales (dans un if/while)."},
+    {"front": "Que vaut <code>17 // 5</code> et <code>17 % 5</code> ?", "back": "<code>17 // 5</code> = 3 (quotient entier) et <code>17 % 5</code> = 2 (reste)."},
+    {"front": "Comment ajouter un élément à la fin d'une liste L ?", "back": "<code>L.append(element)</code>"},
+    {"front": "Comment écrire $2^{10}$ en Python et combien ça vaut ?", "back": "<code>2 ** 10</code>, ce qui vaut 1024."},
+    {"front": "Quand utiliser une boucle <code>while</code> plutôt qu'une boucle <code>for</code> ?", "back": "Quand on ne connaît pas d'avance le nombre de tours (ex. recherche d'un seuil) : on répète TANT QU'une condition est vraie."},
+    {"front": "À quoi sert <code>return</code> dans une fonction ?", "back": "À renvoyer un résultat à l'appelant ; dès qu'il est exécuté, on sort de la fonction."},
+    {"front": "Comment importer de quoi simuler un dé à 6 faces ?", "back": "<code>from random import randint</code> puis <code>randint(1, 6)</code> (1 et 6 inclus)."},
+    {"front": "Que renvoie <code>random()</code> ?", "back": "Un nombre flottant aléatoire dans l'intervalle [0 ; 1[ (1 exclu)."},
+    {"front": "Comment connaître la longueur d'une liste L ?", "back": "<code>len(L)</code> ; l'élément d'indice 0 est le premier : <code>L[0]</code>."},
+    {"front": "Dans une dichotomie sur [a,b], comment calcule-t-on le milieu ?", "back": "<code>m = (a + b) / 2</code>"},
+    {"front": "Quelle est la condition d'application de la dichotomie pour f(x)=0 ?", "back": "f continue sur $[a,b]$ et $f(a)$, $f(b)$ de signes contraires (changement de signe)."}
+  ],
+  "vraifaux": [
+    {"q": "<code>range(0, 5)</code> contient le nombre 5.", "v": false, "why": "La borne supérieure est exclue : range(0,5) donne 0,1,2,3,4. 5 n'y est pas."},
+    {"q": "<code>7 / 2</code> renvoie 3.5 alors que <code>7 // 2</code> renvoie 3.", "v": true, "why": "/ donne un float (division réelle), // donne le quotient entier."},
+    {"q": "En Python, on peut écrire un if sans respecter l'indentation.", "v": false, "why": "L'indentation est obligatoire : elle délimite les blocs. Une indentation incorrecte provoque une erreur."},
+    {"q": "Une boucle <code>while</code> peut tourner indéfiniment si sa condition ne devient jamais fausse.", "v": true, "why": "C'est la boucle infinie : il faut s'assurer que la condition finit par devenir fausse."},
+    {"q": "<code>x == 3</code> range la valeur 3 dans la variable x.", "v": false, "why": "== est un TEST (renvoie vrai ou faux). Pour affecter, il faut <code>x = 3</code>."},
+    {"q": "<code>L.append(4)</code> ajoute 4 à la fin de la liste L.", "v": true, "why": "C'est exactement le rôle de la méthode append."},
+    {"q": "Le premier élément d'une liste L s'obtient avec <code>L[1]</code>.", "v": false, "why": "Les indices commencent à 0 : le premier élément est <code>L[0]</code>."},
+    {"q": "<code>n % 2 == 0</code> est vrai exactement quand n est pair.", "v": true, "why": "n % 2 est le reste de la division par 2 ; il vaut 0 si et seulement si n est pair."},
+    {"q": "Pour chercher le plus petit n tel qu'une suite dépasse un seuil, une boucle for est plus adaptée qu'une boucle while.", "v": false, "why": "On ne connaît pas le rang d'avance : c'est typiquement une boucle while (tant que le seuil n'est pas dépassé)."},
+    {"q": "Augmenter le nombre de rectangles dans la méthode des rectangles améliore l'approximation de l'intégrale.", "v": true, "why": "Plus les rectangles sont fins (n grand), plus la somme de leurs aires approche l'aire sous la courbe."}
+  ],
+  "qmethode": [
+    {
+      "q": "On veut le plus petit rang n tel que $u_n > 10^6$, où $u_{n+1} = 1{,}5\\,u_n$. Quel outil Python ?",
+      "opts": ["Une boucle while avec un compteur (recherche de seuil)", "Une dichotomie sur l'intervalle [0 ; 10^6]", "Une simulation avec random", "La méthode des rectangles"],
+      "ok": 0,
+      "why": "On ne connaît pas le rang d'avance : boucle while tant que u ≤ 10^6, en calculant les termes et en comptant les tours."
+    },
+    {
+      "q": "On cherche une valeur approchée de la solution de $f(x)=0$ sur $[1,2]$ avec f continue et $f(1)\\times f(2)<0$. Quelle méthode ?",
+      "opts": ["Une simulation aléatoire", "La dichotomie (balayage par moitiés)", "Un simple calcul de moyenne", "Une boucle for sur range(2)"],
+      "ok": 1,
+      "why": "Le changement de signe d'une fonction continue garantit une racine (TVI) : la dichotomie la coince en coupant l'intervalle en deux."
+    },
+    {
+      "q": "On veut estimer la probabilité d'obtenir au moins 6 « piles » sur 10 lancers. Quelle approche en Python ?",
+      "opts": ["Une dichotomie", "La méthode des rectangles", "Une simulation aléatoire (random) répétée de nombreuses fois", "Calculer 6/10"],
+      "ok": 2,
+      "why": "On simule l'expérience un grand nombre de fois avec random, on compte les succès et on estime la fréquence (loi des grands nombres)."
+    },
+    {
+      "q": "On veut une valeur approchée de $\\int_0^1 e^{-x^2}\\,dx$ qui n'a pas de primitive simple. Quelle méthode ?",
+      "opts": ["La méthode des rectangles", "Une recherche de seuil", "Un test if/else", "La dichotomie"],
+      "ok": 0,
+      "why": "Pas de primitive explicite : on approche l'aire par une somme d'aires de rectangles (somme de Riemann)."
+    },
+    {
+      "q": "On veut stocker puis afficher les 20 premiers termes d'une suite. Quelle structure choisir ?",
+      "opts": ["Une seule variable réutilisée", "Une liste alimentée par append dans une boucle for", "Un while sans compteur", "Une fonction sans return"],
+      "ok": 1,
+      "why": "Pour garder tous les termes, on les ajoute un à un dans une liste avec append, dans une boucle for range(20)."
+    },
+    {
+      "q": "On veut vérifier si un entier n est pair dans un programme. Quel test ?",
+      "opts": ["<code>n / 2 == 0</code>", "<code>n % 2 == 0</code>", "<code>n // 2 == n</code>", "<code>n = 2</code>"],
+      "ok": 1,
+      "why": "n est pair quand le reste de sa division par 2 est nul, soit <code>n % 2 == 0</code>."
+    },
+    {
+      "q": "Pour répéter une action un nombre de fois CONNU à l'avance (ex. 100 simulations), que choisir ?",
+      "opts": ["Une boucle for in range(100)", "Une boucle while sans condition", "Une dichotomie", "Une fonction récursive obligatoire"],
+      "ok": 0,
+      "why": "Nombre de tours connu = boucle for sur range(100). Le while est réservé aux cas où le nombre de tours dépend d'une condition."
+    },
+    {
+      "q": "Dans une dichotomie, on a coupé l'intervalle et la racine est dans la moitié gauche $[a,m]$. Quelle mise à jour ?",
+      "opts": ["<code>a = m</code>", "<code>b = m</code>", "<code>a = b</code>", "<code>m = a</code>"],
+      "ok": 1,
+      "why": "Si la racine est dans $[a,m]$, on rétrécit l'intervalle par la droite : la nouvelle borne supérieure devient m, donc <code>b = m</code>."
+    }
+  ]
+}

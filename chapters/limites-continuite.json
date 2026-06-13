@@ -1,0 +1,141 @@
+{
+  "id": "limites-continuite",
+  "tag": "Analyse",
+  "title": "Limites et continuité",
+  "intro": "Étudier une limite, c'est décrire le comportement d'une fonction \"au bord\" : que devient $f(x)$ quand $x$ file vers $+\\infty$, $-\\infty$, ou s'approche d'un réel embêtant (souvent une valeur interdite) ? Ce chapitre te donne les limites de référence, les règles d'opérations, et surtout les fameuses formes indéterminées (FI) où il faut bidouiller avant de conclure. On enchaîne avec la continuité et le théorème des valeurs intermédiaires (TVI), l'outil roi pour prouver qu'une équation $f(x)=k$ a une solution — et même une seule quand $f$ est strictement monotone.",
+  "objectifs": [
+    "Connaître par cœur les limites de référence ($x^n$, $\\dfrac1x$, $\\sqrt{x}$, $e^x$, $\\ln x$)",
+    "Appliquer les opérations sur les limites et repérer les 4 formes indéterminées",
+    "Lever une FI : factoriser par le terme dominant, utiliser les croissances comparées",
+    "Déterminer les asymptotes horizontales et verticales d'une courbe",
+    "Énoncer et utiliser le TVI et son corollaire (existence et unicité d'une solution)",
+    "Mettre en œuvre la dichotomie pour encadrer une solution"
+  ],
+  "cours": [
+    {
+      "t": "Limite en l'infini et en un réel",
+      "d": "$\\lim\\limits_{x\\to+\\infty}f(x)=\\ell$ signifie que $f(x)$ devient aussi proche que l'on veut de $\\ell$ pour $x$ assez grand : la droite $y=\\ell$ est alors asymptote horizontale. $\\lim\\limits_{x\\to+\\infty}f(x)=+\\infty$ signifie que $f(x)$ dépasse tout seuil. En un réel $a$, si $\\lim\\limits_{x\\to a}f(x)=\\pm\\infty$, la droite verticale $x=a$ est asymptote verticale (typique en une valeur interdite, où un dénominateur s'annule)."
+    },
+    {
+      "t": "Opérations sur les limites",
+      "d": "On combine les limites comme pour les nombres, SAUF dans 4 cas indéterminés : $+\\infty-\\infty$, $\\dfrac{\\infty}{\\infty}$, $0\\times\\infty$ et $\\dfrac{0}{0}$. Dans ces cas, le résultat dépend de la fonction : interdiction de conclure directement, il faut transformer l'écriture. Attention aussi à la \"règle des signes\" pour les produits et quotients, et aux limites par valeurs supérieures/inférieures ($0^+$ ou $0^-$ au dénominateur) qui décident du signe de l'infini."
+    },
+    {
+      "t": "Lever une forme indéterminée",
+      "d": "Pour un polynôme ou une fonction rationnelle en $\\pm\\infty$, on factorise par le terme de plus haut degré (le terme dominant) : la limite d'un polynôme en l'infini est celle de son terme de plus haut degré. Pour une expression avec une racine, on multiplie par la quantité conjuguée. Le but est toujours de se ramener à une forme non indéterminée."
+    },
+    {
+      "t": "Croissances comparées",
+      "d": "En $+\\infty$, l'exponentielle l'emporte sur toute puissance, qui l'emporte sur le logarithme. Les résultats clés : $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x}=+\\infty$, $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x^n}=+\\infty$, $\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}=0$, et en $-\\infty$ : $\\lim\\limits_{x\\to-\\infty}xe^{x}=0$. Ces limites lèvent directement des FI du type $\\dfrac{\\infty}{\\infty}$ ou $0\\times\\infty$."
+    },
+    {
+      "t": "Continuité, TVI et corollaire",
+      "d": "Une fonction est continue sur un intervalle si on peut tracer sa courbe \"sans lever le crayon\" ($\\lim\\limits_{x\\to a}f(x)=f(a)$ en tout point $a$). Toutes les fonctions usuelles (polynômes, $\\exp$, $\\ln$, $\\cos$, $\\sin$, racine, quotients là où ils sont définis) sont continues sur leur domaine. Théorème des valeurs intermédiaires : si $f$ est continue sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet au moins une solution dans $[a,b]$. Corollaire (théorème de la bijection) : si de plus $f$ est strictement monotone sur $[a,b]$, alors cette solution est unique."
+    }
+  ],
+  "formulaireTitre": "Limites de référence à connaître",
+  "formulaire": [
+    ["$\\lim\\limits_{x\\to+\\infty}x^n=+\\infty\\ (n\\ge 1)$", "$\\lim\\limits_{x\\to+\\infty}\\dfrac{1}{x^n}=0$"],
+    ["$\\lim\\limits_{x\\to 0^+}\\dfrac{1}{x}=+\\infty$", "$\\lim\\limits_{x\\to 0^-}\\dfrac{1}{x}=-\\infty$"],
+    ["$\\lim\\limits_{x\\to+\\infty}\\sqrt{x}=+\\infty$", "$\\lim\\limits_{x\\to+\\infty}e^{x}=+\\infty$"],
+    ["$\\lim\\limits_{x\\to-\\infty}e^{x}=0$", "$\\lim\\limits_{x\\to+\\infty}\\ln x=+\\infty$"],
+    ["$\\lim\\limits_{x\\to 0^+}\\ln x=-\\infty$", "$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^{x}}{x}=+\\infty$"],
+    ["$\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}=0$", "$\\lim\\limits_{x\\to-\\infty}x\\,e^{x}=0$"],
+    ["$\\lim\\limits_{x\\to 0}\\dfrac{e^{x}-1}{x}=1$", "$\\lim\\limits_{x\\to 0^+}x\\ln x=0$"],
+    ["Les 4 FI : $\\infty-\\infty$,\\ $\\dfrac{\\infty}{\\infty}$", "$0\\times\\infty$,\\ $\\dfrac{0}{0}$"]
+  ],
+  "methodes": [
+    {
+      "t": "Limite d'une fonction rationnelle en $\\pm\\infty$",
+      "etapes": [
+        "Repérer la FI (souvent $\\dfrac{\\infty}{\\infty}$).",
+        "Factoriser numérateur et dénominateur par leur terme de plus haut degré.",
+        "Simplifier la fraction obtenue.",
+        "Utiliser $\\lim\\limits_{x\\to+\\infty}\\dfrac{1}{x^n}=0$ pour conclure."
+      ]
+    },
+    {
+      "t": "Lever une FI avec une racine (quantité conjuguée)",
+      "etapes": [
+        "Identifier la FI $\\infty-\\infty$ (du type $\\sqrt{x^2+x}-x$).",
+        "Multiplier et diviser par l'expression conjuguée.",
+        "Utiliser l'identité $(a-b)(a+b)=a^2-b^2$ au numérateur.",
+        "Simplifier puis factoriser par le terme dominant pour conclure."
+      ]
+    },
+    {
+      "t": "Montrer que $f(x)=k$ a une unique solution (corollaire du TVI)",
+      "etapes": [
+        "Vérifier que $f$ est continue sur l'intervalle $[a,b]$.",
+        "Vérifier que $f$ est strictement monotone (signe de $f'$).",
+        "Vérifier que $k$ est compris entre $f(a)$ et $f(b)$.",
+        "Conclure : l'équation $f(x)=k$ admet une unique solution dans $[a,b]$."
+      ]
+    },
+    {
+      "t": "Encadrer la solution par dichotomie",
+      "etapes": [
+        "Partir d'un intervalle $[a,b]$ contenant la solution $\\alpha$.",
+        "Calculer le milieu $m=\\dfrac{a+b}{2}$ et le signe de $f(m)-k$.",
+        "Garder la moitié $[a,m]$ ou $[m,b]$ qui contient encore $\\alpha$.",
+        "Répéter jusqu'à obtenir l'amplitude (précision) voulue."
+      ]
+    }
+  ],
+  "annales": [
+    {"y": 2024, "s": "Étudier $\\lim\\limits_{x\\to+\\infty}\\dfrac{2x^2-3x+1}{x^2+5}$ puis en déduire l'asymptote horizontale de la courbe.", "loc": "Métropole"},
+    {"y": 2023, "s": "Montrer que l'équation $f(x)=0$, avec $f$ continue et strictement croissante sur $[0,2]$, admet une unique solution $\\alpha$, puis en donner un encadrement par dichotomie.", "loc": "Centres étrangers"},
+    {"y": 2022, "s": "Déterminer $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^{x}}{x^2}$ en utilisant une croissance comparée.", "loc": "Métropole"}
+  ],
+  "piege": "Ne JAMAIS conclure directement sur une forme indéterminée : $\\infty-\\infty$ ne vaut pas $0$, et $\\dfrac{\\infty}{\\infty}$ ne vaut pas $1$ ! Il faut transformer l'écriture. Et pour l'UNICITÉ d'une solution avec le TVI, ne pas oublier la stricte monotonie : la continuité seule donne l'existence d'au moins une solution, pas l'unicité.",
+  "qcm": [
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{1}{x^2}$ vaut :", "opts": ["$+\\infty$", "$1$", "$0$", "n'existe pas"], "ok": 2, "why": "Au dénominateur $x^2\\to+\\infty$, donc l'inverse tend vers $0$."},
+    {"q": "$\\lim\\limits_{x\\to 0^+}\\dfrac{1}{x}$ vaut :", "opts": ["$+\\infty$", "$-\\infty$", "$0$", "$1$"], "ok": 0, "why": "Pour $x>0$ proche de $0$, $\\dfrac1x$ devient très grand : limite $+\\infty$."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}(3x^2-7x+4)$ vaut :", "opts": ["$4$", "$-\\infty$", "$0$", "$+\\infty$"], "ok": 3, "why": "La limite d'un polynôme en $+\\infty$ est celle de son terme dominant $3x^2\\to+\\infty$."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^{x}}{x}$ vaut :", "opts": ["$+\\infty$", "$0$", "$1$", "$e$"], "ok": 0, "why": "Croissance comparée : l'exponentielle l'emporte sur $x$, donc le quotient tend vers $+\\infty$."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}$ vaut :", "opts": ["$1$", "$+\\infty$", "$0$", "$-\\infty$"], "ok": 2, "why": "Croissance comparée : $x$ l'emporte sur $\\ln x$, le quotient tend vers $0$."},
+    {"q": "$\\lim\\limits_{x\\to-\\infty}x\\,e^{x}$ vaut :", "opts": ["$-\\infty$", "$0$", "$+\\infty$", "$-1$"], "ok": 1, "why": "FI $0\\times\\infty$ levée par croissance comparée : $x\\,e^{x}\\to 0$ en $-\\infty$."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{2x^2+1}{x^2-3}$ vaut :", "opts": ["$0$", "$+\\infty$", "$2$", "$\\dfrac12$"], "ok": 2, "why": "On factorise par $x^2$ : la limite est le rapport des coefficients dominants $\\dfrac21=2$."},
+    {"q": "$\\lim\\limits_{x\\to-\\infty}e^{x}$ vaut :", "opts": ["$0$", "$-\\infty$", "$1$", "$+\\infty$"], "ok": 0, "why": "L'exponentielle tend vers $0$ (par valeurs positives) quand $x\\to-\\infty$."},
+    {"q": "La courbe de $f(x)=\\dfrac{1}{x-2}$ admet une asymptote verticale d'équation :", "opts": ["$y=0$", "$x=2$", "$x=0$", "$y=2$"], "ok": 1, "why": "En $x=2$ le dénominateur s'annule et $f$ tend vers $\\pm\\infty$ : asymptote verticale $x=2$."},
+    {"q": "Si $\\lim\\limits_{x\\to+\\infty}f(x)=3$, la courbe de $f$ admet :", "opts": ["une asymptote verticale $x=3$", "une asymptote horizontale $y=3$", "aucune asymptote", "une asymptote oblique"], "ok": 1, "why": "Une limite finie $\\ell$ en $+\\infty$ donne une asymptote horizontale $y=\\ell$."},
+    {"q": "Une fonction continue sur $[a,b]$ avec $f(a)=-1$ et $f(b)=4$ :", "opts": ["ne s'annule jamais", "s'annule au moins une fois sur $[a,b]$", "est forcément croissante", "vaut $0$ en $a$"], "ok": 1, "why": "$0$ est entre $-1$ et $4$ : par le TVI, $f$ s'annule au moins une fois."},
+    {"q": "Pour garantir l'UNICITÉ de la solution de $f(x)=k$ sur $[a,b]$, il faut que $f$ soit continue et :", "opts": ["positive", "dérivable deux fois", "strictement monotone", "paire"], "ok": 2, "why": "Le corollaire du TVI exige la stricte monotonie pour l'unicité de la solution."}
+  ],
+  "flash": [
+    {"front": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^{x}}{x}$ ?", "back": "$+\\infty$ (croissance comparée)"},
+    {"front": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}$ ?", "back": "$0$ (croissance comparée)"},
+    {"front": "$\\lim\\limits_{x\\to-\\infty}x\\,e^{x}$ ?", "back": "$0$"},
+    {"front": "$\\lim\\limits_{x\\to 0^+}\\ln x$ ?", "back": "$-\\infty$"},
+    {"front": "$\\lim\\limits_{x\\to-\\infty}e^{x}$ ?", "back": "$0$"},
+    {"front": "Les 4 formes indéterminées ?", "back": "$\\infty-\\infty$,\\ $\\dfrac{\\infty}{\\infty}$,\\ $0\\times\\infty$,\\ $\\dfrac{0}{0}$"},
+    {"front": "$\\lim\\limits_{x\\to 0^+}\\dfrac{1}{x}$ ?", "back": "$+\\infty$"},
+    {"front": "Limite d'un polynôme en $+\\infty$ ?", "back": "Celle de son terme de plus haut degré"},
+    {"front": "$\\lim\\limits_{x\\to 0}\\dfrac{e^{x}-1}{x}$ ?", "back": "$1$"},
+    {"front": "$\\lim\\limits_{x\\to 0^+}x\\ln x$ ?", "back": "$0$"},
+    {"front": "Que donne le TVI seul (sans monotonie) ?", "back": "L'existence d'au moins une solution"},
+    {"front": "Que dit le corollaire du TVI en plus ?", "back": "Avec stricte monotonie : solution unique"}
+  ],
+  "vraifaux": [
+    {"q": "$\\infty-\\infty=0$.", "v": false, "why": "C'est une forme indéterminée : le résultat dépend de la fonction, on ne peut pas conclure ainsi."},
+    {"q": "Toute fonction continue sur un intervalle est dérivable sur cet intervalle.", "v": false, "why": "Faux : la valeur absolue est continue mais non dérivable en $0$. C'est la dérivabilité qui implique la continuité, pas l'inverse."},
+    {"q": "Si $\\lim\\limits_{x\\to+\\infty}f(x)=5$, alors $y=5$ est asymptote horizontale.", "v": true, "why": "Une limite finie en $+\\infty$ donne bien une asymptote horizontale."},
+    {"q": "Le TVI seul (continuité) suffit à prouver l'unicité d'une solution.", "v": false, "why": "Le TVI donne l'existence ; il faut la stricte monotonie en plus pour l'unicité."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^{x}}{x^3}=+\\infty$.", "v": true, "why": "L'exponentielle l'emporte sur toute puissance de $x$ : croissance comparée."},
+    {"q": "Une fonction polynôme est continue sur $\\mathbb{R}$.", "v": true, "why": "Tous les polynômes sont continus sur $\\mathbb{R}$ (fonction usuelle)."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\ln x=+\\infty$.", "v": true, "why": "Le logarithme népérien tend vers $+\\infty$, mais très lentement."},
+    {"q": "Si une fonction est continue et change de signe sur $[a,b]$, elle s'annule sur $[a,b]$.", "v": true, "why": "C'est une application directe du TVI avec $k=0$."},
+    {"q": "$\\dfrac{0}{0}$ vaut toujours $1$.", "v": false, "why": "C'est une forme indéterminée : il faut transformer l'expression (factoriser, simplifier) avant de conclure."},
+    {"q": "La dichotomie permet d'obtenir un encadrement de la solution aussi précis qu'on veut.", "v": true, "why": "À chaque étape l'amplitude est divisée par 2 : on atteint n'importe quelle précision."}
+  ],
+  "qmethode": [
+    {"q": "Pour calculer $\\lim\\limits_{x\\to+\\infty}\\dfrac{3x^2-x}{2x^2+5}$ (FI $\\frac{\\infty}{\\infty}$), quelle méthode ?", "opts": ["Factoriser numérateur et dénominateur par $x^2$", "Multiplier par la quantité conjuguée", "Utiliser une croissance comparée", "Calculer la dérivée"], "ok": 0, "why": "Fonction rationnelle : on factorise par le terme dominant $x^2$, ici la limite vaut $\\dfrac32$."},
+    {"q": "Pour $\\lim\\limits_{x\\to+\\infty}\\big(\\sqrt{x^2+x}-x\\big)$ (FI $\\infty-\\infty$), quelle technique ?", "opts": ["Croissance comparée", "Multiplier par la quantité conjuguée", "Théorème des valeurs intermédiaires", "Factoriser par $e^x$"], "ok": 1, "why": "La racine appelle la quantité conjuguée $\\sqrt{x^2+x}+x$ ; la limite vaut $\\dfrac12$."},
+    {"q": "Pour lever $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^{x}}{x^2}$ (FI $\\frac{\\infty}{\\infty}$), quel outil ?", "opts": ["Quantité conjuguée", "Factorisation par $x^2$", "Croissance comparée exponentielle/puissance", "Dichotomie"], "ok": 2, "why": "Croissance comparée : l'exponentielle l'emporte sur $x^2$, la limite est $+\\infty$."},
+    {"q": "Pour montrer que $f(x)=2$ a au moins une solution sur $[0,3]$ avec $f$ continue, on utilise :", "opts": ["Le théorème des valeurs intermédiaires", "Les croissances comparées", "La quantité conjuguée", "La règle des signes"], "ok": 0, "why": "Continuité + valeur intermédiaire $2$ encadrée par $f(0)$ et $f(3)$ : c'est le TVI."},
+    {"q": "Pour prouver l'UNICITÉ de la solution de $f(x)=0$ sur $[a,b]$, il faut en plus de la continuité :", "opts": ["Que $f$ soit positive", "Que $f$ soit strictement monotone", "Que $f$ soit paire", "Que $f$ soit bornée"], "ok": 1, "why": "Le corollaire du TVI exige la stricte monotonie pour garantir l'unicité."},
+    {"q": "Pour trouver l'asymptote verticale de $f(x)=\\dfrac{x+1}{x-3}$, on étudie :", "opts": ["La limite en $+\\infty$", "La dérivée seconde", "La limite en $x=3$ (valeur interdite)", "La parité"], "ok": 2, "why": "L'asymptote verticale apparaît là où le dénominateur s'annule : en $x=3$."},
+    {"q": "Pour encadrer numériquement la solution $\\alpha$ de $f(x)=0$ à $10^{-2}$ près, on utilise :", "opts": ["La dichotomie (ou balayage)", "La quantité conjuguée", "La croissance comparée", "Le calcul de limite"], "ok": 0, "why": "La dichotomie réduit l'intervalle de moitié à chaque étape jusqu'à la précision voulue."},
+    {"q": "Pour $\\lim\\limits_{x\\to 0}\\dfrac{e^{x}-1}{x}$ (FI $\\frac00$), on reconnaît :", "opts": ["Une croissance comparée", "Le nombre dérivé de $\\exp$ en $0$ (limite égale à $1$)", "Une asymptote horizontale", "Une quantité conjuguée"], "ok": 1, "why": "C'est le taux d'accroissement de $\\exp$ en $0$, donc $\\exp'(0)=e^{0}=1$."}
+  ]
+}

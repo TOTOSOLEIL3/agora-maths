@@ -1,0 +1,255 @@
+{
+  "id": "proba-conditionnelles",
+  "tag": "Probabilités",
+  "title": "Probabilités conditionnelles",
+  "intro": "Une probabilité conditionnelle, c'est une probabilité « sachant que ». Tu sais qu'un événement $A$ s'est réalisé, et tu veux la proba que $B$ se réalise dans ce nouveau contexte : on note ça $P_A(B)$. Tout le chapitre tient dans une poignée d'outils : la formule de définition, l'arbre pondéré (ton meilleur ami pour ne pas te tromper), la formule des probabilités totales, l'indépendance, et les calculs « renversés » à la Bayes. Maîtrise l'arbre et tu gères 90 % des exos.",
+  "objectifs": [
+    "Calculer une probabilité conditionnelle $P_A(B)$ avec sa définition.",
+    "Construire et lire un arbre pondéré (somme des branches = 1, proba d'un chemin = produit).",
+    "Appliquer la formule des probabilités totales sur une partition de l'univers.",
+    "Reconnaître et utiliser l'indépendance de deux événements.",
+    "Calculer une probabilité « renversée » du type $P_B(A)$ à partir d'un arbre (idée de Bayes).",
+    "Éviter les pièges classiques : $P_A(B)$ vs $P_B(A)$, indépendant vs incompatible."
+  ],
+  "cours": [
+    {
+      "t": "Probabilité conditionnelle",
+      "d": "Soit $A$ et $B$ deux événements avec $P(A)\\ne 0$. La probabilité de $B$ sachant $A$ est $P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$. On la lit « proba de $B$ sachant $A$ ». On en déduit la formule la plus utile en pratique : $P(A\\cap B)=P(A)\\times P_A(B)$ (la proba d'une intersection se calcule en multipliant le long d'un chemin)."
+    },
+    {
+      "t": "Arbre pondéré",
+      "d": "Un arbre représente une expérience en plusieurs étapes. Règles d'or : (1) la somme des probabilités des branches issues d'un même nœud vaut $1$ ; (2) la probabilité d'un chemin (une feuille) est le produit des probabilités rencontrées le long du chemin ; (3) les branches du 2ᵉ niveau portent des probabilités conditionnelles. Exemple : la branche $A$ puis $B$ donne $P(A\\cap B)=P(A)\\times P_A(B)$."
+    },
+    {
+      "t": "Formule des probabilités totales",
+      "d": "Si $A$ et $\\bar A$ forment une partition de l'univers (cas le plus fréquent au bac), alors pour tout événement $B$ : $P(B)=P(A\\cap B)+P(\\bar A\\cap B)=P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$. Concrètement : pour obtenir $P(B)$, on additionne tous les chemins de l'arbre qui aboutissent à $B$. Avec une partition plus fine $A_1,\\dots,A_n$ : $P(B)=\\sum_{k=1}^{n} P(A_k)\\,P_{A_k}(B)$."
+    },
+    {
+      "t": "Indépendance",
+      "d": "Deux événements $A$ et $B$ sont indépendants lorsque $P(A\\cap B)=P(A)\\times P(B)$. De façon équivalente (si $P(A)\\ne 0$), cela signifie $P_A(B)=P(B)$ : savoir que $A$ s'est réalisé ne change rien à la proba de $B$. Attention : indépendant n'a rien à voir avec incompatible. Si $A$ et $B$ sont incompatibles et de probas non nulles, ils sont au contraire dépendants."
+    },
+    {
+      "t": "Probabilités renversées (Bayes)",
+      "d": "Souvent l'arbre donne $P_A(B)$ mais l'énoncé demande $P_B(A)$ (par exemple : « sachant que le test est positif, quelle proba d'être malade ? »). On repart de la définition : $P_B(A)=\\dfrac{P(A\\cap B)}{P(B)}$, où le numérateur est un chemin et le dénominateur se calcule par la formule des probabilités totales. C'est l'idée de la formule de Bayes, qu'on n'a pas besoin d'apprendre par cœur : il suffit de l'arbre."
+    }
+  ],
+  "formulaireTitre": "Formules à connaître par cœur",
+  "formulaire": [
+    ["Probabilité conditionnelle", "$P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$, avec $P(A)\\ne 0$"],
+    ["Proba d'une intersection (chemin)", "$P(A\\cap B)=P(A)\\times P_A(B)$"],
+    ["Probabilités totales (partition $A,\\bar A$)", "$P(B)=P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$"],
+    ["Probabilités totales (cas général)", "$P(B)=\\displaystyle\\sum_{k=1}^{n} P(A_k)\\,P_{A_k}(B)$"],
+    ["Indépendance", "$P(A\\cap B)=P(A)\\times P(B)$"],
+    ["Indépendance (forme conditionnelle)", "$P_A(B)=P(B)$"],
+    ["Proba renversée (Bayes)", "$P_B(A)=\\dfrac{P(A\\cap B)}{P(B)}=\\dfrac{P(A)\\,P_A(B)}{P(B)}$"],
+    ["Événement contraire", "$P(\\bar A)=1-P(A)$"],
+    ["Union (formule du crible)", "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$"],
+    ["Somme des branches d'un nœud", "$P_A(B)+P_A(\\bar B)=1$"]
+  ],
+  "methodes": [
+    {
+      "t": "Lire un énoncé et construire l'arbre",
+      "etapes": [
+        "Repère l'étape 1 (souvent une partition $A,\\bar A$) et place ses probas sur les premières branches.",
+        "Repère l'étape 2 : ce sont des probas conditionnelles $P_A(\\cdot)$ et $P_{\\bar A}(\\cdot)$.",
+        "Vérifie que la somme des branches de chaque nœud fait bien $1$ (complète avec l'événement contraire si besoin).",
+        "Pour la proba d'un scénario complet, multiplie le long du chemin."
+      ]
+    },
+    {
+      "t": "Calculer $P(B)$ avec les probabilités totales",
+      "etapes": [
+        "Identifie tous les chemins de l'arbre qui mènent à $B$.",
+        "Calcule la proba de chaque chemin (produit des branches).",
+        "Additionne ces probas : $P(B)=P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$.",
+        "N'oublie pas de pondérer par $P(A)$ et $P(\\bar A)$ : c'est l'erreur n°1."
+      ]
+    },
+    {
+      "t": "Calculer une proba renversée $P_B(A)$",
+      "etapes": [
+        "Écris la définition : $P_B(A)=\\dfrac{P(A\\cap B)}{P(B)}$.",
+        "Numérateur : la proba du chemin $A$ puis $B$, soit $P(A)\\,P_A(B)$.",
+        "Dénominateur : calcule $P(B)$ par la formule des probabilités totales.",
+        "Fais le quotient et donne une valeur approchée si l'énoncé le demande."
+      ]
+    },
+    {
+      "t": "Tester l'indépendance de deux événements",
+      "etapes": [
+        "Calcule séparément $P(A)$, $P(B)$ et $P(A\\cap B)$.",
+        "Compare $P(A\\cap B)$ avec le produit $P(A)\\times P(B)$.",
+        "Si c'est égal : $A$ et $B$ sont indépendants. Sinon : ils sont dépendants.",
+        "Variante : vérifie si $P_A(B)=P(B)$ (même conclusion)."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Dans une population, $4\\%$ des individus sont porteurs d'une maladie. Un test donne un résultat positif dans $97\\%$ des cas pour un malade et négatif dans $98\\%$ des cas pour un non-malade. On choisit un individu au hasard, on note $M$ « être malade » et $T$ « le test est positif ». 1) Construire l'arbre. 2) Calculer $P(T)$. 3) Une personne a un test positif : calculer $P_T(M)$ (valeur arrondie).",
+      "loc": "Métropole (type sujet)"
+    },
+    {
+      "y": 2023,
+      "s": "Une urne contient des jetons gagnants et perdants. La proba qu'un joueur gagne au 1er tour est $0{,}3$. S'il a gagné, il regagne au tour suivant avec proba $0{,}6$ ; s'il a perdu, il gagne avec proba $0{,}2$. Calculer la probabilité de gagner au 2ᵉ tour à l'aide de la formule des probabilités totales.",
+      "loc": "Centres étrangers (type sujet)"
+    },
+    {
+      "y": 2025,
+      "s": "Un site propose deux offres $A$ et $B$. $60\\%$ des clients choisissent $A$. Parmi ceux qui choisissent $A$, $25\\%$ reviennent ; parmi ceux qui choisissent $B$, $40\\%$ reviennent. Sachant qu'un client est revenu, quelle est la probabilité qu'il ait choisi l'offre $B$ ?",
+      "loc": "Métropole (type sujet)"
+    }
+  ],
+  "piege": "Trois pièges qui coûtent des points : (1) confondre $P_A(B)$ et $P_B(A)$ — ce ne sont PAS les mêmes (« proba d'être malade sachant test positif » $\\ne$ « proba d'avoir un test positif sachant malade »). (2) Confondre indépendants ($P(A\\cap B)=P(A)P(B)$) et incompatibles ($A\\cap B=\\varnothing$) : deux événements incompatibles de probas non nulles sont au contraire DÉPENDANTS. (3) Oublier de pondérer dans la formule des probabilités totales : on écrit $P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$, et non $P_A(B)+P_{\\bar A}(B)$.",
+  "qcm": [
+    {
+      "q": "Par définition, pour $P(A)\\ne 0$, $P_A(B)$ vaut :",
+      "opts": ["$P(A\\cap B)\\times P(A)$", "$\\dfrac{P(A\\cap B)}{P(A)}$", "$\\dfrac{P(A)}{P(A\\cap B)}$", "$\\dfrac{P(A\\cap B)}{P(B)}$"],
+      "ok": 1,
+      "why": "$P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$ : la proba de l'intersection divisée par la proba de l'événement conditionnant."
+    },
+    {
+      "q": "On a $P(A)=0{,}4$ et $P_A(B)=0{,}3$. Alors $P(A\\cap B)$ vaut :",
+      "opts": ["$0{,}12$", "$0{,}7$", "$0{,}75$", "$1{,}33$"],
+      "ok": 0,
+      "why": "$P(A\\cap B)=P(A)\\times P_A(B)=0{,}4\\times 0{,}3=0{,}12$."
+    },
+    {
+      "q": "Dans un arbre pondéré, la somme des probabilités des branches issues d'un même nœud vaut :",
+      "opts": ["$0$", "le produit des branches", "$1$", "$P(A)$"],
+      "ok": 2,
+      "why": "Les branches issues d'un nœud décrivent tous les cas possibles à cette étape : leur somme vaut toujours $1$."
+    },
+    {
+      "q": "La probabilité d'un chemin complet dans un arbre s'obtient en :",
+      "opts": ["multipliant les probabilités le long du chemin", "additionnant les probabilités", "prenant la plus grande", "divisant la première par la dernière"],
+      "ok": 0,
+      "why": "Proba d'un chemin = produit des probabilités rencontrées (par ex. $P(A)\\times P_A(B)$)."
+    },
+    {
+      "q": "Pour une partition $A,\\bar A$, la formule des probabilités totales donne $P(B)=$ :",
+      "opts": ["$P_A(B)+P_{\\bar A}(B)$", "$P(A)P(B)+P(\\bar A)P(B)$", "$P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$", "$P(A\\cap B)\\times P(\\bar A\\cap B)$"],
+      "ok": 2,
+      "why": "On somme les chemins menant à $B$ en pondérant : $P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$."
+    },
+    {
+      "q": "$A$ et $B$ sont indépendants si et seulement si :",
+      "opts": ["$A\\cap B=\\varnothing$", "$P(A\\cap B)=P(A)\\times P(B)$", "$P(A)=P(B)$", "$P(A\\cup B)=1$"],
+      "ok": 1,
+      "why": "L'indépendance se traduit par $P(A\\cap B)=P(A)\\times P(B)$ (équivaut à $P_A(B)=P(B)$)."
+    },
+    {
+      "q": "On donne $P(A)=0{,}5$, $P(B)=0{,}4$, $P(A\\cap B)=0{,}2$. Les événements $A$ et $B$ sont :",
+      "opts": ["incompatibles", "indépendants", "dépendants", "contraires"],
+      "ok": 1,
+      "why": "$P(A)\\times P(B)=0{,}5\\times 0{,}4=0{,}2=P(A\\cap B)$ : ils sont bien indépendants."
+    },
+    {
+      "q": "Deux événements incompatibles $A$ et $B$ avec $P(A)>0$ et $P(B)>0$ sont :",
+      "opts": ["toujours indépendants", "dépendants", "contraires", "équiprobables"],
+      "ok": 1,
+      "why": "Incompatibles $\\Rightarrow P(A\\cap B)=0$, alors que $P(A)P(B)>0$ : donc dépendants. Incompatible $\\ne$ indépendant."
+    },
+    {
+      "q": "Sachant $P(A)=0{,}2$, $P_A(B)=0{,}9$, $P(\\bar A)=0{,}8$, $P_{\\bar A}(B)=0{,}1$, la valeur de $P(B)$ est :",
+      "opts": ["$0{,}1$", "$0{,}18$", "$0{,}26$", "$1$"],
+      "ok": 2,
+      "why": "$P(B)=0{,}2\\times 0{,}9+0{,}8\\times 0{,}1=0{,}18+0{,}08=0{,}26$."
+    },
+    {
+      "q": "Avec les données précédentes ($P(B)=0{,}26$), la proba renversée $P_B(A)$ vaut environ :",
+      "opts": ["$0{,}90$", "$0{,}69$", "$0{,}26$", "$0{,}18$"],
+      "ok": 1,
+      "why": "$P_B(A)=\\dfrac{P(A\\cap B)}{P(B)}=\\dfrac{0{,}18}{0{,}26}\\approx 0{,}69$."
+    },
+    {
+      "q": "Si $A$ et $B$ sont indépendants, alors $P_A(B)$ est égal à :",
+      "opts": ["$P(A)$", "$P(B)$", "$1$", "$0$"],
+      "ok": 1,
+      "why": "L'indépendance signifie que conditionner par $A$ ne change rien : $P_A(B)=P(B)$."
+    },
+    {
+      "q": "On lance un dé équilibré. $A$ : « obtenir un nombre pair », $B$ : « obtenir un multiple de $3$ ». $P_A(B)$ vaut :",
+      "opts": ["$\\dfrac{1}{6}$", "$\\dfrac{1}{3}$", "$\\dfrac{1}{2}$", "$\\dfrac{2}{3}$"],
+      "ok": 1,
+      "why": "$A=\\{2,4,6\\}$, $A\\cap B=\\{6\\}$. Donc $P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}=\\dfrac{1/6}{1/2}=\\dfrac{1}{3}$."
+    }
+  ],
+  "flash": [
+    {"front": "Formule de la probabilité conditionnelle $P_A(B)$ ?", "back": "$P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$, avec $P(A)\\ne 0$"},
+    {"front": "Proba d'une intersection $P(A\\cap B)$ ?", "back": "$P(A\\cap B)=P(A)\\times P_A(B)$"},
+    {"front": "Règle : somme des branches d'un nœud d'un arbre ?", "back": "Elle vaut toujours $1$"},
+    {"front": "Règle : proba d'un chemin dans un arbre ?", "back": "Produit des probabilités le long du chemin"},
+    {"front": "Formule des probabilités totales (partition $A,\\bar A$) ?", "back": "$P(B)=P(A)\\,P_A(B)+P(\\bar A)\\,P_{\\bar A}(B)$"},
+    {"front": "Définition de l'indépendance de $A$ et $B$ ?", "back": "$P(A\\cap B)=P(A)\\times P(B)$"},
+    {"front": "Indépendance sous forme conditionnelle ?", "back": "$P_A(B)=P(B)$ (si $P(A)\\ne 0$)"},
+    {"front": "Comment calculer une proba renversée $P_B(A)$ ?", "back": "$P_B(A)=\\dfrac{P(A\\cap B)}{P(B)}$, avec $P(B)$ par les probabilités totales"},
+    {"front": "Deux événements incompatibles (probas $>0$) sont-ils indépendants ?", "back": "Non : ils sont dépendants ($P(A\\cap B)=0\\ne P(A)P(B)$)"},
+    {"front": "Proba de l'événement contraire $\\bar A$ ?", "back": "$P(\\bar A)=1-P(A)$"},
+    {"front": "Formule du crible $P(A\\cup B)$ ?", "back": "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$"},
+    {"front": "$P_A(B)$ et $P_B(A)$ sont-ils égaux en général ?", "back": "Non, sauf cas particulier : ne jamais les confondre"}
+  ],
+  "vraifaux": [
+    {"q": "Pour tout $A$ tel que $P(A)\\ne 0$ : $P_A(B)=\\dfrac{P(A\\cap B)}{P(A)}$.", "v": true, "why": "C'est exactement la définition de la probabilité conditionnelle."},
+    {"q": "On a toujours $P_A(B)=P_B(A)$.", "v": false, "why": "Faux : les dénominateurs diffèrent ($P(A)$ contre $P(B)$). L'égalité n'a lieu que dans des cas particuliers."},
+    {"q": "Dans un arbre, la somme des probabilités des branches issues d'un même nœud vaut $1$.", "v": true, "why": "Ces branches décrivent tous les cas possibles à cette étape."},
+    {"q": "La probabilité d'un chemin dans un arbre est la somme des probabilités des branches.", "v": false, "why": "Faux : c'est le PRODUIT des probabilités le long du chemin."},
+    {"q": "Si $A$ et $B$ sont indépendants, alors $P(A\\cap B)=P(A)\\times P(B)$.", "v": true, "why": "C'est précisément la définition de l'indépendance."},
+    {"q": "Deux événements incompatibles de probabilités non nulles sont indépendants.", "v": false, "why": "Faux : incompatibles donne $P(A\\cap B)=0$, mais $P(A)P(B)>0$ ; ils sont dépendants."},
+    {"q": "Si $A$ et $B$ sont indépendants, alors $P_A(B)=P(B)$.", "v": true, "why": "Vrai : conditionner par $A$ ne modifie pas la proba de $B$."},
+    {"q": "Dans la formule des probabilités totales, on peut écrire $P(B)=P_A(B)+P_{\\bar A}(B)$.", "v": false, "why": "Faux : il faut pondérer par $P(A)$ et $P(\\bar A)$, soit $P(A)P_A(B)+P(\\bar A)P_{\\bar A}(B)$."},
+    {"q": "Une probabilité conditionnelle peut être supérieure à $1$.", "v": false, "why": "Faux : $P_A(B)$ est une probabilité, donc comprise entre $0$ et $1$."},
+    {"q": "$P_A(B)+P_A(\\bar B)=1$.", "v": true, "why": "Vrai : sachant $A$, $B$ et $\\bar B$ forment une partition, donc la somme des deux branches vaut $1$."}
+  ],
+  "qmethode": [
+    {
+      "q": "On connaît $P(A)$, $P_A(B)$ et $P_{\\bar A}(B)$, et on veut $P(B)$. Quelle méthode ?",
+      "opts": ["Formule des probabilités totales", "Définition de l'indépendance", "Formule du crible $P(A\\cup B)$", "Calcul de $P_B(A)$ directement"],
+      "ok": 0,
+      "why": "On dispose d'une partition $A,\\bar A$ : on somme les chemins pondérés, c'est la formule des probabilités totales."
+    },
+    {
+      "q": "L'énoncé donne $P_A(B)$ mais demande $P_B(A)$. Quelle démarche ?",
+      "opts": ["Dire que c'est la même chose", "Repartir de $P_B(A)=\\dfrac{P(A\\cap B)}{P(B)}$ et calculer $P(B)$", "Multiplier $P_A(B)$ par $P(A)$", "Utiliser l'indépendance"],
+      "ok": 1,
+      "why": "C'est une proba renversée (Bayes) : on applique la définition avec $P(B)$ calculé par les probabilités totales."
+    },
+    {
+      "q": "Pour montrer que deux événements $A$ et $B$ sont indépendants, on doit :",
+      "opts": ["Vérifier qu'ils sont incompatibles", "Vérifier que $P(A\\cap B)=P(A)\\times P(B)$", "Vérifier que $P(A)=P(B)$", "Vérifier que $P(A\\cup B)=1$"],
+      "ok": 1,
+      "why": "L'indépendance se prouve en comparant $P(A\\cap B)$ et le produit $P(A)\\times P(B)$."
+    },
+    {
+      "q": "Une expérience se déroule en deux étapes successives (tirage puis tirage). Quel outil privilégier ?",
+      "opts": ["Un arbre pondéré", "La loi binomiale", "Une intégrale", "Le produit scalaire"],
+      "ok": 0,
+      "why": "Les expériences à étapes avec probas conditionnelles se modélisent naturellement par un arbre pondéré."
+    },
+    {
+      "q": "On veut la probabilité que les DEUX événements $A$ puis $B$ se réalisent dans un arbre. On :",
+      "opts": ["additionne les branches du chemin", "multiplie les probabilités le long du chemin", "soustrait $P(B)$ de $P(A)$", "divise $P(A)$ par $P(B)$"],
+      "ok": 1,
+      "why": "La proba d'un chemin est le produit des probabilités rencontrées : $P(A\\cap B)=P(A)\\times P_A(B)$."
+    },
+    {
+      "q": "Un énoncé dit : « parmi les clients de l'offre A, 25 % reviennent ». Cette donnée est :",
+      "opts": ["une probabilité simple $P(R)$", "une probabilité conditionnelle $P_A(R)$", "une intersection $P(A\\cap R)$", "une indépendance"],
+      "ok": 1,
+      "why": "« Parmi les clients de A » signale un conditionnement : c'est $P_A(R)=0{,}25$, à placer sur une branche du 2ᵉ niveau."
+    },
+    {
+      "q": "Tu obtiens $P_B(A)\\approx 1{,}4$ à la fin d'un calcul de proba renversée. Que faire ?",
+      "opts": ["Garder le résultat tel quel", "Détecter l'erreur : une proba ne dépasse pas $1$, revérifier le calcul de $P(B)$", "Soustraire $1$", "Conclure à l'indépendance"],
+      "ok": 1,
+      "why": "Une probabilité est toujours dans $[0;1]$. Un résultat $>1$ signale une erreur, souvent dans $P(B)$ (probabilités totales)."
+    },
+    {
+      "q": "Pour vérifier rapidement qu'un arbre est correct avant de calculer, on contrôle que :",
+      "opts": ["toutes les feuilles ont la même proba", "la somme des branches de chaque nœud vaut $1$", "la première proba vaut $0{,}5$", "tous les chemins se multiplient"],
+      "ok": 1,
+      "why": "Le contrôle de base : à chaque nœud, la somme des branches issues doit faire $1$ (sinon erreur de modélisation)."
+    }
+  ]
+}

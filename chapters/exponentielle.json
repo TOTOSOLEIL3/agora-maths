@@ -1,0 +1,257 @@
+{
+  "id": "exponentielle",
+  "tag": "Analyse",
+  "title": "Fonction exponentielle",
+  "intro": "La fonction exponentielle, c'est LA fonction qui est égale à sa propre dérivée. Définie comme l'unique fonction $f$ telle que $f'=f$ et $f(0)=1$, elle est strictement positive, strictement croissante, et transforme les sommes en produits ($e^{a+b}=e^a e^b$). C'est l'un des chapitres les plus rentables du bac : on la croise partout (probabilités, équations différentielles, suites). Maîtrise les propriétés algébriques, la dérivée de $e^u$ et les croissances comparées, et tu sécurises beaucoup de points.",
+  "objectifs": [
+    "Connaître la définition de l'exponentielle ($f'=f$, $f(0)=1$) et savoir que $e^x>0$ pour tout réel $x$",
+    "Manipuler sans erreur les propriétés algébriques : $e^{a+b}$, $e^{-a}$, $e^{a-b}$, $(e^a)^n$",
+    "Dériver $e^x$ et surtout $e^{u(x)}$ (ne jamais oublier le facteur $u'$)",
+    "Déterminer le sens de variation et les limites en $+\\infty$ et $-\\infty$",
+    "Utiliser les croissances comparées pour lever les indéterminations",
+    "Résoudre équations et inéquations faisant intervenir l'exponentielle"
+  ],
+  "cours": [
+    {
+      "t": "Définition et existence",
+      "d": "Il existe une unique fonction $f$ dérivable sur $\\mathbb{R}$ telle que $f'=f$ et $f(0)=1$. On l'appelle fonction exponentielle, notée $\\exp$, et on pose $\\exp(x)=e^x$. Le nombre $e=\\exp(1)\\approx 2{,}718$. Conséquence immédiate : $(e^x)'=e^x$ et $e^0=1$."
+    },
+    {
+      "t": "Signe : strictement positive",
+      "d": "Pour tout réel $x$, $e^x>0$. En particulier $e^x$ ne s'annule jamais, et pour tous réels $a,b$ : $e^a=e^b \\iff a=b$ et $e^a<e^b \\iff a<b$ (l'exponentielle est strictement croissante donc on garde le sens de l'inégalité)."
+    },
+    {
+      "t": "Propriétés algébriques",
+      "d": "Pour tous réels $a$ et $b$ et tout entier $n$ : $e^{a+b}=e^a\\,e^b$ ; $e^{-a}=\\dfrac{1}{e^a}$ ; $e^{a-b}=\\dfrac{e^a}{e^b}$ ; $\\left(e^{a}\\right)^{n}=e^{na}$. C'est la même logique que les puissances : l'exponentielle transforme les sommes en produits."
+    },
+    {
+      "t": "Dérivée et variations",
+      "d": "$(e^x)'=e^x$. Comme $e^x>0$, la fonction est strictement croissante sur $\\mathbb{R}$. Pour une fonction composée : si $u$ est dérivable, alors $(e^{u})'=u'\\,e^{u}$. Le facteur $u'$ est obligatoire : c'est la dérivée de la fonction du dessus."
+    },
+    {
+      "t": "Limites et croissances comparées",
+      "d": "$\\lim\\limits_{x\\to+\\infty}e^x=+\\infty$ et $\\lim\\limits_{x\\to-\\infty}e^x=0^+$ (asymptote horizontale $y=0$). L'exponentielle l'emporte sur toute puissance : $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x}=+\\infty$ et $\\lim\\limits_{x\\to-\\infty}xe^x=0$. Enfin, le taux de variation en $0$ : $\\lim\\limits_{x\\to0}\\dfrac{e^x-1}{x}=1$ (c'est le nombre dérivé de $\\exp$ en $0$)."
+    }
+  ],
+  "formulaireTitre": "Formulaire exponentielle",
+  "formulaire": [
+    ["$e^0$", "$1$"],
+    ["$e^1$", "$e\\approx 2{,}718$"],
+    ["$e^{a+b}$", "$e^a\\,e^b$"],
+    ["$e^{-a}$", "$\\dfrac{1}{e^a}$"],
+    ["$e^{a-b}$", "$\\dfrac{e^a}{e^b}$"],
+    ["$(e^a)^n$", "$e^{na}$"],
+    ["$(e^x)'$", "$e^x$"],
+    ["$(e^u)'$", "$u'\\,e^u$"],
+    ["$\\lim\\limits_{x\\to+\\infty}e^x$", "$+\\infty$"],
+    ["$\\lim\\limits_{x\\to-\\infty}e^x$", "$0$"],
+    ["$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x}$", "$+\\infty$"],
+    ["$\\lim\\limits_{x\\to0}\\dfrac{e^x-1}{x}$", "$1$"]
+  ],
+  "methodes": [
+    {
+      "t": "Dériver une fonction du type $e^{u(x)}$",
+      "etapes": [
+        "Identifier l'exposant $u(x)$ (ce qui est « au-dessus » du $e$).",
+        "Calculer $u'(x)$.",
+        "Appliquer $(e^u)'=u'\\,e^u$ : on recopie $e^u$ et on multiplie par $u'$.",
+        "Exemple : $f(x)=e^{3x^2}$, $u=3x^2$, $u'=6x$, donc $f'(x)=6x\\,e^{3x^2}$."
+      ]
+    },
+    {
+      "t": "Résoudre une équation avec exponentielle",
+      "etapes": [
+        "Ramener à une égalité de la forme $e^{A}=e^{B}$ (ou $e^A=k$ avec $k>0$).",
+        "Utiliser que $e^A=e^B \\iff A=B$ (l'exponentielle est strictement croissante donc injective).",
+        "Si $e^A=k$ avec $k>0$, alors $A=\\ln k$.",
+        "Attention : une équation du type $e^A=k$ avec $k\\le 0$ n'a aucune solution (car $e^x>0$)."
+      ]
+    },
+    {
+      "t": "Lever une indétermination avec les croissances comparées",
+      "etapes": [
+        "Repérer la forme indéterminée (souvent $\\dfrac{+\\infty}{+\\infty}$ ou $0\\times(-\\infty)$).",
+        "Faire apparaître un quotient $\\dfrac{e^x}{x}$ (ou $\\dfrac{e^x}{x^n}$) ou un produit $x\\,e^x$.",
+        "Appliquer la croissance comparée : $\\dfrac{e^x}{x}\\to+\\infty$ en $+\\infty$, $x\\,e^x\\to0$ en $-\\infty$.",
+        "Conclure sur la limite cherchée."
+      ]
+    },
+    {
+      "t": "Étudier une inéquation avec exponentielle",
+      "etapes": [
+        "Se ramener à $e^A < e^B$ (ou $\\le$, $>$, $\\ge$).",
+        "Comme $\\exp$ est strictement croissante, l'inégalité se conserve : $e^A<e^B \\iff A<B$.",
+        "Résoudre l'inéquation sur les exposants.",
+        "Vérifier qu'aucune contrainte de domaine n'est oubliée."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Étude d'une fonction $f$ définie par $f(x)=(x+1)e^{-x}$ : variations, limites en $\\pm\\infty$ (via croissances comparées) et tracé.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Fonction $f(x)=x e^{-x}$ et suite associée : dérivée, signe, limite $\\lim\\limits_{x\\to+\\infty}xe^{-x}=0$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "Modélisation avec $g(x)=e^{0{,}5x}$ et résolution d'équations/inéquations exponentielles dans un contexte d'évolution.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Le piège n°1 : écrire $e^{a+b}=e^a+e^b$. C'EST FAUX. L'exponentielle transforme la somme en PRODUIT : $e^{a+b}=e^a\\times e^b$. Piège n°2 : dériver $e^{u}$ en oubliant le $u'$. La dérivée de $e^{3x}$ n'est pas $e^{3x}$ mais $3e^{3x}$. Pense toujours : $(e^u)'=u'e^u$.",
+  "qcm": [
+    {
+      "q": "Quelle est la dérivée de $f(x)=e^{5x}$ ?",
+      "opts": ["$e^{5x}$", "$5e^{5x}$", "$5x\\,e^{5x}$", "$e^{5}$"],
+      "ok": 1,
+      "why": "$(e^u)'=u'e^u$ avec $u=5x$, $u'=5$, donc $f'(x)=5e^{5x}$."
+    },
+    {
+      "q": "Pour tout réel $x$, on a :",
+      "opts": ["$e^x$ peut être négatif", "$e^x>0$", "$e^x\\ge 0$ avec $e^x=0$ possible", "$e^x \\le 1$"],
+      "ok": 1,
+      "why": "L'exponentielle est strictement positive : $e^x>0$ pour tout $x$, elle ne s'annule jamais."
+    },
+    {
+      "q": "Que vaut $e^{a+b}$ ?",
+      "opts": ["$e^a+e^b$", "$e^a\\,e^b$", "$e^{ab}$", "$\\dfrac{e^a}{e^b}$"],
+      "ok": 1,
+      "why": "L'exponentielle transforme une somme en produit : $e^{a+b}=e^a\\,e^b$."
+    },
+    {
+      "q": "Combien vaut $\\lim\\limits_{x\\to-\\infty}e^x$ ?",
+      "opts": ["$-\\infty$", "$1$", "$0$", "$+\\infty$"],
+      "ok": 2,
+      "why": "En $-\\infty$, $e^x$ tend vers $0$ (par valeurs positives) : l'axe des abscisses est asymptote."
+    },
+    {
+      "q": "Que vaut $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x}$ ?",
+      "opts": ["$0$", "$1$", "$+\\infty$", "$e$"],
+      "ok": 2,
+      "why": "Croissance comparée : l'exponentielle l'emporte sur $x$, donc le quotient tend vers $+\\infty$."
+    },
+    {
+      "q": "On simplifie $e^{-3}$ :",
+      "opts": ["$\\dfrac{1}{e^3}$", "$-e^3$", "$e^3$", "$-\\dfrac{1}{e^3}$"],
+      "ok": 0,
+      "why": "$e^{-a}=\\dfrac{1}{e^a}$, donc $e^{-3}=\\dfrac{1}{e^3}$. Le résultat reste positif."
+    },
+    {
+      "q": "L'équation $e^x=2$ a pour solution :",
+      "opts": ["$x=2$", "$x=e^2$", "$x=\\ln 2$", "aucune solution"],
+      "ok": 2,
+      "why": "$e^x=k$ avec $k>0$ équivaut à $x=\\ln k$, donc ici $x=\\ln 2$."
+    },
+    {
+      "q": "L'équation $e^x=-4$ admet :",
+      "opts": ["la solution $x=\\ln 4$", "la solution $x=-\\ln 4$", "deux solutions", "aucune solution"],
+      "ok": 3,
+      "why": "Comme $e^x>0$ pour tout $x$, $e^x$ ne peut jamais valoir $-4$ : pas de solution."
+    },
+    {
+      "q": "Quelle est la dérivée de $f(x)=e^{x^2}$ ?",
+      "opts": ["$e^{x^2}$", "$2x\\,e^{x^2}$", "$x^2 e^{x^2}$", "$2e^{x^2}$"],
+      "ok": 1,
+      "why": "Avec $u=x^2$, $u'=2x$, donc $(e^{u})'=u'e^{u}=2x\\,e^{x^2}$."
+    },
+    {
+      "q": "Que vaut $\\lim\\limits_{x\\to0}\\dfrac{e^x-1}{x}$ ?",
+      "opts": ["$0$", "$1$", "$e$", "$+\\infty$"],
+      "ok": 1,
+      "why": "C'est le nombre dérivé de $\\exp$ en $0$, c'est-à-dire $\\exp'(0)=e^0=1$."
+    },
+    {
+      "q": "On simplifie $\\dfrac{e^{5}}{e^{2}}$ :",
+      "opts": ["$e^{10}$", "$e^{2{,}5}$", "$e^{3}$", "$e^{7}$"],
+      "ok": 2,
+      "why": "$\\dfrac{e^a}{e^b}=e^{a-b}$, donc $\\dfrac{e^5}{e^2}=e^{5-2}=e^3$."
+    },
+    {
+      "q": "Le sens de variation de $x\\mapsto e^x$ sur $\\mathbb{R}$ est :",
+      "opts": ["strictement décroissant", "constant", "strictement croissant", "croissant puis décroissant"],
+      "ok": 2,
+      "why": "$(e^x)'=e^x>0$ pour tout $x$, donc l'exponentielle est strictement croissante sur $\\mathbb{R}$."
+    }
+  ],
+  "flash": [
+    {"front": "Définition de l'exponentielle ?", "back": "Unique fonction $f$ telle que $f'=f$ et $f(0)=1$."},
+    {"front": "$(e^x)'\\ =\\ ?$", "back": "$e^x$"},
+    {"front": "$(e^u)'\\ =\\ ?$", "back": "$u'\\,e^u$"},
+    {"front": "Signe de $e^x$ ?", "back": "$e^x>0$ pour tout réel $x$ (ne s'annule jamais)."},
+    {"front": "$e^{a+b}\\ =\\ ?$", "back": "$e^a\\,e^b$"},
+    {"front": "$e^{-a}\\ =\\ ?$", "back": "$\\dfrac{1}{e^a}$"},
+    {"front": "$e^{a-b}\\ =\\ ?$", "back": "$\\dfrac{e^a}{e^b}$"},
+    {"front": "$\\lim\\limits_{x\\to+\\infty}e^x\\ =\\ ?$", "back": "$+\\infty$"},
+    {"front": "$\\lim\\limits_{x\\to-\\infty}e^x\\ =\\ ?$", "back": "$0$"},
+    {"front": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x}\\ =\\ ?$", "back": "$+\\infty$ (croissance comparée)"},
+    {"front": "$\\lim\\limits_{x\\to-\\infty}x\\,e^x\\ =\\ ?$", "back": "$0$ (croissance comparée)"},
+    {"front": "$\\lim\\limits_{x\\to0}\\dfrac{e^x-1}{x}\\ =\\ ?$", "back": "$1$"}
+  ],
+  "vraifaux": [
+    {"q": "Pour tous réels $a,b$ : $e^{a+b}=e^a+e^b$.", "v": false, "why": "Faux : l'exponentielle transforme la somme en produit, $e^{a+b}=e^a\\,e^b$."},
+    {"q": "$e^x>0$ pour tout réel $x$.", "v": true, "why": "Vrai : l'exponentielle est strictement positive sur $\\mathbb{R}$."},
+    {"q": "La dérivée de $e^{2x}$ est $e^{2x}$.", "v": false, "why": "Faux : il manque le $u'$. La dérivée est $2e^{2x}$."},
+    {"q": "L'exponentielle est strictement croissante sur $\\mathbb{R}$.", "v": true, "why": "Vrai : $(e^x)'=e^x>0$, donc strictement croissante."},
+    {"q": "L'équation $e^x=0$ possède une solution.", "v": false, "why": "Faux : $e^x>0$ pour tout $x$, donc $e^x$ ne vaut jamais $0$."},
+    {"q": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x}=+\\infty$.", "v": true, "why": "Vrai : par croissance comparée, l'exponentielle l'emporte sur $x$."},
+    {"q": "On a $e^{-a}=-e^a$.", "v": false, "why": "Faux : $e^{-a}=\\dfrac{1}{e^a}$, qui est positif, alors que $-e^a$ est négatif."},
+    {"q": "$e^a=e^b$ équivaut à $a=b$.", "v": true, "why": "Vrai : l'exponentielle est strictement croissante donc injective."},
+    {"q": "$\\lim\\limits_{x\\to-\\infty}e^x=-\\infty$.", "v": false, "why": "Faux : en $-\\infty$ l'exponentielle tend vers $0$ (par valeurs positives), pas vers $-\\infty$."},
+    {"q": "Pour tout entier $n$ : $(e^a)^n=e^{na}$.", "v": true, "why": "Vrai : c'est la règle des puissances appliquée à l'exponentielle."}
+  ],
+  "qmethode": [
+    {
+      "q": "Pour calculer la dérivée de $f(x)=e^{x^2+1}$, quelle méthode ?",
+      "opts": ["Appliquer $(e^u)'=u'e^u$ avec $u=x^2+1$", "Recopier $e^{x^2+1}$ tel quel", "Multiplier par $\\ln$", "Utiliser $e^{a+b}=e^a e^b$"],
+      "ok": 0,
+      "why": "C'est une composée : $u=x^2+1$, $u'=2x$, donc $f'(x)=2x\\,e^{x^2+1}$."
+    },
+    {
+      "q": "Pour résoudre $e^{2x}=e^{x+3}$, on doit :",
+      "opts": ["Diviser par $e$", "Égaler les exposants : $2x=x+3$", "Prendre le carré", "Dire qu'il n'y a pas de solution"],
+      "ok": 1,
+      "why": "$\\exp$ est injective : $e^A=e^B \\iff A=B$, donc $2x=x+3$, soit $x=3$."
+    },
+    {
+      "q": "Pour lever l'indétermination de $\\lim\\limits_{x\\to+\\infty}\\dfrac{e^x}{x^2}$, quel outil ?",
+      "opts": ["La factorisation par $x$", "Les croissances comparées", "Le théorème des gendarmes seul", "La dérivation"],
+      "ok": 1,
+      "why": "Par croissance comparée, l'exponentielle l'emporte sur toute puissance : la limite vaut $+\\infty$."
+    },
+    {
+      "q": "Pour montrer que $e^{x}\\le e^{2}$ revient à montrer que :",
+      "opts": ["$x\\le 2$", "$x\\ge 2$", "$x=2$", "$x\\le 0$"],
+      "ok": 0,
+      "why": "$\\exp$ est strictement croissante, donc l'inégalité se conserve : $e^x\\le e^2 \\iff x\\le 2$."
+    },
+    {
+      "q": "Pour simplifier $\\dfrac{e^{3x}\\times e^{x}}{e^{2x}}$, on utilise :",
+      "opts": ["Les propriétés algébriques de l'exponentielle", "La dérivée", "Une limite", "Le logarithme"],
+      "ok": 0,
+      "why": "$\\dfrac{e^{3x}e^{x}}{e^{2x}}=e^{3x+x-2x}=e^{2x}$, en utilisant $e^a e^b=e^{a+b}$ et $\\dfrac{e^a}{e^b}=e^{a-b}$."
+    },
+    {
+      "q": "Pour étudier le signe de $f'(x)=(1-x)e^{x}$, quelle remarque clé ?",
+      "opts": ["$e^x$ change le signe", "$e^x>0$ donc le signe ne dépend que de $1-x$", "Il faut résoudre $e^x=0$", "Le signe est toujours positif"],
+      "ok": 1,
+      "why": "Comme $e^x>0$ pour tout $x$, le signe de $f'$ est celui de $1-x$ : positif si $x<1$, négatif si $x>1$."
+    },
+    {
+      "q": "Pour calculer $\\lim\\limits_{x\\to-\\infty}x\\,e^{x}$ (forme $-\\infty\\times 0$), on :",
+      "opts": ["Conclut directement $-\\infty$", "Utilise la croissance comparée $\\lim\\limits_{x\\to-\\infty}xe^x=0$", "Factorise par $e^x$", "Dérive l'expression"],
+      "ok": 1,
+      "why": "C'est une croissance comparée du cours : $\\lim\\limits_{x\\to-\\infty}x\\,e^x=0$."
+    },
+    {
+      "q": "Pour reconnaître le nombre dérivé caché dans $\\lim\\limits_{x\\to0}\\dfrac{e^x-1}{x}$, on identifie :",
+      "opts": ["Le taux de variation de $\\exp$ en $0$, qui vaut $\\exp'(0)=1$", "Une asymptote", "Une croissance comparée", "Une forme $\\frac{0}{0}$ sans solution"],
+      "ok": 0,
+      "why": "C'est $\\dfrac{\\exp(x)-\\exp(0)}{x-0}$, le taux de variation en $0$, dont la limite est $\\exp'(0)=e^0=1$."
+    }
+  ]
+}

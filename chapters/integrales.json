@@ -1,0 +1,240 @@
+{
+  "id": "integrales",
+  "tag": "Analyse",
+  "title": "Calcul intégral",
+  "intro": "Calculer une intégrale, c'est mesurer l'aire sous une courbe — et grâce au lien fondamental avec les primitives, ça se ramène à une simple soustraction $F(b)-F(a)$. Ce chapitre relie tout ce que tu as vu en analyse : dérivées, primitives, fonctions usuelles. Au bac, l'intégrale tombe presque toujours : calcul direct, aire entre deux courbes, intégration par parties, valeur moyenne. Maîtrise les propriétés (linéarité, Chasles, positivité) et fais bien attention au signe quand la fonction passe sous l'axe.",
+  "objectifs": [
+    "Interpréter $\\int_a^b f(x)\\,\\mathrm{d}x$ comme une aire (en unités d'aire) lorsque $f\\ge0$",
+    "Calculer une intégrale à l'aide d'une primitive : $\\int_a^b f(x)\\,\\mathrm{d}x=F(b)-F(a)$",
+    "Utiliser les propriétés : linéarité, relation de Chasles, positivité et ordre",
+    "Déterminer la valeur moyenne d'une fonction sur un intervalle",
+    "Appliquer la formule d'intégration par parties",
+    "Calculer une aire entre deux courbes en gérant le signe"
+  ],
+  "cours": [
+    {
+      "t": "Intégrale et aire (cas $f\\ge0$)",
+      "d": "Soit $f$ continue et positive sur $[a;b]$. L'intégrale $\\int_a^b f(x)\\,\\mathrm{d}x$ est l'aire, exprimée en unités d'aire, du domaine compris entre la courbe de $f$, l'axe des abscisses et les droites $x=a$ et $x=b$. Une unité d'aire (u.a.) correspond à l'aire du rectangle bâti sur les vecteurs unitaires du repère. Pour $f$ continue de signe quelconque, l'intégrale reste définie comme l'aire algébrique : les portions situées sous l'axe comptent négativement."
+    },
+    {
+      "t": "Lien fondamental avec les primitives",
+      "d": "Si $f$ est continue sur $[a;b]$ et $F$ est une primitive de $f$ sur cet intervalle, alors $\\int_a^b f(x)\\,\\mathrm{d}x=F(b)-F(a)$, qu'on note aussi $\\big[F(x)\\big]_a^b$. Le résultat ne dépend pas de la primitive choisie : si on remplace $F$ par $F+k$, la constante $k$ s'élimine dans la soustraction. C'est l'outil de calcul de base : trouver une primitive, puis évaluer entre les bornes."
+    },
+    {
+      "t": "Propriétés : linéarité et Chasles",
+      "d": "Pour $f,g$ continues et $\\lambda$ réel : $\\int_a^b\\big(f+g\\big)=\\int_a^b f+\\int_a^b g$ et $\\int_a^b \\lambda f=\\lambda\\int_a^b f$ (linéarité). Relation de Chasles : $\\int_a^c f=\\int_a^b f+\\int_b^c f$ pour tout $c$ (même hors de $[a;b]$, tant que $f$ est continue). Conventions utiles : $\\int_a^a f=0$ et $\\int_b^a f=-\\int_a^b f$ (inverser les bornes change le signe)."
+    },
+    {
+      "t": "Positivité, ordre et valeur moyenne",
+      "d": "Si $f\\ge0$ sur $[a;b]$ (avec $a\\le b$), alors $\\int_a^b f\\ge0$. Si $f\\le g$ sur $[a;b]$, alors $\\int_a^b f\\le\\int_a^b g$ (intégration des inégalités). La valeur moyenne de $f$ sur $[a;b]$ est $\\mu=\\dfrac{1}{b-a}\\int_a^b f(x)\\,\\mathrm{d}x$ : c'est la hauteur du rectangle de base $[a;b]$ ayant la même aire que celle sous la courbe."
+    },
+    {
+      "t": "Intégration par parties",
+      "d": "Si $u$ et $v$ sont dérivables à dérivées continues sur $[a;b]$, alors $\\int_a^b u'(x)v(x)\\,\\mathrm{d}x=\\big[u(x)v(x)\\big]_a^b-\\int_a^b u(x)v'(x)\\,\\mathrm{d}x$. On l'utilise quand l'intégrande est un produit (par exemple $x\\,\\mathrm{e}^x$, $x\\sin x$, $\\ln x$) : on dérive le facteur qui se simplifie et on primitive l'autre."
+    }
+  ],
+  "formulaireTitre": "Intégrales et primitives à connaître",
+  "formulaire": [
+    ["$\\int_a^b f(x)\\,\\mathrm{d}x$", "$=F(b)-F(a)$ avec $F'=f$"],
+    ["$\\int_a^b \\lambda\\,\\mathrm{d}x$", "$=\\lambda(b-a)$"],
+    ["$\\int_a^b x^n\\,\\mathrm{d}x$", "$=\\left[\\dfrac{x^{n+1}}{n+1}\\right]_a^b$ ($n\\neq-1$)"],
+    ["$\\int_a^b \\dfrac{1}{x}\\,\\mathrm{d}x$", "$=\\big[\\ln x\\big]_a^b$ ($0<a\\le b$)"],
+    ["$\\int_a^b \\mathrm{e}^{x}\\,\\mathrm{d}x$", "$=\\big[\\mathrm{e}^{x}\\big]_a^b$"],
+    ["$\\int_a^b \\cos x\\,\\mathrm{d}x$", "$=\\big[\\sin x\\big]_a^b$"],
+    ["$\\int_a^b \\sin x\\,\\mathrm{d}x$", "$=\\big[-\\cos x\\big]_a^b$"],
+    ["$\\int_a^b u'(x)v(x)\\,\\mathrm{d}x$", "$=\\big[uv\\big]_a^b-\\int_a^b u(x)v'(x)\\,\\mathrm{d}x$"],
+    ["$\\mu=\\dfrac{1}{b-a}\\int_a^b f$", "valeur moyenne sur $[a;b]$"],
+    ["Aire entre $C_f$ et $C_g$ ($f\\ge g$)", "$=\\int_a^b\\big(f(x)-g(x)\\big)\\,\\mathrm{d}x$"]
+  ],
+  "methodes": [
+    {
+      "t": "Calculer une intégrale directement",
+      "etapes": [
+        "Vérifier que $f$ est continue sur $[a;b]$",
+        "Déterminer une primitive $F$ de $f$ (formulaire, linéarité)",
+        "Évaluer $\\big[F(x)\\big]_a^b=F(b)-F(a)$",
+        "Vérifier l'ordre des bornes et le signe du résultat"
+      ]
+    },
+    {
+      "t": "Intégration par parties",
+      "etapes": [
+        "Repérer le produit et poser $u'$ (à primitiver) et $v$ (à dériver)",
+        "Choisir $v$ comme le facteur qui se simplifie en dérivant (souvent $x$ ou $\\ln x$)",
+        "Calculer $u$ et $v'$, puis appliquer $\\big[uv\\big]_a^b-\\int_a^b uv'$",
+        "Calculer l'intégrale restante, qui doit être plus simple"
+      ]
+    },
+    {
+      "t": "Aire entre deux courbes",
+      "etapes": [
+        "Déterminer sur $[a;b]$ laquelle des deux fonctions est au-dessus (étude du signe de $f-g$)",
+        "L'aire vaut $\\int_a^b\\big(\\text{fonction du haut}-\\text{fonction du bas}\\big)\\,\\mathrm{d}x$",
+        "Si le signe de $f-g$ change, découper avec Chasles à chaque intersection",
+        "Multiplier par l'aire d'une u.a. si le repère n'est pas orthonormé d'unité 1"
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Calculer $\\displaystyle\\int_0^1 (2x+1)\\mathrm{e}^{x}\\,\\mathrm{d}x$ à l'aide d'une intégration par parties.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Déterminer la valeur moyenne de la fonction $f:x\\mapsto x\\,\\mathrm{e}^{-x}$ sur l'intervalle $[0;1]$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "On considère $f(x)=\\ln x$. Montrer, par intégration par parties, que $\\displaystyle\\int_1^{\\mathrm{e}} \\ln x\\,\\mathrm{d}x=1$.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "L'erreur n°1 : confondre intégrale et aire géométrique quand $f$ change de signe. Si $f<0$ sur une partie de $[a;b]$, l'intégrale y est négative ; l'aire géométrique réelle vaut $\\big|\\int\\big|$ (ou se calcule en découpant avec Chasles). Autres pièges classiques : oublier que $\\int_b^a=-\\int_a^b$ (bornes inversées), et se tromper de primitive (ex. la primitive de $\\sin x$ est $-\\cos x$, pas $\\cos x$).",
+  "qcm": [
+    {
+      "q": "$\\displaystyle\\int_0^2 3\\,\\mathrm{d}x$ vaut :",
+      "opts": ["$3$", "$5$", "$6$", "$2$"],
+      "ok": 2,
+      "why": "$\\int_a^b\\lambda\\,\\mathrm{d}x=\\lambda(b-a)=3\\times(2-0)=6$."
+    },
+    {
+      "q": "$\\displaystyle\\int_1^3 2x\\,\\mathrm{d}x$ vaut :",
+      "opts": ["$8$", "$4$", "$9$", "$6$"],
+      "ok": 0,
+      "why": "Une primitive de $2x$ est $x^2$, donc $\\big[x^2\\big]_1^3=9-1=8$."
+    },
+    {
+      "q": "$\\displaystyle\\int_0^1 \\mathrm{e}^{x}\\,\\mathrm{d}x$ vaut :",
+      "opts": ["$1$", "$\\mathrm{e}-1$", "$\\mathrm{e}$", "$\\mathrm{e}+1$"],
+      "ok": 1,
+      "why": "$\\big[\\mathrm{e}^{x}\\big]_0^1=\\mathrm{e}^1-\\mathrm{e}^0=\\mathrm{e}-1$."
+    },
+    {
+      "q": "La relation de Chasles s'écrit $\\displaystyle\\int_a^c f=$ :",
+      "opts": ["$\\int_a^b f-\\int_b^c f$", "$\\int_a^b f\\times\\int_b^c f$", "$\\int_a^b f+\\int_b^c f$", "$\\int_b^c f-\\int_a^b f$"],
+      "ok": 2,
+      "why": "Chasles : $\\int_a^c f=\\int_a^b f+\\int_b^c f$ (on additionne en passant par un point intermédiaire $b$)."
+    },
+    {
+      "q": "Si $f\\le g$ sur $[a;b]$ (avec $a<b$), alors :",
+      "opts": ["$\\int_a^b f\\le\\int_a^b g$", "$\\int_a^b f\\ge\\int_a^b g$", "$\\int_a^b f=\\int_a^b g$", "on ne peut rien dire"],
+      "ok": 0,
+      "why": "L'intégrale conserve l'ordre : si $f\\le g$ alors $\\int_a^b f\\le\\int_a^b g$ (intégration des inégalités)."
+    },
+    {
+      "q": "La valeur moyenne de $f$ sur $[a;b]$ est :",
+      "opts": ["$\\frac{1}{2}\\int_a^b f$", "$\\int_a^b f$", "$(b-a)\\int_a^b f$", "$\\frac{1}{b-a}\\int_a^b f$"],
+      "ok": 3,
+      "why": "Par définition $\\mu=\\dfrac{1}{b-a}\\int_a^b f(x)\\,\\mathrm{d}x$."
+    },
+    {
+      "q": "$\\displaystyle\\int_2^1 f(x)\\,\\mathrm{d}x$ est égale à :",
+      "opts": ["$\\int_1^2 f$", "$0$", "$-\\int_1^2 f$", "$2\\int_1^2 f$"],
+      "ok": 2,
+      "why": "Inverser les bornes change le signe : $\\int_2^1 f=-\\int_1^2 f$."
+    },
+    {
+      "q": "$\\displaystyle\\int_1^{\\mathrm{e}} \\frac{1}{x}\\,\\mathrm{d}x$ vaut :",
+      "opts": ["$\\mathrm{e}-1$", "$1$", "$\\ln(\\mathrm{e}-1)$", "$0$"],
+      "ok": 1,
+      "why": "$\\big[\\ln x\\big]_1^{\\mathrm{e}}=\\ln\\mathrm{e}-\\ln 1=1-0=1$."
+    },
+    {
+      "q": "$\\displaystyle\\int_0^{\\pi} \\sin x\\,\\mathrm{d}x$ vaut :",
+      "opts": ["$0$", "$1$", "$2$", "$-2$"],
+      "ok": 2,
+      "why": "$\\big[-\\cos x\\big]_0^{\\pi}=-\\cos\\pi-(-\\cos 0)=-(-1)+1=2$."
+    },
+    {
+      "q": "Pour $\\displaystyle\\int_0^1 x\\,\\mathrm{e}^{x}\\,\\mathrm{d}x$ par parties, on pose judicieusement :",
+      "opts": ["$v=x$ et $u'=\\mathrm{e}^{x}$", "$v=\\mathrm{e}^{x}$ et $u'=x$", "$v=x\\mathrm{e}^{x}$", "$u'=x$ et $v'=\\mathrm{e}^{x}$"],
+      "ok": 0,
+      "why": "On dérive $v=x$ (qui devient $1$) et on primitive $u'=\\mathrm{e}^{x}$ : l'intégrale restante $\\int 1\\cdot\\mathrm{e}^{x}$ est simple."
+    },
+    {
+      "q": "L'aire entre $C_f$ et $C_g$ sur $[a;b]$, lorsque $f\\ge g$, vaut :",
+      "opts": ["$\\int_a^b(g-f)$", "$\\int_a^b f+\\int_a^b g$", "$\\int_a^b(f-g)$", "$\\big|\\int_a^b f\\big|$"],
+      "ok": 2,
+      "why": "L'aire (positive) est $\\int_a^b(\\text{haut}-\\text{bas})=\\int_a^b(f-g)$ quand $f$ est au-dessus de $g$."
+    },
+    {
+      "q": "$\\displaystyle\\int_{-1}^{1} x^3\\,\\mathrm{d}x$ vaut :",
+      "opts": ["$\\frac{1}{2}$", "$0$", "$2$", "$\\frac{1}{4}$"],
+      "ok": 1,
+      "why": "$\\big[\\frac{x^4}{4}\\big]_{-1}^{1}=\\frac{1}{4}-\\frac{1}{4}=0$ (la fonction est impaire, intervalle symétrique)."
+    }
+  ],
+  "flash": [
+    {"front": "$\\int_a^b f(x)\\,\\mathrm{d}x=?$ (avec $F'=f$)", "back": "$F(b)-F(a)$"},
+    {"front": "Primitive utilisée pour $\\int \\frac{1}{x}\\,\\mathrm{d}x$ sur $]0;+\\infty[$", "back": "$\\ln x$"},
+    {"front": "Primitive utilisée pour $\\int \\sin x\\,\\mathrm{d}x$", "back": "$-\\cos x$"},
+    {"front": "Primitive utilisée pour $\\int \\cos x\\,\\mathrm{d}x$", "back": "$\\sin x$"},
+    {"front": "Formule de l'intégration par parties", "back": "$\\int_a^b u'v=\\big[uv\\big]_a^b-\\int_a^b uv'$"},
+    {"front": "Relation de Chasles", "back": "$\\int_a^c f=\\int_a^b f+\\int_b^c f$"},
+    {"front": "Valeur moyenne de $f$ sur $[a;b]$", "back": "$\\mu=\\dfrac{1}{b-a}\\int_a^b f(x)\\,\\mathrm{d}x$"},
+    {"front": "Que vaut $\\int_b^a f$ ?", "back": "$-\\int_a^b f$ (bornes inversées)"},
+    {"front": "Aire entre $C_f$ et $C_g$ si $f\\ge g$ sur $[a;b]$", "back": "$\\int_a^b\\big(f(x)-g(x)\\big)\\,\\mathrm{d}x$"},
+    {"front": "$\\int_a^b \\lambda\\,\\mathrm{d}x=?$ ($\\lambda$ constante)", "back": "$\\lambda(b-a)$"},
+    {"front": "Que vaut $\\int_a^a f$ ?", "back": "$0$"},
+    {"front": "Si $f\\ge0$ sur $[a;b]$ ($a\\le b$), signe de $\\int_a^b f$ ?", "back": "Positif ou nul : $\\int_a^b f\\ge0$"}
+  ],
+  "vraifaux": [
+    {"q": "Si $f$ est continue et positive sur $[a;b]$, $\\int_a^b f$ représente l'aire sous la courbe.", "v": true, "why": "C'est la définition de l'intégrale comme aire (en u.a.) pour une fonction continue positive."},
+    {"q": "On a toujours $\\int_a^b f\\ge0$ pour toute fonction continue $f$.", "v": false, "why": "Faux : si $f$ prend des valeurs négatives, l'intégrale peut être négative. La positivité suppose $f\\ge0$."},
+    {"q": "$\\int_a^b(f+g)=\\int_a^b f+\\int_a^b g$.", "v": true, "why": "Vrai : c'est la linéarité de l'intégrale."},
+    {"q": "$\\int_a^b(f\\times g)=\\int_a^b f\\times\\int_a^b g$.", "v": false, "why": "Faux : l'intégrale n'est pas multiplicative. Aucune formule simple ne donne l'intégrale d'un produit (on utilise l'IPP)."},
+    {"q": "Inverser les bornes d'une intégrale change son signe.", "v": true, "why": "Vrai : $\\int_b^a f=-\\int_a^b f$, c'est une convention cohérente avec Chasles."},
+    {"q": "La valeur d'une intégrale dépend de la primitive choisie.", "v": false, "why": "Faux : deux primitives diffèrent d'une constante, qui s'élimine dans $F(b)-F(a)$."},
+    {"q": "Pour une fonction négative sur $[a;b]$, l'aire géométrique vaut $\\big|\\int_a^b f\\big|$.", "v": true, "why": "Vrai : l'intégrale est négative, l'aire (toujours positive) est sa valeur absolue."},
+    {"q": "L'intégration par parties s'utilise surtout pour intégrer un produit comme $x\\,\\mathrm{e}^x$.", "v": true, "why": "Vrai : l'IPP est adaptée aux produits, notamment $x\\mathrm{e}^x$, $x\\sin x$ ou $\\ln x$."},
+    {"q": "Si $f\\le g$ sur $[a;b]$ avec $a<b$, alors $\\int_a^b f\\le\\int_a^b g$.", "v": true, "why": "Vrai : l'intégrale conserve l'ordre (intégration des inégalités)."},
+    {"q": "$\\int_a^a f(x)\\,\\mathrm{d}x$ peut être différent de $0$.", "v": false, "why": "Faux : quand les deux bornes sont égales, l'intégrale vaut toujours $0$."}
+  ],
+  "qmethode": [
+    {
+      "q": "On veut calculer $\\int_0^1 x\\,\\mathrm{e}^{x}\\,\\mathrm{d}x$. Quelle méthode ?",
+      "opts": ["Intégration par parties", "Chercher une primitive évidente dans le formulaire", "Décomposer par linéarité", "Calculer une valeur moyenne"],
+      "ok": 0,
+      "why": "L'intégrande est un produit $x\\times\\mathrm{e}^x$ sans primitive immédiate : l'IPP (dériver $x$, primitiver $\\mathrm{e}^x$) est la bonne approche."
+    },
+    {
+      "q": "Pour trouver l'aire comprise entre $C_f$ et $C_g$ sur $[a;b]$, on commence par :",
+      "opts": ["Calculer $\\int_a^b f$ puis $\\int_a^b g$ séparément", "Déterminer quelle courbe est au-dessus de l'autre", "Inverser les bornes", "Calculer la valeur moyenne de $f-g$"],
+      "ok": 1,
+      "why": "Il faut d'abord savoir laquelle des deux fonctions domine (signe de $f-g$) pour intégrer $\\text{haut}-\\text{bas}$ et obtenir une aire positive."
+    },
+    {
+      "q": "Une fonction $f$ change de signe sur $[a;b]$ et on cherche l'aire géométrique totale. On :",
+      "opts": ["Calcule directement $\\int_a^b f$", "Calcule $\\int_a^b f^2$", "Découpe avec Chasles aux points où $f$ s'annule, en valeurs absolues", "Utilise l'intégration par parties"],
+      "ok": 2,
+      "why": "L'aire géométrique exige de séparer les portions positives et négatives (Chasles aux zéros de $f$) puis de sommer les valeurs absolues."
+    },
+    {
+      "q": "Pour calculer $\\int_1^{\\mathrm{e}} \\ln x\\,\\mathrm{d}x$, la méthode adaptée est :",
+      "opts": ["La linéarité", "L'intégration par parties avec $u'=1$ et $v=\\ln x$", "La relation de Chasles", "Le calcul de valeur moyenne"],
+      "ok": 1,
+      "why": "$\\ln x$ n'a pas de primitive au formulaire : on l'écrit $1\\times\\ln x$ et on fait une IPP avec $u'=1$ ($u=x$) et $v=\\ln x$ ($v'=\\frac{1}{x}$)."
+    },
+    {
+      "q": "On demande la valeur moyenne de $f$ sur $[a;b]$. On calcule :",
+      "opts": ["$\\frac{1}{b-a}\\int_a^b f$", "$\\int_a^b f$", "$\\frac{f(a)+f(b)}{2}$", "$(b-a)\\int_a^b f$"],
+      "ok": 0,
+      "why": "La valeur moyenne est $\\mu=\\frac{1}{b-a}\\int_a^b f$ ; ce n'est pas la moyenne des valeurs aux bornes."
+    },
+    {
+      "q": "Pour $\\int_0^2 (3x^2-2x+1)\\,\\mathrm{d}x$, le plus rapide est :",
+      "opts": ["L'intégration par parties", "Une primitive terme à terme par linéarité", "La relation de Chasles", "Une lecture graphique"],
+      "ok": 1,
+      "why": "C'est un polynôme : par linéarité, on primitive chaque terme ($x^3-x^2+x$) puis on évalue entre $0$ et $2$."
+    },
+    {
+      "q": "On connaît $\\int_0^2 f=5$ et $\\int_0^3 f=4$. Pour obtenir $\\int_2^3 f$, on utilise :",
+      "opts": ["La linéarité", "L'intégration par parties", "La relation de Chasles", "La valeur moyenne"],
+      "ok": 2,
+      "why": "Chasles : $\\int_0^3 f=\\int_0^2 f+\\int_2^3 f$, donc $\\int_2^3 f=4-5=-1$."
+    }
+  ]
+}

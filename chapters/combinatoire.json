@@ -1,0 +1,282 @@
+{
+  "id": "combinatoire",
+  "tag": "Probabilités",
+  "title": "Combinatoire et dénombrement",
+  "intro": "Dénombrer, c'est compter sans lister à la main. Le réflexe central : l'ordre compte-t-il ou non ? Si oui, on est sur des listes (p-uplets) ou des permutations ; si non, sur des combinaisons. Ce chapitre fournit aussi les coefficients binomiaux $\\binom{n}{k}$ qui réapparaissent direct dans la loi binomiale.",
+  "objectifs": [
+    "Maîtriser la factorielle $n!$ et le principe multiplicatif",
+    "Compter les $k$-uplets ($n^k$) et les permutations ($n!$) d'un ensemble fini",
+    "Calculer et interpréter $\\binom{n}{k}$ comme nombre de parties à $k$ éléments",
+    "Utiliser les propriétés : valeurs particulières, symétrie, relation de Pascal",
+    "Construire et lire le triangle de Pascal",
+    "Choisir le bon modèle selon que l'ordre compte ou non, avec ou sans répétition"
+  ],
+  "cours": [
+    {
+      "t": "Factorielle et principe multiplicatif",
+      "d": "Pour un entier $n \\geqslant 1$, la factorielle est $n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1$, avec par convention $0! = 1$. Le principe multiplicatif dit que si une situation se décompose en étapes successives offrant respectivement $a_1, a_2, \\ldots, a_p$ choix, le nombre total d'issues est le produit $a_1 \\times a_2 \\times \\cdots \\times a_p$."
+    },
+    {
+      "t": "p-uplets (listes) et permutations",
+      "d": "Soit $E$ un ensemble à $n$ éléments. Un $k$-uplet (ou $p$-liste) est une suite ordonnée de $k$ éléments de $E$, avec répétition autorisée : il y en a $n^k$. Si l'on tire sans répétition $k$ éléments ordonnés ($k \\leqslant n$), on obtient $n \\times (n-1) \\times \\cdots \\times (n-k+1) = \\dfrac{n!}{(n-k)!}$ tirages. Un cas particulier : une permutation est un rangement de tous les $n$ éléments, d'où $n!$ permutations."
+    },
+    {
+      "t": "Combinaisons",
+      "d": "Une combinaison de $k$ éléments de $E$ est une partie (un sous-ensemble) à $k$ éléments : l'ordre ne compte pas et il n'y a pas de répétition. Leur nombre est le coefficient binomial $\\binom{n}{k} = \\dfrac{n!}{k!(n-k)!}$, pour $0 \\leqslant k \\leqslant n$. Il se lit « $k$ parmi $n$ »."
+    },
+    {
+      "t": "Propriétés des coefficients binomiaux",
+      "d": "On a $\\binom{n}{0} = \\binom{n}{n} = 1$ et $\\binom{n}{1} = \\binom{n}{n-1} = n$. La symétrie donne $\\binom{n}{k} = \\binom{n}{n-k}$. La relation de Pascal $\\binom{n}{k} + \\binom{n}{k+1} = \\binom{n+1}{k+1}$ permet de construire chaque coefficient à partir des deux du dessus."
+    },
+    {
+      "t": "Triangle de Pascal et lien avec la loi binomiale",
+      "d": "Le triangle de Pascal range les $\\binom{n}{k}$ : ligne $n$, position $k$. Chaque coefficient (hors bords valant 1) est la somme des deux situés au-dessus de lui, ce qui est exactement la relation de Pascal. Ces coefficients sont ceux de la loi binomiale : si $X$ suit $\\mathcal{B}(n,p)$, alors $P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$, où $\\binom{n}{k}$ compte les positions possibles des $k$ succès."
+    }
+  ],
+  "formulaireTitre": "À connaître par cœur",
+  "formulaire": [
+    ["Factorielle", "$n! = n \\times (n-1) \\times \\cdots \\times 1,\\ 0! = 1$"],
+    ["$k$-uplets (avec répétition)", "$n^k$"],
+    ["Listes sans répétition", "$\\dfrac{n!}{(n-k)!}$"],
+    ["Permutations", "$n!$"],
+    ["Combinaisons", "$\\binom{n}{k} = \\dfrac{n!}{k!(n-k)!}$"],
+    ["Valeurs aux bords", "$\\binom{n}{0} = \\binom{n}{n} = 1$"],
+    ["Cas $k=1$", "$\\binom{n}{1} = n$"],
+    ["Symétrie", "$\\binom{n}{k} = \\binom{n}{n-k}$"],
+    ["Relation de Pascal", "$\\binom{n}{k} + \\binom{n}{k+1} = \\binom{n+1}{k+1}$"],
+    ["Loi binomiale", "$P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$"]
+  ],
+  "methodes": [
+    {
+      "t": "Choisir le bon modèle de dénombrement",
+      "etapes": [
+        "Identifier l'ensemble de départ et combien d'éléments on prélève.",
+        "Se demander : l'ordre du tirage compte-t-il ?",
+        "Se demander : peut-on répéter un même élément ?",
+        "Ordre + répétition $\\Rightarrow$ $k$-uplets : $n^k$.",
+        "Ordre sans répétition $\\Rightarrow$ listes : $\\dfrac{n!}{(n-k)!}$.",
+        "Sans ordre et sans répétition $\\Rightarrow$ combinaisons : $\\binom{n}{k}$."
+      ]
+    },
+    {
+      "t": "Calculer $\\binom{n}{k}$ à la main sans tout développer",
+      "etapes": [
+        "Utiliser la symétrie pour se ramener au plus petit des deux : $\\binom{n}{k} = \\binom{n}{n-k}$.",
+        "Écrire $\\binom{n}{k} = \\dfrac{n \\times (n-1) \\times \\cdots \\times (n-k+1)}{k!}$ : $k$ facteurs en haut.",
+        "Simplifier avant de multiplier pour éviter les grands nombres.",
+        "Vérifier que le résultat est bien un entier."
+      ]
+    },
+    {
+      "t": "Dénombrer un tirage simultané (sans ordre)",
+      "etapes": [
+        "Repérer le mot « simultanément » ou « en même temps » : l'ordre ne compte pas.",
+        "Le nombre de tirages de $k$ objets parmi $n$ est $\\binom{n}{k}$.",
+        "Pour une condition (ex. exactement 2 rouges parmi $r$ rouges et $b$ bleus), multiplier les choix par catégorie : $\\binom{r}{2} \\times \\binom{b}{k-2}$.",
+        "Sommer les cas disjoints si plusieurs configurations conviennent."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Une urne contient 10 boules. On en tire 3 simultanément : justifier qu'il y a $\\binom{10}{3} = 120$ tirages possibles.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Dans le cadre d'une loi binomiale $\\mathcal{B}(5;0,3)$, calculer $P(X=2) = \\binom{5}{2}(0,3)^2(0,7)^3$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "Un code à 4 chiffres (chiffres de 0 à 9, répétition autorisée) : montrer qu'il existe $10^4 = 10\\,000$ codes possibles.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Le piège classique : confondre l'ordre qui compte (listes/arrangements) et l'ordre qui ne compte pas (combinaisons). « Tirer 3 boules une à une » $\\neq$ « tirer 3 boules simultanément ». Autre piège : oublier de distinguer avec répétition (tirage avec remise, $n^k$) et sans répétition (sans remise, $\\binom{n}{k}$ ou $\\frac{n!}{(n-k)!}$).",
+  "qcm": [
+    {
+      "q": "Combien vaut $5!$ ?",
+      "opts": ["$25$", "$120$", "$25$ encore non", "$720$"],
+      "ok": 1,
+      "why": "$5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$."
+    },
+    {
+      "q": "Combien de codes de 3 chiffres peut-on former avec les chiffres 0 à 9, répétition autorisée ?",
+      "opts": ["$720$", "$1000$", "$30$", "$120$"],
+      "ok": 1,
+      "why": "Ordre et répétition $\\Rightarrow$ $10^3 = 1000$ codes."
+    },
+    {
+      "q": "Combien de parties à 2 éléments possède un ensemble de 6 éléments ?",
+      "opts": ["$30$", "$36$", "$15$", "$12$"],
+      "ok": 2,
+      "why": "$\\binom{6}{2} = \\dfrac{6 \\times 5}{2} = 15$."
+    },
+    {
+      "q": "Que vaut $\\binom{n}{0}$ ?",
+      "opts": ["$1$", "$0$", "$n$", "$n!$"],
+      "ok": 0,
+      "why": "Il y a une seule partie à 0 élément (l'ensemble vide), donc $\\binom{n}{0} = 1$."
+    },
+    {
+      "q": "À quoi est égal $\\binom{8}{5}$ par symétrie ?",
+      "opts": ["$\\binom{8}{2}$", "$\\binom{8}{3}$", "$\\binom{5}{3}$", "$\\binom{8}{8}$"],
+      "ok": 1,
+      "why": "$\\binom{n}{k} = \\binom{n}{n-k}$, donc $\\binom{8}{5} = \\binom{8}{3}$."
+    },
+    {
+      "q": "Combien de façons d'ordonner 4 personnes en file ?",
+      "opts": ["$16$", "$12$", "$4$", "$24$"],
+      "ok": 3,
+      "why": "C'est une permutation : $4! = 24$."
+    },
+    {
+      "q": "Que donne la relation de Pascal $\\binom{6}{2} + \\binom{6}{3}$ ?",
+      "opts": ["$\\binom{7}{3}$", "$\\binom{6}{5}$", "$\\binom{12}{5}$", "$\\binom{7}{2}$"],
+      "ok": 0,
+      "why": "$\\binom{n}{k} + \\binom{n}{k+1} = \\binom{n+1}{k+1}$, donc $\\binom{6}{2} + \\binom{6}{3} = \\binom{7}{3}$."
+    },
+    {
+      "q": "Combien de mots (ordonnés, sans répétition) de 3 lettres distinctes peut-on former avec 5 lettres ?",
+      "opts": ["$10$", "$125$", "$60$", "$15$"],
+      "ok": 2,
+      "why": "Liste sans répétition : $\\dfrac{5!}{(5-3)!} = 5 \\times 4 \\times 3 = 60$."
+    },
+    {
+      "q": "Dans le triangle de Pascal, comment obtient-on un coefficient non situé au bord ?",
+      "opts": [
+        "En multipliant les deux du dessus",
+        "En additionnant les deux situés juste au-dessus",
+        "En soustrayant les deux du dessus",
+        "En doublant celui de gauche"
+      ],
+      "ok": 1,
+      "why": "C'est la relation de Pascal : chaque coefficient est la somme des deux placés au-dessus."
+    },
+    {
+      "q": "Pour $X \\sim \\mathcal{B}(5;0,4)$, quel facteur compte le nombre de positions des succès dans $P(X=2)$ ?",
+      "opts": ["$\\binom{5}{2}$", "$5^2$", "$2!$", "$\\binom{2}{5}$"],
+      "ok": 0,
+      "why": "$P(X=2) = \\binom{5}{2}(0,4)^2(0,6)^3$ : $\\binom{5}{2}$ compte les emplacements des 2 succès."
+    },
+    {
+      "q": "Combien de tirages simultanés de 5 cartes dans un jeu de 32 ?",
+      "opts": ["$32^5$", "$\\dfrac{32!}{27!}$", "$\\binom{32}{5}$", "$5!$"],
+      "ok": 2,
+      "why": "Tirage simultané = sans ordre et sans répétition : $\\binom{32}{5}$."
+    },
+    {
+      "q": "Que vaut $\\binom{n}{1}$ ?",
+      "opts": ["$1$", "$n!$", "$n$", "$\\dfrac{n}{2}$"],
+      "ok": 2,
+      "why": "Il y a $n$ parties à un seul élément, donc $\\binom{n}{1} = n$."
+    }
+  ],
+  "flash": [
+    {"front": "Définition de $n!$", "back": "$n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1$"},
+    {"front": "Valeur de $0!$", "back": "$0! = 1$ (convention)"},
+    {"front": "Nombre de $k$-uplets d'un ensemble à $n$ éléments", "back": "$n^k$"},
+    {"front": "Nombre de permutations de $n$ éléments", "back": "$n!$"},
+    {"front": "Nombre de listes de $k$ éléments distincts parmi $n$", "back": "$\\dfrac{n!}{(n-k)!}$"},
+    {"front": "Formule de $\\binom{n}{k}$", "back": "$\\binom{n}{k} = \\dfrac{n!}{k!(n-k)!}$"},
+    {"front": "$\\binom{n}{0}$ et $\\binom{n}{n}$", "back": "Tous deux égaux à $1$"},
+    {"front": "$\\binom{n}{1}$", "back": "$\\binom{n}{1} = n$"},
+    {"front": "Propriété de symétrie", "back": "$\\binom{n}{k} = \\binom{n}{n-k}$"},
+    {"front": "Relation de Pascal", "back": "$\\binom{n}{k} + \\binom{n}{k+1} = \\binom{n+1}{k+1}$"},
+    {"front": "Interprétation de $\\binom{n}{k}$", "back": "Nombre de parties à $k$ éléments d'un ensemble à $n$ éléments"},
+    {"front": "$P(X=k)$ pour $X \\sim \\mathcal{B}(n,p)$", "back": "$\\binom{n}{k} p^k (1-p)^{n-k}$"}
+  ],
+  "vraifaux": [
+    {"q": "$0! = 1$", "v": true, "why": "C'est une convention qui rend cohérentes les formules de dénombrement."},
+    {"q": "Le nombre de $k$-uplets (avec répétition) d'un ensemble à $n$ éléments est $\\binom{n}{k}$.", "v": false, "why": "C'est $n^k$. $\\binom{n}{k}$ compte les combinaisons (sans ordre, sans répétition)."},
+    {"q": "$\\binom{n}{k} = \\binom{n}{n-k}$ pour tout $0 \\leqslant k \\leqslant n$.", "v": true, "why": "Choisir $k$ éléments à garder revient à choisir les $n-k$ à écarter."},
+    {"q": "Pour un tirage où l'ordre compte, on utilise les combinaisons.", "v": false, "why": "Si l'ordre compte, ce sont des listes (ou permutations), pas des combinaisons."},
+    {"q": "$\\binom{n}{0} = \\binom{n}{n} = 1$.", "v": true, "why": "Une seule partie vide, une seule partie pleine."},
+    {"q": "Le nombre de permutations de 5 objets est $5^5$.", "v": false, "why": "C'est $5! = 120$, pas $5^5$. $n^k$ concerne les $k$-uplets avec répétition."},
+    {"q": "La relation de Pascal s'écrit $\\binom{n}{k} + \\binom{n}{k+1} = \\binom{n+1}{k+1}$.", "v": true, "why": "C'est elle qui fonde la construction du triangle de Pascal."},
+    {"q": "$\\binom{10}{3}$ et $\\binom{10}{7}$ sont égaux.", "v": true, "why": "Par symétrie $\\binom{10}{3} = \\binom{10}{10-3} = \\binom{10}{7} = 120$."},
+    {"q": "Dans le triangle de Pascal, les nombres au bord valent toujours 1.", "v": true, "why": "Ce sont les $\\binom{n}{0}$ et $\\binom{n}{n}$, qui valent 1."},
+    {"q": "Les coefficients de la loi binomiale $\\mathcal{B}(n,p)$ sont les $\\binom{n}{k}$.", "v": true, "why": "$P(X=k) = \\binom{n}{k}p^k(1-p)^{n-k}$ : ils comptent les positions des $k$ succès."}
+  ],
+  "qmethode": [
+    {
+      "q": "On tire 3 boules une à une, sans remise, dans une urne de 8 boules, en notant l'ordre. Quel modèle ?",
+      "opts": [
+        "Liste sans répétition : $\\dfrac{8!}{5!}$",
+        "Combinaisons : $\\binom{8}{3}$",
+        "$k$-uplets : $8^3$",
+        "Permutations : $8!$"
+      ],
+      "ok": 0,
+      "why": "Ordre noté + sans remise = liste sans répétition : $\\dfrac{8!}{(8-3)!} = 8 \\times 7 \\times 6$."
+    },
+    {
+      "q": "On tire 3 boules simultanément dans une urne de 8. Quel modèle ?",
+      "opts": [
+        "$8^3$",
+        "Combinaisons : $\\binom{8}{3}$",
+        "$\\dfrac{8!}{5!}$",
+        "$3!$"
+      ],
+      "ok": 1,
+      "why": "« Simultanément » = sans ordre, sans répétition : $\\binom{8}{3}$."
+    },
+    {
+      "q": "Un cadenas à 4 molettes de 0 à 9, chaque chiffre indépendant et répétable. Quel modèle ?",
+      "opts": [
+        "$\\binom{10}{4}$",
+        "$\\dfrac{10!}{6!}$",
+        "$k$-uplets : $10^4$",
+        "$4!$"
+      ],
+      "ok": 2,
+      "why": "Ordre compte + répétition autorisée : $k$-uplets, $10^4 = 10\\,000$."
+    },
+    {
+      "q": "On veut ranger 6 livres distincts sur une étagère. Quel modèle ?",
+      "opts": [
+        "Permutations : $6!$",
+        "$\\binom{6}{6}$",
+        "$6^6$",
+        "$\\dfrac{6!}{2!}$"
+      ],
+      "ok": 0,
+      "why": "Ranger tous les éléments dans un ordre = permutation : $6! = 720$."
+    },
+    {
+      "q": "Choisir un comité de 4 personnes parmi 12, sans hiérarchie entre les membres. Quel modèle ?",
+      "opts": [
+        "$12^4$",
+        "$\\dfrac{12!}{8!}$",
+        "$4!$",
+        "Combinaisons : $\\binom{12}{4}$"
+      ],
+      "ok": 3,
+      "why": "Comité sans rôle distinct = sous-ensemble, l'ordre ne compte pas : $\\binom{12}{4}$."
+    },
+    {
+      "q": "Pour calculer $\\binom{20}{18}$ rapidement, quelle est la bonne idée ?",
+      "opts": [
+        "Utiliser la symétrie : $\\binom{20}{18} = \\binom{20}{2}$",
+        "Calculer directement $20!$",
+        "Faire $20^{18}$",
+        "Faire $20 - 18 = 2$"
+      ],
+      "ok": 0,
+      "why": "$\\binom{20}{18} = \\binom{20}{2} = \\dfrac{20 \\times 19}{2} = 190$, bien plus simple."
+    },
+    {
+      "q": "Dans une classe de 30, élire un délégué et un suppléant (deux rôles distincts). Quel modèle ?",
+      "opts": [
+        "$\\binom{30}{2}$",
+        "Liste sans répétition : $30 \\times 29$",
+        "$30^2$",
+        "$2!$"
+      ],
+      "ok": 1,
+      "why": "Deux rôles distincts = ordre compte, sans répétition : $\\dfrac{30!}{28!} = 30 \\times 29 = 870$."
+    }
+  ]
+}

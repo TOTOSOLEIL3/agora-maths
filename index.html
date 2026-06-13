@@ -23,8 +23,8 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="styles.css?v=1">
-  <link rel="stylesheet" href="maths.css?v=1">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="maths.css?v=2">
 </head>
 <body>
 
@@ -54,71 +54,56 @@
       <span class="stamp s3">Spé maths · Tle générale</span>
 
       <span class="surtitre">L'arène des fonctions · Bac de spé maths</span>
-      <h1>Révise la dérivation <span class="accent">en jouant<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M5 14 Q 75 4, 150 11 T 295 9"/></svg></span></h1>
-      <p class="pitch">Trouve la dérivée, retourne des flashcards de formules, démonte les pièges des théorèmes : quatre mini-jeux pour que $u'v + uv'$ devienne un réflexe.</p>
+      <h1>Révise tout le programme <span class="accent">en jouant<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M5 14 Q 75 4, 150 11 T 295 9"/></svg></span></h1>
+      <p class="pitch">15 chapitres, 4 mini-jeux chacun : QCM, flashcards de formules, vrai/faux sur les théorèmes et « quelle méthode ? ». Pour que $u'v + uv'$ ou $\binom{n}{k}p^k(1-p)^{n-k}$ deviennent des réflexes.</p>
       <div class="cta">
-        <a class="btn primary" href="#jeux">Entrer dans l'arène ↓</a>
+        <a class="btn primary" href="#chapitres">Choisir un chapitre ↓</a>
         <span class="countdown mono" id="countdown"></span>
       </div>
     </section>
 
     <div class="demo-band mono">
-      🚧 Démo · chapitre <strong>Dérivation</strong> — les autres chapitres (suites, exp/ln, probas, géométrie…) arrivent ensuite.
+      ✅ Tout le programme de <strong>spé maths Tle générale</strong> (réforme 2021) · 15 chapitres · 630 questions
     </div>
 
-    <section class="games" id="jeux">
-      <div class="section-head">
-        <h2>Les épreuves</h2>
-        <span class="rule"></span>
-        <span class="mono">4 jeux · XP illimitée</span>
+    <section class="games" id="howto">
+      <div class="game-type-row">
+        <span class="game-type">📈 QCM</span>
+        <span class="game-type">🃏 Flashcards</span>
+        <span class="game-type">⚖️ Vrai / Faux</span>
+        <span class="game-type">🧭 Quelle méthode ?</span>
       </div>
+    </section>
 
+    <section class="games" id="chapitres">
+      <div class="section-head">
+        <h2>Les chapitres</h2>
+        <span class="rule"></span>
+        <span class="mono">15 chapitres · clique pour la fiche + les jeux</span>
+      </div>
+      <div class="game-grid" id="chap-grid"></div>
+    </section>
+
+    <section class="games" id="melange">
+      <div class="section-head">
+        <h2>Le défi</h2>
+        <span class="rule"></span>
+        <span class="mono">tout le programme mélangé</span>
+      </div>
       <div class="game-grid">
-        <button class="game-card" data-nav="derivees">
-          <span class="pictogram">📐</span>
-          <span class="num">JEU 01</span>
-          <h3>Trouve la dérivée</h3>
-          <p>Une fonction, quatre dérivées candidates. Repère la bonne — les pièges classiques sont là pour t'avoir.</p>
-          <span class="best" data-best="derivees">Record : —</span>
-        </button>
-
-        <button class="game-card" data-nav="flash">
-          <span class="pictogram">🃏</span>
-          <span class="num">JEU 02</span>
-          <h3>Flashcards de formules</h3>
-          <p>« Dérivée de $\ln(x)$ ? » Retourne la carte, vérifie, et avoue : tu la savais ou pas ?</p>
-          <span class="best" data-best="flash">Maîtrisées : —</span>
-        </button>
-
-        <button class="game-card" data-nav="vf">
-          <span class="pictogram">⚖️</span>
-          <span class="num">JEU 03</span>
-          <h3>Vrai ou Faux</h3>
-          <p>« $(uv)' = u'v'$ » — vraiment ? Démonte les contresens qui coûtent des points le jour J.</p>
-          <span class="best" data-best="vf">Record : —</span>
-        </button>
-
-        <button class="game-card" data-nav="methodes">
-          <span class="pictogram">🧭</span>
-          <span class="num">JEU 04</span>
-          <h3>Quelle méthode ?</h3>
-          <p>Montrer qu'une fonction est croissante, trouver une tangente, étudier la convexité… quelle stratégie pour quel exo ?</p>
-          <span class="best" data-best="methodes">Record : —</span>
-        </button>
-
-        <button class="game-card fiche-card" data-nav="fiche:derivation">
-          <span class="pictogram">📖</span>
-          <span class="num">LE COURS</span>
-          <h3>La fiche Dérivation</h3>
-          <p>Le cours, le formulaire complet, les méthodes types et le piège à éviter — tout pour réviser avant de jouer.</p>
-          <span class="best">Cours + formulaire</span>
+        <button class="game-card mix-card" data-nav="play:mix:all">
+          <span class="pictogram">🎰</span>
+          <span class="num">LE GRAND MÉLANGE</span>
+          <h3>12 questions, tous chapitres</h3>
+          <p>Un tirage au sort dans les 15 chapitres : suites, exp, probas, géométrie… le vrai test avant le jour J.</p>
+          <span class="best">★ Record toutes catégories</span>
         </button>
 
         <div class="game-card soon-card">
           <span class="pictogram">🔜</span>
           <span class="num">BIENTÔT</span>
           <h3>Classement & battles</h3>
-          <p>Le classement entre potes et les duels en temps réel (comme sur AGORA philo) arrivent dès que la démo est validée.</p>
+          <p>Le classement entre potes et les duels en temps réel (comme sur AGORA philo) arrivent ensuite.</p>
           <span class="best">En préparation</span>
         </div>
       </div>
@@ -152,7 +137,7 @@
     <p class="madeby">AGORA Maths · révision du bac de spé maths · fait avec 🧮 et zéro publicité</p>
   </footer>
 
-  <script src="data-maths.js?v=1"></script>
-  <script src="app-maths.js?v=1"></script>
+  <script src="data-maths.js?v=2"></script>
+  <script src="app-maths.js?v=2"></script>
 </body>
 </html>

@@ -1,0 +1,239 @@
+{
+  "id": "loi-binomiale",
+  "tag": "Probabilités",
+  "title": "Loi binomiale et variables aléatoires",
+  "intro": "Une variable aléatoire transforme le hasard en nombres : à chaque issue d'une expérience on associe une valeur, et on peut alors parler de moyenne, de dispersion, de probabilités. Le sommet du chapitre, c'est la loi binomiale : elle modélise le nombre de succès quand on répète $n$ fois la même petite expérience à deux issues (pile/face, marche/panne, bon/défectueux). Avec $\\binom{n}{k}p^k(1-p)^{n-k}$ et les formules $E(X)=np$, $V(X)=np(1-p)$, tu couvres une bonne partie des exercices de proba du bac.",
+  "objectifs": [
+    "Décrire la loi de probabilité d'une variable aléatoire et calculer son espérance, sa variance et son écart-type.",
+    "Reconnaître une épreuve de Bernoulli et un schéma de Bernoulli, et vérifier les conditions d'application de la loi binomiale.",
+    "Calculer $P(X=k)$, $P(X\\le k)$ et $P(X\\ge k)$ pour $X\\sim\\mathcal{B}(n,p)$, à la main ou à la calculatrice.",
+    "Utiliser $E(X)=np$ et $V(X)=np(1-p)$ pour interpréter une situation aléatoire.",
+    "Modéliser un problème concret (qualité, jeu, sondage) par une loi binomiale et le résoudre."
+  ],
+  "cours": [
+    {
+      "t": "Variable aléatoire et loi de probabilité",
+      "d": "Sur un univers $\\Omega$ muni d'une probabilité, une variable aléatoire $X$ associe à chaque issue un nombre réel. Sa loi de probabilité est la donnée de toutes les valeurs $x_i$ que peut prendre $X$ avec leurs probabilités $P(X=x_i)$. La somme de toutes ces probabilités vaut toujours $1$ : $\\sum_i P(X=x_i)=1$. On présente souvent la loi dans un tableau valeurs/probabilités."
+    },
+    {
+      "t": "Espérance, variance, écart-type",
+      "d": "L'espérance $E(X)=\\sum_i x_i\\,P(X=x_i)$ est la moyenne des valeurs pondérée par leurs probabilités (la valeur \"attendue\" en moyenne sur un grand nombre de répétitions). La variance mesure la dispersion autour de $E(X)$ : $V(X)=E\\big((X-E(X))^2\\big)$, ce qui se calcule en pratique avec la formule de König-Huygens $V(X)=E(X^2)-\\big(E(X)\\big)^2$. L'écart-type $\\sigma(X)=\\sqrt{V(X)}$ a la même unité que $X$."
+    },
+    {
+      "t": "Épreuve et schéma de Bernoulli",
+      "d": "Une épreuve de Bernoulli est une expérience à deux issues : succès (probabilité $p$) ou échec (probabilité $1-p$). Si $X$ vaut $1$ en cas de succès et $0$ sinon, alors $E(X)=p$ et $V(X)=p(1-p)$. Un schéma de Bernoulli, c'est la répétition de $n$ épreuves de Bernoulli identiques et indépendantes (mêmes conditions à chaque fois, les résultats n'influent pas les uns sur les autres)."
+    },
+    {
+      "t": "La loi binomiale",
+      "d": "Dans un schéma de Bernoulli de $n$ épreuves de paramètre $p$, on note $X$ le nombre de succès. Alors $X$ suit la loi binomiale de paramètres $n$ et $p$, notée $X\\sim\\mathcal{B}(n,p)$. Pour tout entier $k$ entre $0$ et $n$ : $P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$. Le coefficient binomial $\\binom{n}{k}$ compte le nombre de façons de placer les $k$ succès parmi les $n$ épreuves : il ne faut jamais l'oublier."
+    },
+    {
+      "t": "Espérance et variance de la loi binomiale",
+      "d": "Si $X\\sim\\mathcal{B}(n,p)$, alors $E(X)=np$, $V(X)=np(1-p)$ et $\\sigma(X)=\\sqrt{np(1-p)}$. C'est cohérent : $X$ est la somme de $n$ variables de Bernoulli indépendantes, d'espérance $p$ et de variance $p(1-p)$ chacune. Attention, la variance est $np(1-p)$, pas $np$ : confondre les deux est l'erreur la plus fréquente."
+    }
+  ],
+  "formulaireTitre": "Formules à connaître par coeur",
+  "formulaire": [
+    ["Espérance", "$E(X)=\\displaystyle\\sum_i x_i\\,P(X=x_i)$"],
+    ["Variance (König-Huygens)", "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"],
+    ["Écart-type", "$\\sigma(X)=\\sqrt{V(X)}$"],
+    ["Bernoulli : espérance / variance", "$E(X)=p\\,,\\quad V(X)=p(1-p)$"],
+    ["Loi binomiale : probabilité", "$P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$"],
+    ["Coefficient binomial", "$\\binom{n}{k}=\\dfrac{n!}{k!\\,(n-k)!}$"],
+    ["Binomiale : espérance", "$E(X)=np$"],
+    ["Binomiale : variance / écart-type", "$V(X)=np(1-p)\\,,\\quad \\sigma(X)=\\sqrt{np(1-p)}$"],
+    ["Au moins un succès", "$P(X\\ge 1)=1-P(X=0)=1-(1-p)^n$"],
+    ["Complémentaire", "$P(X\\ge k)=1-P(X\\le k-1)$"]
+  ],
+  "methodes": [
+    {
+      "t": "Vérifier qu'une variable suit une loi binomiale",
+      "etapes": [
+        "Identifier l'épreuve élémentaire et son succès (avec sa probabilité $p$).",
+        "Vérifier les 4 conditions : on répète $n$ fois, les répétitions sont identiques, elles sont indépendantes, chaque épreuve a deux issues.",
+        "Définir précisément $X$ = nombre de succès parmi les $n$ épreuves.",
+        "Conclure : $X\\sim\\mathcal{B}(n,p)$ en donnant les valeurs de $n$ et de $p$."
+      ]
+    },
+    {
+      "t": "Calculer P(X=k), P(X≤k) ou P(X≥k)",
+      "etapes": [
+        "Pour une valeur exacte : appliquer $P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$ sans oublier le coefficient.",
+        "Pour $P(X\\le k)$ : utiliser la calculatrice (binomFRép / cdf) ou additionner les $P(X=i)$ pour $i$ de $0$ à $k$.",
+        "Pour $P(X\\ge k)$ : passer au complémentaire $P(X\\ge k)=1-P(X\\le k-1)$.",
+        "Pour \"au moins un\" : $P(X\\ge 1)=1-P(X=0)=1-(1-p)^n$."
+      ]
+    },
+    {
+      "t": "Calculer E(X) et V(X) d'une variable quelconque",
+      "etapes": [
+        "Dresser le tableau de la loi de $X$ (valeurs et probabilités, somme égale à $1$).",
+        "Calculer $E(X)=\\sum x_i P(X=x_i)$.",
+        "Calculer $E(X^2)=\\sum x_i^2 P(X=x_i)$.",
+        "En déduire $V(X)=E(X^2)-\\big(E(X)\\big)^2$ puis $\\sigma(X)=\\sqrt{V(X)}$."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Une urne contient des boules dont $30\\%$ sont gagnantes. On tire successivement $10$ boules avec remise. $X$ compte les boules gagnantes. Justifier que $X\\sim\\mathcal{B}(10\\,;0,3)$, puis calculer $P(X=3)$ et $P(X\\ge 1)$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Une machine produit des pièces, chacune défectueuse avec probabilité $0,05$ indépendamment des autres. On prélève un lot de $20$ pièces. Déterminer la loi du nombre $X$ de pièces défectueuses, puis $E(X)$ et la probabilité $P(X\\le 2)$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "Un QCM comporte $8$ questions à $4$ réponses, une seule correcte. Un élève répond au hasard. $X$ est le nombre de bonnes réponses. Donner la loi de $X$, calculer $E(X)$ et $P(X\\ge 4)$.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Trois pièges classiques. (1) Avant d'écrire $\\mathcal{B}(n,p)$, vérifie les 4 conditions : $n$ répétitions identiques, indépendantes, deux issues, $n$ fixé d'avance. Un tirage SANS remise n'est PAS binomial (les épreuves ne sont plus indépendantes). (2) N'oublie jamais le coefficient $\\binom{n}{k}$ dans $P(X=k)$ : écrire seulement $p^k(1-p)^{n-k}$ est faux. (3) La variance d'une binomiale est $V(X)=np(1-p)$, pas $np$ — $np$ c'est l'espérance.",
+  "qcm": [
+    {
+      "q": "$X\\sim\\mathcal{B}(n,p)$. Que vaut $P(X=k)$ ?",
+      "opts": ["$p^k(1-p)^{n-k}$", "$\\binom{n}{k}p^k(1-p)^{n-k}$", "$\\binom{n}{k}p^{n-k}(1-p)^k$", "$\\binom{n}{k}p^k(1-p)^{k}$"],
+      "ok": 1,
+      "why": "On compte de $\\binom{n}{k}$ façons de placer les $k$ succès, chacun de probabilité $p$, et les $n-k$ échecs de probabilité $1-p$."
+    },
+    {
+      "q": "Si $X\\sim\\mathcal{B}(n,p)$, alors $E(X)$ vaut :",
+      "opts": ["$np(1-p)$", "$p(1-p)$", "$np$", "$\\sqrt{np}$"],
+      "ok": 2,
+      "why": "$X$ est la somme de $n$ Bernoulli d'espérance $p$, donc $E(X)=np$."
+    },
+    {
+      "q": "Si $X\\sim\\mathcal{B}(n,p)$, alors $V(X)$ vaut :",
+      "opts": ["$np$", "$np(1-p)$", "$\\sqrt{np(1-p)}$", "$n p^2$"],
+      "ok": 1,
+      "why": "La variance d'une binomiale est $np(1-p)$ ; $np$ est l'espérance, à ne pas confondre."
+    },
+    {
+      "q": "$X\\sim\\mathcal{B}(5\\,;0,2)$. Que vaut $P(X=0)$ ?",
+      "opts": ["$0,8^5$", "$0,2^5$", "$5\\times 0,8^4$", "$0$"],
+      "ok": 0,
+      "why": "$P(X=0)=\\binom{5}{0}0,2^0\\times 0,8^5=0,8^5\\approx 0,328$."
+    },
+    {
+      "q": "Pour une épreuve de Bernoulli de paramètre $p$, l'espérance et la variance sont :",
+      "opts": ["$E=p(1-p)$ et $V=p$", "$E=p$ et $V=p^2$", "$E=p$ et $V=p(1-p)$", "$E=1-p$ et $V=p$"],
+      "ok": 2,
+      "why": "Une variable de Bernoulli vaut $1$ avec proba $p$, $0$ sinon : $E(X)=p$ et $V(X)=p(1-p)$."
+    },
+    {
+      "q": "On tire $4$ cartes SANS remise dans un jeu et on compte les coeurs. Le nombre de coeurs suit-il une loi binomiale ?",
+      "opts": ["Oui, $\\mathcal{B}(4\\,;0,25)$", "Non, les tirages ne sont pas indépendants", "Oui, $\\mathcal{B}(4\\,;0,5)$", "Non, il y a plus de deux issues"],
+      "ok": 1,
+      "why": "Sans remise, la composition du jeu change à chaque tirage : les épreuves ne sont pas indépendantes, donc pas de loi binomiale."
+    },
+    {
+      "q": "$X\\sim\\mathcal{B}(n,p)$. Comment exprimer $P(X\\ge 1)$ simplement ?",
+      "opts": ["$np$", "$1-(1-p)^n$", "$(1-p)^n$", "$1-p^n$"],
+      "ok": 1,
+      "why": "$P(X\\ge 1)=1-P(X=0)=1-(1-p)^n$ (au moins un succès = pas zéro succès)."
+    },
+    {
+      "q": "Quel est le bon ordre de grandeur du coefficient $\\binom{6}{2}$ ?",
+      "opts": ["$12$", "$15$", "$30$", "$36$"],
+      "ok": 1,
+      "why": "$\\binom{6}{2}=\\dfrac{6!}{2!\\,4!}=\\dfrac{6\\times 5}{2}=15$."
+    },
+    {
+      "q": "$X\\sim\\mathcal{B}(20\\,;0,5)$. Que vaut $\\sigma(X)$ ?",
+      "opts": ["$\\sqrt{5}$", "$5$", "$10$", "$\\sqrt{10}$"],
+      "ok": 0,
+      "why": "$V(X)=np(1-p)=20\\times 0,5\\times 0,5=5$, donc $\\sigma(X)=\\sqrt{5}$."
+    },
+    {
+      "q": "Une variable $X$ prend les valeurs $0,1,2$ avec probabilités $0,5\\,;0,3\\,;0,2$. Que vaut $E(X)$ ?",
+      "opts": ["$1$", "$0,7$", "$0,5$", "$1,2$"],
+      "ok": 1,
+      "why": "$E(X)=0\\times 0,5+1\\times 0,3+2\\times 0,2=0,3+0,4=0,7$."
+    },
+    {
+      "q": "Pour $X\\sim\\mathcal{B}(n,p)$, on a $P(X\\le k-1)=0,7$. Que vaut $P(X\\ge k)$ ?",
+      "opts": ["$0,7$", "$0,3$", "$1,7$", "On ne peut pas savoir"],
+      "ok": 1,
+      "why": "$P(X\\ge k)=1-P(X\\le k-1)=1-0,7=0,3$ (événements complémentaires)."
+    },
+    {
+      "q": "Quelles sont les 4 conditions pour modéliser par une loi binomiale ?",
+      "opts": ["Tirages avec ordre, distincts, dépendants, deux issues", "$n$ répétitions identiques, indépendantes, deux issues, $n$ fixé", "Une seule épreuve à plusieurs issues équiprobables", "Des épreuves de probabilités différentes mais indépendantes"],
+      "ok": 1,
+      "why": "Loi binomiale = schéma de Bernoulli : $n$ fixé, répétitions identiques et indépendantes, deux issues (succès/échec)."
+    }
+  ],
+  "flash": [
+    {"front": "Que vaut $P(X=k)$ pour $X\\sim\\mathcal{B}(n,p)$ ?", "back": "$\\binom{n}{k}p^k(1-p)^{n-k}$"},
+    {"front": "Espérance d'une loi binomiale $\\mathcal{B}(n,p)$ ?", "back": "$E(X)=np$"},
+    {"front": "Variance d'une loi binomiale $\\mathcal{B}(n,p)$ ?", "back": "$V(X)=np(1-p)$"},
+    {"front": "Écart-type d'une loi binomiale ?", "back": "$\\sigma(X)=\\sqrt{np(1-p)}$"},
+    {"front": "Espérance d'une variable de Bernoulli de paramètre $p$ ?", "back": "$E(X)=p$"},
+    {"front": "Variance d'une variable de Bernoulli de paramètre $p$ ?", "back": "$V(X)=p(1-p)$"},
+    {"front": "Formule de König-Huygens pour la variance ?", "back": "$V(X)=E(X^2)-\\big(E(X)\\big)^2$"},
+    {"front": "Formule générale de l'espérance ?", "back": "$E(X)=\\displaystyle\\sum_i x_i\\,P(X=x_i)$"},
+    {"front": "Probabilité d'au moins un succès, $X\\sim\\mathcal{B}(n,p)$ ?", "back": "$P(X\\ge 1)=1-(1-p)^n$"},
+    {"front": "Coefficient binomial $\\binom{n}{k}$ ?", "back": "$\\dfrac{n!}{k!\\,(n-k)!}$"},
+    {"front": "Comment relier $P(X\\ge k)$ à une probabilité cumulée ?", "back": "$P(X\\ge k)=1-P(X\\le k-1)$"},
+    {"front": "Que vaut $\\displaystyle\\sum_i P(X=x_i)$ pour toute variable aléatoire ?", "back": "$1$"}
+  ],
+  "vraifaux": [
+    {"q": "Pour $X\\sim\\mathcal{B}(n,p)$, on a $E(X)=np$.", "v": true, "why": "C'est la formule de l'espérance de la loi binomiale."},
+    {"q": "Pour $X\\sim\\mathcal{B}(n,p)$, la variance vaut $np$.", "v": false, "why": "La variance vaut $np(1-p)$ ; $np$ est l'espérance."},
+    {"q": "Un tirage de plusieurs boules SANS remise donne toujours une loi binomiale.", "v": false, "why": "Sans remise, les tirages ne sont pas indépendants : la loi binomiale ne s'applique pas."},
+    {"q": "$P(X=k)=p^k(1-p)^{n-k}$ sans coefficient binomial.", "v": false, "why": "Il manque $\\binom{n}{k}$, qui compte les positions possibles des $k$ succès."},
+    {"q": "L'écart-type s'obtient en prenant la racine carrée de la variance.", "v": true, "why": "Par définition, $\\sigma(X)=\\sqrt{V(X)}$."},
+    {"q": "Dans une épreuve de Bernoulli, il y a exactement deux issues.", "v": true, "why": "Succès (proba $p$) ou échec (proba $1-p$) : deux issues seulement."},
+    {"q": "La somme des probabilités $P(X=x_i)$ d'une loi peut valoir $0,9$.", "v": false, "why": "La somme de toutes les probabilités d'une loi vaut toujours $1$."},
+    {"q": "Pour $X\\sim\\mathcal{B}(n,p)$, $P(X\\ge 1)=1-(1-p)^n$.", "v": true, "why": "C'est le complémentaire de $P(X=0)=(1-p)^n$."},
+    {"q": "L'espérance d'une variable aléatoire est toujours l'une des valeurs prises par $X$.", "v": false, "why": "L'espérance est une moyenne pondérée : elle peut ne correspondre à aucune valeur possible (ex. $0,7$)."},
+    {"q": "Dans un schéma de Bernoulli, les épreuves doivent être identiques et indépendantes.", "v": true, "why": "Ce sont deux des conditions définissant le schéma de Bernoulli."}
+  ],
+  "qmethode": [
+    {
+      "q": "On lance 50 fois une pièce truquée (proba pile $=0,4$) et on compte les piles. Quel modèle ?",
+      "opts": ["Loi binomiale $\\mathcal{B}(50\\,;0,4)$", "Une seule épreuve de Bernoulli", "Loi avec espérance $0,4$", "Aucun modèle binomial possible"],
+      "ok": 0,
+      "why": "50 répétitions identiques, indépendantes, à deux issues : c'est un schéma de Bernoulli, donc $\\mathcal{B}(50\\,;0,4)$."
+    },
+    {
+      "q": "On veut la probabilité d'avoir AU MOINS un succès parmi $n$ épreuves. Meilleure méthode ?",
+      "opts": ["Passer par le complémentaire $1-P(X=0)$", "Additionner $P(X=k)$ pour tous les $k$ de $1$ à $n$ à la main", "Utiliser $E(X)=np$", "Calculer $\\binom{n}{1}$"],
+      "ok": 0,
+      "why": "Le complémentaire est bien plus rapide : $P(X\\ge 1)=1-P(X=0)=1-(1-p)^n$."
+    },
+    {
+      "q": "On connaît la loi de $X$ par un tableau et on veut $V(X)$. Quelle démarche ?",
+      "opts": ["Calculer $E(X)$ et $E(X^2)$ puis $V(X)=E(X^2)-E(X)^2$", "Faire $\\sqrt{E(X)}$", "Faire $np(1-p)$", "Additionner les probabilités"],
+      "ok": 0,
+      "why": "Pour une loi quelconque, on applique König-Huygens : $V(X)=E(X^2)-\\big(E(X)\\big)^2$."
+    },
+    {
+      "q": "Pour calculer $P(X\\le 8)$ avec $X\\sim\\mathcal{B}(20\\,;0,3)$ rapidement, on utilise :",
+      "opts": ["La fonction de répartition de la calculatrice (binomFRép / cdf)", "La formule $\\binom{20}{8}$ seule", "$E(X)=np$", "La racine de la variance"],
+      "ok": 0,
+      "why": "$P(X\\le k)$ est une probabilité cumulée : la calculatrice (binomFRép, cdf) la donne directement."
+    },
+    {
+      "q": "Un problème dit : \"montrer que $X$ suit une loi binomiale\". Que faire en premier ?",
+      "opts": ["Vérifier les 4 conditions du schéma de Bernoulli", "Calculer tout de suite $E(X)=np$", "Tracer un arbre complet à 20 niveaux", "Donner $\\sigma(X)$"],
+      "ok": 0,
+      "why": "Il faut d'abord justifier la modélisation : répétitions identiques, indépendantes, deux issues, $n$ fixé."
+    },
+    {
+      "q": "On répète une expérience à TROIS issues (rouge, vert, bleu) et on compte les rouges. Comment se ramener à une binomiale ?",
+      "opts": ["Regrouper en deux issues : \"rouge\" (succès) et \"non rouge\" (échec)", "C'est impossible, trois issues interdisent la binomiale", "Diviser par 3", "Utiliser $V(X)=np$"],
+      "ok": 0,
+      "why": "On définit le succès = \"rouge\" et l'échec = \"autre couleur\" : on retrouve deux issues, donc une binomiale est possible."
+    },
+    {
+      "q": "On cherche $P(X=k)$ exactement à la main pour $X\\sim\\mathcal{B}(n,p)$. Quelle formule ?",
+      "opts": ["$\\binom{n}{k}p^k(1-p)^{n-k}$", "$p^k$ seulement", "$1-(1-p)^n$", "$np(1-p)$"],
+      "ok": 0,
+      "why": "La probabilité ponctuelle exacte est $P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}$, coefficient compris."
+    }
+  ]
+}

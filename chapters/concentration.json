@@ -1,0 +1,245 @@
+{
+  "id": "concentration",
+  "tag": "Probabilités",
+  "title": "Concentration et loi des grands nombres",
+  "intro": "Quand on additionne plein de variables aléatoires identiques (lancer un dé 1000 fois, sonder 1000 personnes...), un truc magique se produit : la moyenne se met à coller à l'espérance théorique. C'est ça la loi des grands nombres, et l'inégalité de Bienaymé-Tchebychev permet de la prouver proprement. Au programme : linéarité de l'espérance, additivité de la variance pour des variables indépendantes, et ces inégalités qui mesurent à quel point une variable s'écarte de sa moyenne.",
+  "objectifs": [
+    "Maîtriser la linéarité de l'espérance $E(aX+b)=aE(X)+b$ et $E(X+Y)=E(X)+E(Y)$",
+    "Connaître les règles de la variance : $V(aX+b)=a^2V(X)$ et l'additivité sous indépendance",
+    "Calculer l'espérance et la variance de la moyenne empirique $M_n$ d'un échantillon i.i.d.",
+    "Appliquer l'inégalité de Bienaymé-Tchebychev pour majorer une probabilité d'écart",
+    "Utiliser l'inégalité de concentration $P(|M_n-\\mu|\\ge\\delta)\\le\\dfrac{\\sigma^2}{n\\delta^2}$",
+    "Énoncer et interpréter la loi (faible) des grands nombres"
+  ],
+  "cours": [
+    {
+      "t": "Espérance et variance d'une somme",
+      "d": "L'espérance est toujours linéaire : $E(X+Y)=E(X)+E(Y)$ et $E(aX+b)=aE(X)+b$, sans aucune condition. La variance, elle, est plus capricieuse : $V(aX+b)=a^2V(X)$ (le $+b$ disparaît car translater ne change pas la dispersion, et le coefficient sort au carré). Pour une somme, $V(X+Y)=V(X)+V(Y)$ UNIQUEMENT si $X$ et $Y$ sont indépendantes."
+    },
+    {
+      "t": "Échantillon de variables i.i.d.",
+      "d": "Un échantillon de taille $n$ est une suite $X_1,X_2,\\dots,X_n$ de variables aléatoires indépendantes et de même loi (i.i.d.). Elles ont donc toutes la même espérance $\\mu=E(X_i)$ et la même variance $\\sigma^2=V(X_i)$. C'est le modèle de la répétition d'une même expérience aléatoire."
+    },
+    {
+      "t": "Moyenne empirique $M_n$",
+      "d": "On pose $M_n=\\dfrac{X_1+X_2+\\dots+X_n}{n}$. Par linéarité, $E(M_n)=\\mu$ : en moyenne, $M_n$ vise pile l'espérance théorique. Et grâce à l'indépendance, $V(M_n)=\\dfrac{\\sigma^2}{n}$ : la variance diminue quand $n$ grandit, donc $M_n$ se resserre autour de $\\mu$."
+    },
+    {
+      "t": "Inégalité de Bienaymé-Tchebychev",
+      "d": "Pour toute variable $X$ d'espérance $E(X)$ et de variance $V(X)$, et pour tout réel $\\delta>0$ : $P(|X-E(X)|\\ge\\delta)\\le\\dfrac{V(X)}{\\delta^2}$. C'est une MAJORATION : elle borne par le haut la probabilité de s'écarter de l'espérance d'au moins $\\delta$. Plus la variance est petite (ou $\\delta$ grand), plus cette probabilité est faible."
+    },
+    {
+      "t": "Inégalité de concentration et loi des grands nombres",
+      "d": "En appliquant Tchebychev à $M_n$ (avec $E(M_n)=\\mu$ et $V(M_n)=\\sigma^2/n$), on obtient l'inégalité de concentration : $P(|M_n-\\mu|\\ge\\delta)\\le\\dfrac{\\sigma^2}{n\\delta^2}$. Quand $n\\to+\\infty$, ce majorant tend vers $0$ : c'est la loi (faible) des grands nombres. La moyenne empirique se concentre autour de l'espérance $\\mu$."
+    }
+  ],
+  "formulaireTitre": "Formulaire à connaître par cœur",
+  "formulaire": [
+    ["$E(aX+b)$", "$aE(X)+b$"],
+    ["$E(X+Y)$", "$E(X)+E(Y)$"],
+    ["$V(aX+b)$", "$a^2V(X)$"],
+    ["$V(X+Y)$ (si $X,Y$ indép.)", "$V(X)+V(Y)$"],
+    ["$E(M_n)$ avec $M_n=\\dfrac{1}{n}\\sum X_i$", "$\\mu$"],
+    ["$V(M_n)$ (échantillon i.i.d.)", "$\\dfrac{\\sigma^2}{n}$"],
+    ["Bienaymé-Tchebychev", "$P(|X-E(X)|\\ge\\delta)\\le\\dfrac{V(X)}{\\delta^2}$"],
+    ["Inégalité de concentration", "$P(|M_n-\\mu|\\ge\\delta)\\le\\dfrac{\\sigma^2}{n\\delta^2}$"],
+    ["Écart-type", "$\\sigma=\\sqrt{V(X)}$"]
+  ],
+  "methodes": [
+    {
+      "t": "Calculer $E(M_n)$ et $V(M_n)$ d'un échantillon",
+      "etapes": [
+        "Identifier que les $X_i$ sont i.i.d. : même espérance $\\mu$, même variance $\\sigma^2$.",
+        "Espérance : $E(M_n)=\\dfrac{1}{n}E(X_1+\\dots+X_n)=\\dfrac{1}{n}\\cdot n\\mu=\\mu$ (linéarité).",
+        "Variance : utiliser l'indépendance pour écrire $V(X_1+\\dots+X_n)=n\\sigma^2$.",
+        "Puis $V(M_n)=\\dfrac{1}{n^2}\\cdot n\\sigma^2=\\dfrac{\\sigma^2}{n}$ (attention au carré du $\\frac{1}{n}$)."
+      ]
+    },
+    {
+      "t": "Majorer une probabilité avec Bienaymé-Tchebychev",
+      "etapes": [
+        "Repérer une probabilité du type $P(|X-E(X)|\\ge\\delta)$ ou la réécrire sous cette forme.",
+        "Identifier $E(X)$, $V(X)$ et la valeur de $\\delta$ (le seuil d'écart).",
+        "Appliquer $P(|X-E(X)|\\ge\\delta)\\le\\dfrac{V(X)}{\\delta^2}$ et calculer le majorant.",
+        "Conclure : c'est une borne supérieure, la vraie probabilité est inférieure ou égale."
+      ]
+    },
+    {
+      "t": "Déterminer $n$ pour garantir une précision",
+      "etapes": [
+        "Écrire l'inégalité de concentration $P(|M_n-\\mu|\\ge\\delta)\\le\\dfrac{\\sigma^2}{n\\delta^2}$.",
+        "Vouloir que ce majorant soit inférieur à un seuil donné, par exemple $\\le 0{,}05$.",
+        "Résoudre $\\dfrac{\\sigma^2}{n\\delta^2}\\le 0{,}05$ en isolant $n$.",
+        "Prendre $n$ entier supérieur ou égal à la valeur trouvée."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Un échantillon de $n$ variables i.i.d. d'espérance $\\mu=3$ et de variance $\\sigma^2=4$. Déterminer le plus petit $n$ tel que $P(|M_n-3|\\ge 0{,}5)\\le 0{,}05$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Soit $X$ de variance $V(X)=2$ et $E(X)=10$. Majorer $P(|X-10|\\ge 4)$ à l'aide de l'inégalité de Bienaymé-Tchebychev.",
+      "loc": "Centres étrangers"
+    },
+    {
+      "y": 2022,
+      "s": "On répète $n$ fois une épreuve de Bernoulli de paramètre $p$. Montrer que $V(M_n)=\\dfrac{p(1-p)}{n}$ et interpréter quand $n\\to+\\infty$.",
+      "loc": "Métropole"
+    }
+  ],
+  "piege": "Trois pièges classiques : (1) $V(aX)=a^2V(X)$ et PAS $aV(X)$ — le coefficient sort au carré. (2) $V(X+Y)=V(X)+V(Y)$ n'est vrai QUE si $X$ et $Y$ sont indépendantes (alors que l'espérance, elle, est toujours additive). (3) Tchebychev donne une MAJORATION ($\\le$) : on borne la probabilité par le haut, on ne la calcule pas exactement — et l'événement est $|X-E(X)|\\ge\\delta$ (s'écarter d'AU MOINS $\\delta$).",
+  "qcm": [
+    {
+      "q": "$X$ et $Y$ sont deux variables aléatoires. Que vaut toujours $E(X+Y)$ ?",
+      "opts": ["$E(X)\\times E(Y)$", "$E(X)+E(Y)$", "$E(X)+E(Y)$ seulement si indépendantes", "$\\sqrt{E(X)^2+E(Y)^2}$"],
+      "ok": 1,
+      "why": "$L'espérance est toujours linéaire : E(X+Y)=E(X)+E(Y)$, sans condition d'indépendance."
+    },
+    {
+      "q": "Que vaut $V(3X+5)$ ?",
+      "opts": ["$3V(X)+5$", "$3V(X)$", "$9V(X)$", "$9V(X)+25$"],
+      "ok": 2,
+      "why": "$V(aX+b)=a^2V(X)$ : le $+5$ disparaît et le $3$ sort au carré, donc $V(3X+5)=9V(X)$."
+    },
+    {
+      "q": "Pour des variables indépendantes, que vaut $V(X+Y)$ ?",
+      "opts": ["$V(X)+V(Y)$", "$V(X)\\times V(Y)$", "$V(X)-V(Y)$", "$\\sqrt{V(X)+V(Y)}$"],
+      "ok": 0,
+      "why": "$Sous indépendance, la variance est additive : V(X+Y)=V(X)+V(Y)$."
+    },
+    {
+      "q": "Pour un échantillon i.i.d. d'espérance $\\mu$, que vaut $E(M_n)$ ?",
+      "opts": ["$\\dfrac{\\mu}{n}$", "$n\\mu$", "$\\mu$", "$\\dfrac{\\mu}{n^2}$"],
+      "ok": 2,
+      "why": "$Par linéarité, E(M_n)=\\dfrac{1}{n}\\cdot n\\mu=\\mu$ : la moyenne empirique vise l'espérance théorique."
+    },
+    {
+      "q": "Pour un échantillon i.i.d. de variance $\\sigma^2$, que vaut $V(M_n)$ ?",
+      "opts": ["$\\dfrac{\\sigma^2}{n}$", "$\\sigma^2$", "$n\\sigma^2$", "$\\dfrac{\\sigma^2}{n^2}$"],
+      "ok": 0,
+      "why": "$V(M_n)=\\dfrac{1}{n^2}\\cdot n\\sigma^2=\\dfrac{\\sigma^2}{n}$ : elle tend vers 0 quand n grandit."
+    },
+    {
+      "q": "L'inégalité de Bienaymé-Tchebychev s'écrit $P(|X-E(X)|\\ge\\delta)\\le\\,?$",
+      "opts": ["$\\dfrac{V(X)}{\\delta}$", "$\\dfrac{\\delta^2}{V(X)}$", "$\\dfrac{V(X)}{\\delta^2}$", "$V(X)\\,\\delta^2$"],
+      "ok": 2,
+      "why": "$P(|X-E(X)|\\ge\\delta)\\le\\dfrac{V(X)}{\\delta^2}$ : c'est la variance divisée par $\\delta$ au carré."
+    },
+    {
+      "q": "L'inégalité de concentration pour $M_n$ donne $P(|M_n-\\mu|\\ge\\delta)\\le\\,?$",
+      "opts": ["$\\dfrac{\\sigma^2}{n\\delta^2}$", "$\\dfrac{\\sigma^2}{\\delta^2}$", "$\\dfrac{n\\sigma^2}{\\delta^2}$", "$\\dfrac{\\sigma}{n\\delta}$"],
+      "ok": 0,
+      "why": "$On applique Tchebychev à M_n avec V(M_n)=\\sigma^2/n : P(|M_n-\\mu|\\ge\\delta)\\le\\dfrac{\\sigma^2}{n\\delta^2}$."
+    },
+    {
+      "q": "Que dit la loi des grands nombres quand $n\\to+\\infty$ ?",
+      "opts": ["$M_n$ diverge", "$M_n$ se concentre autour de $\\mu$", "$V(M_n)$ augmente", "$E(M_n)$ tend vers 0"],
+      "ok": 1,
+      "why": "$Le majorant \\sigma^2/(n\\delta^2)\\to 0$, donc $M_n$ se concentre autour de l'espérance $\\mu$."
+    },
+    {
+      "q": "Soit $X$ avec $E(X)=8$ et $V(X)=4$. Majorer $P(|X-8|\\ge 2)$.",
+      "opts": ["$\\le 2$", "$\\le 1$", "$\\le 0{,}5$", "$\\le 0{,}25$"],
+      "ok": 1,
+      "why": "$\\dfrac{V(X)}{\\delta^2}=\\dfrac{4}{2^2}=\\dfrac{4}{4}=1$. Le majorant vaut 1, l'inégalité est vraie mais peu informative ici."
+    },
+    {
+      "q": "Échantillon i.i.d. avec $\\sigma^2=9$, $n=100$, $\\delta=1$. Majorant de $P(|M_n-\\mu|\\ge 1)$ ?",
+      "opts": ["$0{,}09$", "$0{,}9$", "$9$", "$0{,}009$"],
+      "ok": 0,
+      "why": "$\\dfrac{\\sigma^2}{n\\delta^2}=\\dfrac{9}{100\\times 1}=0{,}09$."
+    },
+    {
+      "q": "Pourquoi $M_n$ devient-elle de plus en plus précise quand $n$ augmente ?",
+      "opts": ["Car $E(M_n)$ augmente", "Car $V(M_n)=\\sigma^2/n$ diminue", "Car $\\mu$ change", "Car $\\delta$ augmente"],
+      "ok": 1,
+      "why": "$V(M_n)=\\dfrac{\\sigma^2}{n}$ décroît vers 0, donc la dispersion de M_n se réduit autour de \\mu$."
+    },
+    {
+      "q": "Dans une épreuve de Bernoulli répétée $n$ fois (paramètre $p$), que vaut $V(M_n)$ ?",
+      "opts": ["$\\dfrac{p}{n}$", "$p(1-p)$", "$\\dfrac{p(1-p)}{n}$", "$\\dfrac{n}{p(1-p)}$"],
+      "ok": 2,
+      "why": "$Chaque X_i a une variance p(1-p), donc V(M_n)=\\dfrac{p(1-p)}{n}$."
+    }
+  ],
+  "flash": [
+    {"front": "$E(aX+b)=\\,?$", "back": "$aE(X)+b$"},
+    {"front": "$E(X+Y)=\\,?$ (toujours)", "back": "$E(X)+E(Y)$ — sans condition"},
+    {"front": "$V(aX+b)=\\,?$", "back": "$a^2V(X)$ — le $+b$ disparaît, le $a$ au carré"},
+    {"front": "$V(X+Y)=\\,?$ et sous quelle condition ?", "back": "$V(X)+V(Y)$ si $X,Y$ indépendantes"},
+    {"front": "Moyenne empirique $M_n=\\,?$", "back": "$\\dfrac{X_1+X_2+\\dots+X_n}{n}$"},
+    {"front": "$E(M_n)=\\,?$ (échantillon i.i.d.)", "back": "$\\mu$ (l'espérance commune)"},
+    {"front": "$V(M_n)=\\,?$ (échantillon i.i.d.)", "back": "$\\dfrac{\\sigma^2}{n}$"},
+    {"front": "Inégalité de Bienaymé-Tchebychev ?", "back": "$P(|X-E(X)|\\ge\\delta)\\le\\dfrac{V(X)}{\\delta^2}$"},
+    {"front": "Inégalité de concentration ?", "back": "$P(|M_n-\\mu|\\ge\\delta)\\le\\dfrac{\\sigma^2}{n\\delta^2}$"},
+    {"front": "Loi des grands nombres ?", "back": "$M_n$ se concentre autour de $\\mu$ quand $n\\to+\\infty$"},
+    {"front": "Que signifie i.i.d. ?", "back": "Indépendantes et identiquement distribuées (même loi)"},
+    {"front": "Lien écart-type / variance ?", "back": "$\\sigma=\\sqrt{V(X)}$"}
+  ],
+  "vraifaux": [
+    {"q": "$E(X+Y)=E(X)+E(Y)$ pour toutes variables, même non indépendantes.", "v": true, "why": "L'espérance est toujours linéaire, l'indépendance n'est jamais requise."},
+    {"q": "$V(X+Y)=V(X)+V(Y)$ pour toutes variables aléatoires.", "v": false, "why": "Faux : cette additivité n'est valable que si $X$ et $Y$ sont indépendantes."},
+    {"q": "$V(2X)=2V(X)$.", "v": false, "why": "Faux : $V(2X)=2^2V(X)=4V(X)$, le coefficient sort au carré."},
+    {"q": "$V(X+3)=V(X)$.", "v": true, "why": "Vrai : ajouter une constante translate la variable sans changer sa dispersion."},
+    {"q": "Pour un échantillon i.i.d., $E(M_n)=\\mu$ quelle que soit la taille $n$.", "v": true, "why": "Vrai : $E(M_n)=\\mu$ par linéarité, indépendamment de $n$."},
+    {"q": "$V(M_n)$ augmente quand $n$ augmente.", "v": false, "why": "Faux : $V(M_n)=\\sigma^2/n$ DIMINUE quand $n$ grandit."},
+    {"q": "L'inégalité de Bienaymé-Tchebychev donne la valeur exacte de la probabilité.", "v": false, "why": "Faux : elle donne seulement une MAJORATION (borne supérieure)."},
+    {"q": "Plus la variance de $X$ est petite, plus $P(|X-E(X)|\\ge\\delta)$ est majorée par une petite valeur.", "v": true, "why": "Vrai : le majorant $V(X)/\\delta^2$ diminue avec la variance."},
+    {"q": "La loi des grands nombres affirme que $M_n$ se concentre autour de $\\mu$.", "v": true, "why": "Vrai : c'est exactement la conséquence de l'inégalité de concentration quand $n\\to+\\infty$."},
+    {"q": "Bienaymé-Tchebychev exige que $X$ suive une loi normale.", "v": false, "why": "Faux : l'inégalité est valable pour toute variable admettant une espérance et une variance."}
+  ],
+  "qmethode": [
+    {
+      "q": "On veut montrer que la moyenne d'un grand échantillon se rapproche de l'espérance théorique. Quel outil ?",
+      "opts": ["La loi des grands nombres (via l'inégalité de concentration)", "Le théorème des valeurs intermédiaires", "Une récurrence", "Le produit scalaire"],
+      "ok": 0,
+      "why": "C'est précisément ce qu'affirme la loi des grands nombres, démontrée par l'inégalité de concentration."
+    },
+    {
+      "q": "On veut majorer $P(|X-E(X)|\\ge 3)$ connaissant $V(X)$. Quelle méthode ?",
+      "opts": ["Inégalité de Bienaymé-Tchebychev", "Calcul direct avec un arbre", "Dérivation", "Loi binomiale"],
+      "ok": 0,
+      "why": "Bienaymé-Tchebychev majore directement $P(|X-E(X)|\\ge\\delta)$ par $V(X)/\\delta^2$."
+    },
+    {
+      "q": "On cherche la taille $n$ d'échantillon garantissant $P(|M_n-\\mu|\\ge\\delta)\\le 0{,}01$. Comment faire ?",
+      "opts": ["Résoudre $\\dfrac{\\sigma^2}{n\\delta^2}\\le 0{,}01$ en isolant $n$", "Dériver $M_n$", "Faire une récurrence sur $n$", "Calculer un produit scalaire"],
+      "ok": 0,
+      "why": "On impose au majorant de concentration d'être sous le seuil, puis on isole $n$."
+    },
+    {
+      "q": "On doit calculer $V(M_n)$ d'un échantillon i.i.d. Quelle propriété est indispensable ?",
+      "opts": ["L'additivité de la variance sous indépendance", "La linéarité du logarithme", "Le théorème de Pythagore", "La continuité"],
+      "ok": 0,
+      "why": "Il faut l'indépendance des $X_i$ pour écrire $V(X_1+\\dots+X_n)=n\\sigma^2$."
+    },
+    {
+      "q": "On veut $E(3X-2Y)$ avec $X,Y$ quelconques. Quelle propriété ?",
+      "opts": ["La linéarité de l'espérance", "L'additivité de la variance", "L'indépendance obligatoire", "L'inégalité de Tchebychev"],
+      "ok": 0,
+      "why": "$E(3X-2Y)=3E(X)-2E(Y)$ par linéarité, valable sans condition."
+    },
+    {
+      "q": "Une épreuve de Bernoulli de paramètre $p$ est répétée. Pour la variance d'un terme, on utilise ?",
+      "opts": ["$V(X_i)=p(1-p)$", "$V(X_i)=np$", "$V(X_i)=p^2$", "$V(X_i)=\\sqrt{p}$"],
+      "ok": 0,
+      "why": "Une variable de Bernoulli de paramètre $p$ a pour variance $p(1-p)$."
+    },
+    {
+      "q": "On veut savoir si $V(X+Y)=V(X)+V(Y)$ est applicable dans un exercice. Que vérifier d'abord ?",
+      "opts": ["Si $X$ et $Y$ sont indépendantes", "Si $X$ et $Y$ ont la même espérance", "Si $X$ et $Y$ sont positives", "Si $n$ est grand"],
+      "ok": 0,
+      "why": "L'additivité de la variance n'est valide que sous l'hypothèse d'indépendance."
+    },
+    {
+      "q": "Pour interpréter le comportement de $M_n$ quand $n\\to+\\infty$, on regarde ?",
+      "opts": ["La limite du majorant $\\dfrac{\\sigma^2}{n\\delta^2}$ qui tend vers 0", "La dérivée de $M_n$", "Le signe de $\\mu$", "La convexité"],
+      "ok": 0,
+      "why": "Le majorant tend vers 0, ce qui traduit la concentration de $M_n$ autour de $\\mu$."
+    }
+  ]
+}

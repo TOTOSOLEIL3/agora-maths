@@ -1,0 +1,240 @@
+{
+  "id": "primitives-equadiff",
+  "tag": "Analyse",
+  "title": "Primitives et équations différentielles",
+  "intro": "Trouver une primitive, c'est faire le chemin inverse de la dérivation : on cherche une fonction $F$ dont la dérivée est la fonction $f$ donnée. C'est l'outil central pour calculer des intégrales et pour résoudre les équations différentielles $y'=ay$ et $y'=ay+b$, qui modélisent une foule de phénomènes (radioactivité, refroidissement, charge d'un condensateur...). Au bac, c'est un chapitre très rentable : les techniques sont mécaniques une fois le formulaire maîtrisé.",
+  "objectifs": [
+    "Savoir ce qu'est une primitive et pourquoi elle est définie « à une constante près »",
+    "Connaître par cœur le tableau des primitives usuelles",
+    "Reconnaître et primitiver les formes composées ($u'e^u$, $\\dfrac{u'}{u}$, $u'u^n$)",
+    "Déterminer la primitive vérifiant une condition initiale donnée",
+    "Résoudre $y'=ay$ puis $y'=ay+b$ et trouver la solution d'un problème de Cauchy",
+    "Modéliser une situation concrète par une équation différentielle du premier ordre"
+  ],
+  "cours": [
+    {
+      "t": "Définition d'une primitive",
+      "d": "Soit $f$ une fonction définie sur un intervalle $I$. Une fonction $F$ dérivable sur $I$ est une **primitive** de $f$ sur $I$ si, pour tout $x\\in I$, $F'(x)=f(x)$. Exemple : $F(x)=x^2$ est une primitive de $f(x)=2x$ sur $\\mathbb{R}$. Toute fonction continue sur un intervalle admet des primitives sur cet intervalle."
+    },
+    {
+      "t": "Primitives « à une constante près »",
+      "d": "Si $F$ est une primitive de $f$ sur $I$, alors les primitives de $f$ sur $I$ sont **exactement** les fonctions $x\\mapsto F(x)+C$, où $C\\in\\mathbb{R}$. En effet, deux primitives d'une même fonction sur un intervalle diffèrent d'une constante (car leur différence a une dérivée nulle). C'est pourquoi on n'oublie jamais le $+C$."
+    },
+    {
+      "t": "Primitive vérifiant une condition initiale",
+      "d": "Une fonction $f$ continue sur $I$ admet une **unique** primitive $F$ vérifiant une condition $F(x_0)=y_0$ donnée. En pratique : on écrit la primitive générale $F(x)+C$, puis on calcule $C$ en injectant la condition. C'est ce qui rend le problème déterminé."
+    },
+    {
+      "t": "Équation différentielle $y'=ay$",
+      "d": "Une équation différentielle relie une fonction inconnue $y$ et ses dérivées. Pour $a\\in\\mathbb{R}$, les solutions sur $\\mathbb{R}$ de $y'=ay$ sont les fonctions $x\\mapsto Ce^{ax}$, avec $C\\in\\mathbb{R}$. Il y a une infinité de solutions ; une condition initiale $y(x_0)=y_0$ en sélectionne une seule. Modèle type : la croissance/décroissance exponentielle (population, désintégration radioactive)."
+    },
+    {
+      "t": "Équation différentielle $y'=ay+b$",
+      "d": "Pour $a\\neq 0$, les solutions de $y'=ay+b$ sont $x\\mapsto Ce^{ax}-\\dfrac{b}{a}$, $C\\in\\mathbb{R}$. La méthode : la solution générale = solutions de $y'=ay$ (qui valent $Ce^{ax}$) **plus** une solution particulière constante $y_p=-\\dfrac{b}{a}$ (obtenue en cherchant $y'=0$, donc $0=ay_p+b$). C'est le modèle du refroidissement de Newton ou de la charge d'un condensateur."
+    }
+  ],
+  "formulaireTitre": "Tableau des primitives usuelles ($C$ constante réelle)",
+  "formulaire": [
+    ["$f(x)=x^n\\ (n\\neq -1)$", "$F(x)=\\dfrac{x^{n+1}}{n+1}+C$"],
+    ["$f(x)=\\dfrac{1}{x}\\ (\\text{sur }]0;+\\infty[)$", "$F(x)=\\ln x+C$"],
+    ["$f(x)=\\dfrac{1}{x^2}$", "$F(x)=-\\dfrac{1}{x}+C$"],
+    ["$f(x)=\\dfrac{1}{\\sqrt{x}}$", "$F(x)=2\\sqrt{x}+C$"],
+    ["$f(x)=e^{ax}\\ (a\\neq 0)$", "$F(x)=\\dfrac{1}{a}e^{ax}+C$"],
+    ["$f(x)=\\cos x$", "$F(x)=\\sin x+C$"],
+    ["$f(x)=\\sin x$", "$F(x)=-\\cos x+C$"],
+    ["$f=u'e^{u}$", "$F=e^{u}+C$"],
+    ["$f=\\dfrac{u'}{u}\\ (u>0)$", "$F=\\ln u+C$"],
+    ["$f=u'u^{n}\\ (n\\neq -1)$", "$F=\\dfrac{u^{n+1}}{n+1}+C$"]
+  ],
+  "methodes": [
+    {
+      "t": "Trouver la primitive vérifiant une condition $F(x_0)=y_0$",
+      "etapes": [
+        "Déterminer une primitive générale $F(x)+C$ à l'aide du tableau",
+        "Remplacer $x$ par $x_0$ : écrire $F(x_0)+C=y_0$",
+        "Résoudre pour trouver la valeur de $C$",
+        "Conclure en donnant l'expression complète de la primitive cherchée"
+      ]
+    },
+    {
+      "t": "Primitiver une forme composée",
+      "etapes": [
+        "Repérer une fonction « intérieure » $u$ et sa dérivée $u'$ dans l'expression",
+        "Identifier le modèle : $u'e^u$, $\\dfrac{u'}{u}$ ou $u'u^n$",
+        "Appliquer directement la primitive du modèle ($e^u$, $\\ln u$, $\\dfrac{u^{n+1}}{n+1}$)",
+        "Vérifier en dérivant le résultat : on doit retrouver $f$ exactement"
+      ]
+    },
+    {
+      "t": "Résoudre $y'=ay+b$ avec condition initiale (problème de Cauchy)",
+      "etapes": [
+        "Identifier $a$ et $b$, écrire la solution générale $y(x)=Ce^{ax}-\\dfrac{b}{a}$",
+        "Utiliser la condition $y(x_0)=y_0$ pour poser une équation en $C$",
+        "Résoudre pour obtenir $C$",
+        "Donner l'unique solution, puis répondre à la question concrète (limite, valeur en un point...)"
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "On considère l'équation différentielle $y'=0{,}5y+3$. Déterminer la solution $f$ vérifiant $f(0)=2$, puis sa limite en $+\\infty$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Soit $f$ définie sur $\\mathbb{R}$ par $f(x)=(2x+1)e^{x^2+x}$. Justifier que $F(x)=e^{x^2+x}$ est une primitive de $f$.",
+      "loc": "Centres étrangers"
+    },
+    {
+      "y": 2022,
+      "s": "Résoudre sur $\\mathbb{R}$ l'équation différentielle $y'=-2y$, puis déterminer la solution telle que $y(0)=5$.",
+      "loc": "Métropole"
+    }
+  ],
+  "piege": "Trois oublis classiques qui coûtent des points : (1) le $+C$ dans une primitive ; (2) le facteur $\\dfrac{1}{a}$ en primitivant $e^{ax}$ — une primitive de $e^{3x}$ est $\\dfrac{1}{3}e^{3x}$, pas $e^{3x}$ ; (3) pour $y'=ay+b$, oublier la solution particulière constante $-\\dfrac{b}{a}$ et ne garder que $Ce^{ax}$.",
+  "qcm": [
+    {
+      "q": "Une primitive de $f(x)=3x^2$ sur $\\mathbb{R}$ est :",
+      "opts": ["$x^3$", "$6x$", "$\\dfrac{3x^3}{2}$", "$x^3+x$"],
+      "ok": 0,
+      "why": "$\\displaystyle\\int 3x^2\\,dx = 3\\cdot\\dfrac{x^3}{3}=x^3$ (à une constante près). On vérifie : $(x^3)'=3x^2$."
+    },
+    {
+      "q": "Une primitive de $f(x)=e^{2x}$ sur $\\mathbb{R}$ est :",
+      "opts": ["$2e^{2x}$", "$e^{2x}$", "$\\dfrac{1}{2}e^{2x}$", "$\\dfrac{1}{2}e^{x}$"],
+      "ok": 2,
+      "why": "Primitive de $e^{ax}$ : $\\dfrac{1}{a}e^{ax}$. Ici $a=2$ donc $\\dfrac{1}{2}e^{2x}$. On vérifie : $\\left(\\dfrac{1}{2}e^{2x}\\right)'=e^{2x}$."
+    },
+    {
+      "q": "Sur $]0;+\\infty[$, une primitive de $f(x)=\\dfrac{1}{x}$ est :",
+      "opts": ["$-\\dfrac{1}{x^2}$", "$\\ln x$", "$\\dfrac{1}{x^2}$", "$x\\ln x$"],
+      "ok": 1,
+      "why": "Par définition $(\\ln x)'=\\dfrac{1}{x}$ sur $]0;+\\infty[$, donc $\\ln x$ en est une primitive."
+    },
+    {
+      "q": "Les solutions de l'équation différentielle $y'=3y$ sur $\\mathbb{R}$ sont :",
+      "opts": ["$y=Ce^{-3x}$", "$y=3x+C$", "$y=Ce^{3x}$", "$y=Cx^3$"],
+      "ok": 2,
+      "why": "Les solutions de $y'=ay$ sont $y=Ce^{ax}$. Ici $a=3$, d'où $y=Ce^{3x}$."
+    },
+    {
+      "q": "Les solutions de $y'=2y+6$ sur $\\mathbb{R}$ sont :",
+      "opts": ["$y=Ce^{2x}-3$", "$y=Ce^{2x}+3$", "$y=Ce^{2x}-6$", "$y=Ce^{-2x}-3$"],
+      "ok": 0,
+      "why": "Solution générale $y=Ce^{ax}-\\dfrac{b}{a}$ avec $a=2$, $b=6$ : $-\\dfrac{b}{a}=-3$, donc $y=Ce^{2x}-3$."
+    },
+    {
+      "q": "Une primitive de $f(x)=\\sin x$ sur $\\mathbb{R}$ est :",
+      "opts": ["$\\cos x$", "$-\\cos x$", "$-\\sin x$", "$\\sin x$"],
+      "ok": 1,
+      "why": "$(-\\cos x)'=\\sin x$, donc $-\\cos x$ est une primitive de $\\sin x$. Attention au signe."
+    },
+    {
+      "q": "Une primitive de $f(x)=2x\\,e^{x^2}$ sur $\\mathbb{R}$ est :",
+      "opts": ["$x^2e^{x^2}$", "$2e^{x^2}$", "$e^{x^2}$", "$\\dfrac{1}{2}e^{x^2}$"],
+      "ok": 2,
+      "why": "Forme $u'e^u$ avec $u=x^2$ et $u'=2x$. Primitive : $e^u=e^{x^2}$. On vérifie : $\\left(e^{x^2}\\right)'=2x\\,e^{x^2}$."
+    },
+    {
+      "q": "Une primitive de $f(x)=\\dfrac{2x}{x^2+1}$ sur $\\mathbb{R}$ est :",
+      "opts": ["$\\dfrac{1}{x^2+1}$", "$2\\ln(x^2+1)$", "$\\ln(x^2+1)$", "$(x^2+1)^2$"],
+      "ok": 2,
+      "why": "Forme $\\dfrac{u'}{u}$ avec $u=x^2+1>0$ et $u'=2x$. Primitive : $\\ln u=\\ln(x^2+1)$."
+    },
+    {
+      "q": "Quelle est la solution de $y'=-y$ vérifiant $y(0)=4$ ?",
+      "opts": ["$y=4e^{x}$", "$y=4e^{-x}$", "$y=-4e^{-x}$", "$y=e^{-x}+3$"],
+      "ok": 1,
+      "why": "Solutions de $y'=-y$ : $y=Ce^{-x}$. Avec $y(0)=C=4$, on obtient $y=4e^{-x}$."
+    },
+    {
+      "q": "Une primitive de $f(x)=4x^3+\\dfrac{1}{x^2}$ sur $]0;+\\infty[$ est :",
+      "opts": ["$x^4-\\dfrac{1}{x}$", "$12x^2-\\dfrac{2}{x^3}$", "$x^4+\\dfrac{1}{x}$", "$x^4+\\ln x$"],
+      "ok": 0,
+      "why": "Primitive de $4x^3$ : $x^4$. Primitive de $x^{-2}$ : $\\dfrac{x^{-1}}{-1}=-\\dfrac{1}{x}$. Total : $x^4-\\dfrac{1}{x}$."
+    },
+    {
+      "q": "Quelle est la limite en $+\\infty$ de la solution $y=Ce^{-0{,}5x}+10$ (avec $C>0$) de $y'=-0{,}5y+5$ ?",
+      "opts": ["$+\\infty$", "$0$", "$10$", "$5$"],
+      "ok": 2,
+      "why": "$e^{-0{,}5x}\\to 0$ en $+\\infty$, donc $y\\to 0+10=10$. Le terme exponentiel disparaît, la limite est la solution particulière constante."
+    },
+    {
+      "q": "Une primitive de $f(x)=(3x^2+2)\\,(x^3+2x)^4$ sur $\\mathbb{R}$ est :",
+      "opts": ["$(x^3+2x)^5$", "$5(x^3+2x)^5$", "$\\dfrac{(x^3+2x)^4}{4}$", "$\\dfrac{(x^3+2x)^5}{5}$"],
+      "ok": 3,
+      "why": "Forme $u'u^n$ avec $u=x^3+2x$, $u'=3x^2+2$, $n=4$. Primitive : $\\dfrac{u^{5}}{5}=\\dfrac{(x^3+2x)^5}{5}$."
+    }
+  ],
+  "flash": [
+    {"front": "Primitive de $x^n$ ($n\\neq -1$) ?", "back": "$\\dfrac{x^{n+1}}{n+1}+C$"},
+    {"front": "Primitive de $\\dfrac{1}{x}$ sur $]0;+\\infty[$ ?", "back": "$\\ln x+C$"},
+    {"front": "Primitive de $e^{ax}$ ($a\\neq 0$) ?", "back": "$\\dfrac{1}{a}e^{ax}+C$"},
+    {"front": "Primitive de $\\cos x$ ?", "back": "$\\sin x+C$"},
+    {"front": "Primitive de $\\sin x$ ?", "back": "$-\\cos x+C$"},
+    {"front": "Primitive de $u'e^{u}$ ?", "back": "$e^{u}+C$"},
+    {"front": "Primitive de $\\dfrac{u'}{u}$ (avec $u>0$) ?", "back": "$\\ln u+C$"},
+    {"front": "Primitive de $u'u^{n}$ ($n\\neq -1$) ?", "back": "$\\dfrac{u^{n+1}}{n+1}+C$"},
+    {"front": "Solutions de $y'=ay$ ?", "back": "$y=Ce^{ax}$, $C\\in\\mathbb{R}$"},
+    {"front": "Solutions de $y'=ay+b$ ($a\\neq 0$) ?", "back": "$y=Ce^{ax}-\\dfrac{b}{a}$"},
+    {"front": "Primitive de $\\dfrac{1}{x^2}$ ?", "back": "$-\\dfrac{1}{x}+C$"},
+    {"front": "Primitive de $\\dfrac{1}{\\sqrt{x}}$ sur $]0;+\\infty[$ ?", "back": "$2\\sqrt{x}+C$"}
+  ],
+  "vraifaux": [
+    {"q": "Une fonction admet une infinité de primitives sur un intervalle.", "v": true, "why": "Oui : si $F$ en est une, alors $F+C$ aussi, pour tout réel $C$."},
+    {"q": "Deux primitives d'une même fonction sur un intervalle sont toujours égales.", "v": false, "why": "Elles diffèrent d'une constante : $F_1-F_2=C$. Elles ne sont égales que si $C=0$."},
+    {"q": "Une primitive de $e^{5x}$ est $e^{5x}$.", "v": false, "why": "Il faut le facteur $\\dfrac{1}{a}$ : une primitive est $\\dfrac{1}{5}e^{5x}$."},
+    {"q": "Sur $\\mathbb{R}$, toute fonction continue admet des primitives.", "v": true, "why": "C'est un théorème du cours : la continuité sur un intervalle garantit l'existence de primitives."},
+    {"q": "Les solutions de $y'=2y$ sont les fonctions $y=Ce^{2x}$.", "v": true, "why": "Forme $y'=ay$ avec $a=2$, dont les solutions sont $y=Ce^{2x}$."},
+    {"q": "Pour $y'=ay+b$ avec $a\\neq 0$, la solution particulière constante est $-\\dfrac{b}{a}$.", "v": true, "why": "Une solution constante vérifie $y'=0$, donc $0=ay+b$, d'où $y=-\\dfrac{b}{a}$."},
+    {"q": "Il existe une unique primitive de $f$ continue vérifiant $F(0)=3$.", "v": true, "why": "La condition initiale fixe la constante $C$ : la primitive est alors unique."},
+    {"q": "Une primitive de $\\dfrac{1}{x}$ sur $]0;+\\infty[$ est $\\dfrac{-1}{x^2}$.", "v": false, "why": "$\\dfrac{-1}{x^2}$ est une primitive de $\\dfrac{2}{x^3}$. La primitive de $\\dfrac{1}{x}$ est $\\ln x$."},
+    {"q": "La fonction $F(x)=\\ln(x^2+1)$ est une primitive de $\\dfrac{2x}{x^2+1}$ sur $\\mathbb{R}$.", "v": true, "why": "Forme $\\dfrac{u'}{u}$ avec $u=x^2+1>0$ : $F'=\\dfrac{2x}{x^2+1}$. Correct."},
+    {"q": "Pour résoudre $y'=ay$, on n'a pas besoin de condition initiale pour avoir une solution unique.", "v": false, "why": "Sans condition initiale, il y a une infinité de solutions ($Ce^{ax}$). La condition initiale en sélectionne une seule."}
+  ],
+  "qmethode": [
+    {
+      "q": "On doit primitiver $f(x)=2x\\,e^{x^2}$. Quelle méthode ?",
+      "opts": ["Reconnaître la forme $u'e^u$ avec $u=x^2$", "Développer puis primitiver terme à terme", "Utiliser une équation différentielle", "Primitiver $2x$ et $e^{x^2}$ séparément puis multiplier"],
+      "ok": 0,
+      "why": "On voit $u=x^2$, $u'=2x$ : c'est exactement $u'e^u$, dont la primitive est $e^u=e^{x^2}$. On ne primitive jamais un produit facteur par facteur."
+    },
+    {
+      "q": "Pour résoudre $y'=0{,}3y+1{,}5$ avec $y(0)=4$, on commence par :",
+      "opts": ["Chercher la solution particulière constante puis la forme générale", "Calculer une primitive de $y$", "Dériver les deux membres", "Poser $y=ax+b$"],
+      "ok": 0,
+      "why": "C'est une équation $y'=ay+b$ : solution générale $Ce^{ax}-\\dfrac{b}{a}$, puis on utilise $y(0)=4$ pour trouver $C$."
+    },
+    {
+      "q": "On veut la primitive de $f(x)=\\dfrac{3x^2}{x^3+5}$ sur un intervalle où $x^3+5>0$. Méthode ?",
+      "opts": ["Reconnaître $\\dfrac{u'}{u}$ avec $u=x^3+5$", "Reconnaître $u'e^u$", "Faire une division polynomiale", "Reconnaître $u'u^n$"],
+      "ok": 0,
+      "why": "$u=x^3+5$, $u'=3x^2$ : c'est $\\dfrac{u'}{u}$, primitive $\\ln u=\\ln(x^3+5)$."
+    },
+    {
+      "q": "On cherche la primitive $F$ de $f(x)=2x$ telle que $F(1)=5$. Quelle démarche ?",
+      "opts": ["Écrire $F(x)=x^2+C$ puis résoudre $F(1)=5$", "Dériver $f$", "Résoudre une équation différentielle $y'=2y$", "Calculer la limite de $f$"],
+      "ok": 0,
+      "why": "Primitive générale $x^2+C$ ; condition $1+C=5$ donc $C=4$ : $F(x)=x^2+4$."
+    },
+    {
+      "q": "Le refroidissement d'un café suit $T'=-k(T-20)$. Comment ramener à une forme connue ?",
+      "opts": ["Développer en $T'=-kT+20k$, forme $y'=ay+b$", "C'est déjà du type $y'=ay$", "Primitiver directement $T$", "Poser $T=Ce^{kt}$ sans plus"],
+      "ok": 0,
+      "why": "En développant : $T'=-kT+20k$, donc $a=-k$ et $b=20k$. Solution $T=Ce^{-kt}+20$, qui tend vers 20°C (température ambiante)."
+    },
+    {
+      "q": "Pour primitiver $f(x)=(2x+3)^4$ sur $\\mathbb{R}$, le plus efficace est :",
+      "opts": ["Reconnaître $\\dfrac{1}{2}u'u^4$ avec $u=2x+3$", "Développer $(2x+3)^4$ entièrement", "Utiliser $\\ln$", "Reconnaître $u'e^u$"],
+      "ok": 0,
+      "why": "$u=2x+3$, $u'=2$. On écrit $f=\\dfrac{1}{2}\\cdot 2(2x+3)^4=\\dfrac{1}{2}u'u^4$, primitive $\\dfrac{1}{2}\\cdot\\dfrac{u^5}{5}=\\dfrac{(2x+3)^5}{10}$."
+    },
+    {
+      "q": "On a résolu $y'=ay+b$ et trouvé $y=Ce^{ax}-\\dfrac{b}{a}$ avec $a<0$. Pour la limite en $+\\infty$ :",
+      "opts": ["$e^{ax}\\to 0$, donc $y\\to -\\dfrac{b}{a}$", "$y\\to +\\infty$", "$y\\to 0$", "On ne peut pas conclure"],
+      "ok": 0,
+      "why": "Comme $a<0$, $e^{ax}\\to 0$ en $+\\infty$, le terme variable disparaît et $y$ tend vers la solution particulière constante $-\\dfrac{b}{a}$."
+    }
+  ]
+}

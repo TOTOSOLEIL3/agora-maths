@@ -1,0 +1,247 @@
+{
+  "id": "suites",
+  "tag": "Analyse",
+  "title": "Suites et récurrence",
+  "intro": "Les suites sont <strong>le</strong> chapitre quasi-garanti à l'écrit : on y combine <em>récurrence</em>, <em>limites</em> et <em>théorèmes de convergence</em>. Maîtrise-les et tu gagnes des points sûrs.",
+  "objectifs": [
+    "Rédiger une récurrence propre (initialisation + hérédité + conclusion)",
+    "Déterminer la limite d'une suite avec les opérations et les limites de référence",
+    "Connaître et appliquer le comportement de $q^{n}$ selon $q$",
+    "Utiliser les théorèmes de comparaison et des gendarmes",
+    "Appliquer le théorème de convergence monotone",
+    "Reconnaître et exploiter les suites arithmétiques, géométriques et du type $u_{n+1}=au_n+b$"
+  ],
+  "cours": [
+    {
+      "t": "Raisonnement par récurrence",
+      "d": "Pour montrer qu'une propriété $P(n)$ est vraie pour tout $n\\geqslant n_0$, on procède en trois temps. <strong>Initialisation</strong> : on vérifie $P(n_0)$. <strong>Hérédité</strong> : on suppose $P(n)$ vraie pour un entier $n\\geqslant n_0$ fixé (hypothèse de récurrence) et on démontre $P(n+1)$. <strong>Conclusion</strong> : d'après le principe de récurrence, $P(n)$ est vraie pour tout $n\\geqslant n_0$. Les trois étapes sont <em>obligatoires</em> et rapportent chacune des points."
+    },
+    {
+      "t": "Limite d'une suite",
+      "d": "Une suite $(u_n)$ <strong>converge</strong> vers un réel $\\ell$ si tout intervalle ouvert contenant $\\ell$ contient tous les termes à partir d'un certain rang : on note $\\lim\\limits_{n\\to+\\infty}u_n=\\ell$. Sinon elle <strong>diverge</strong>. Diverger peut vouloir dire tendre vers $+\\infty$ ou $-\\infty$, mais aussi ne pas avoir de limite du tout (comme $u_n=(-1)^n$). Limites de référence : $\\lim\\limits_{n\\to+\\infty}\\dfrac{1}{n}=0$, $\\lim\\limits_{n\\to+\\infty}\\dfrac{1}{\\sqrt{n}}=0$, $\\lim\\limits_{n\\to+\\infty}n=+\\infty$, $\\lim\\limits_{n\\to+\\infty}\\sqrt{n}=+\\infty$."
+    },
+    {
+      "t": "Limite de $q^{n}$ et opérations",
+      "d": "Tout dépend de la valeur de $q$ : si $q>1$, $\\lim\\limits_{n\\to+\\infty}q^{n}=+\\infty$ ; si $-1<q<1$, $\\lim\\limits_{n\\to+\\infty}q^{n}=0$ ; si $q=1$, la suite est constante égale à $1$ ; si $q\\leqslant -1$, $q^{n}$ n'a <em>pas</em> de limite. On combine ensuite les limites par les règles d'<strong>opérations</strong> (somme, produit, quotient), en faisant attention aux formes indéterminées $+\\infty-\\infty$, $0\\times\\infty$, $\\dfrac{\\infty}{\\infty}$ et $\\dfrac{0}{0}$."
+    },
+    {
+      "t": "Théorèmes de comparaison et des gendarmes",
+      "d": "<strong>Comparaison</strong> : si $u_n\\leqslant v_n$ à partir d'un certain rang et $\\lim u_n=+\\infty$, alors $\\lim v_n=+\\infty$ (et symétriquement avec $-\\infty$). <strong>Théorème des gendarmes (encadrement)</strong> : si $u_n\\leqslant w_n\\leqslant v_n$ à partir d'un certain rang et si $(u_n)$ et $(v_n)$ convergent vers la <em>même</em> limite $\\ell$, alors $(w_n)$ converge aussi vers $\\ell$. Très utile dès qu'apparaît un $(-1)^n$, un $\\cos$ ou un $\\sin$."
+    },
+    {
+      "t": "Convergence monotone et suites usuelles",
+      "d": "<strong>Théorème de convergence monotone</strong> : toute suite <em>croissante et majorée</em> converge ; toute suite <em>décroissante et minorée</em> converge. Attention : il garantit l'existence de la limite mais ne la donne pas. Une suite croissante non majorée tend vers $+\\infty$. Pour les suites <strong>arithmétiques</strong> ($u_{n+1}=u_n+r$) : $u_n=u_0+nr$. Pour les suites <strong>géométriques</strong> ($u_{n+1}=q\\,u_n$) : $u_n=u_0\\,q^{n}$. Une suite $u_{n+1}=au_n+b$ (avec $a\\neq 1$) se ramène à une suite géométrique en posant $v_n=u_n-\\ell$ où $\\ell=\\dfrac{b}{1-a}$ est le point fixe."
+    }
+  ],
+  "formulaireTitre": "Formules à connaître par cœur",
+  "formulaire": [
+    ["Suite arithmétique, terme général", "$u_n=u_0+nr$"],
+    ["Suite arithmétique, somme", "$\\displaystyle\\sum_{k=0}^{n}u_k=(n+1)\\dfrac{u_0+u_n}{2}$"],
+    ["Suite géométrique, terme général", "$u_n=u_0\\,q^{n}$"],
+    ["Somme des $q^k$ (avec $q\\neq 1$)", "$\\displaystyle\\sum_{k=0}^{n}q^{k}=\\dfrac{1-q^{\\,n+1}}{1-q}$"],
+    ["Limite de $q^{n}$ si $q>1$", "$\\lim\\limits_{n\\to+\\infty}q^{n}=+\\infty$"],
+    ["Limite de $q^{n}$ si $-1<q<1$", "$\\lim\\limits_{n\\to+\\infty}q^{n}=0$"],
+    ["Limites de référence", "$\\lim\\limits_{n\\to+\\infty}\\dfrac{1}{n}=0\\;,\\quad\\lim\\limits_{n\\to+\\infty}n=+\\infty$"],
+    ["Point fixe de $u_{n+1}=au_n+b$", "$\\ell=\\dfrac{b}{1-a}\\quad(a\\neq 1)$"]
+  ],
+  "methodes": [
+    {
+      "t": "Démontrer une propriété par récurrence",
+      "etapes": [
+        "Énoncer clairement la propriété $P(n)$ à démontrer.",
+        "Initialisation : vérifier que $P(n_0)$ est vraie (souvent $n_0=0$ ou $1$).",
+        "Hérédité : supposer $P(n)$ vraie pour un $n\\geqslant n_0$ fixé, puis démontrer $P(n+1)$.",
+        "Conclusion : invoquer le principe de récurrence pour conclure pour tout $n\\geqslant n_0$."
+      ]
+    },
+    {
+      "t": "Montrer qu'une suite converge sans calculer la limite",
+      "etapes": [
+        "Étudier le sens de variation (par récurrence ou en étudiant $u_{n+1}-u_n$).",
+        "Montrer qu'elle est majorée (si croissante) ou minorée (si décroissante), souvent par récurrence.",
+        "Appliquer le théorème de convergence monotone pour conclure à l'existence de la limite.",
+        "Si on veut la valeur : résoudre l'équation de point fixe $\\ell=f(\\ell)$."
+      ]
+    },
+    {
+      "t": "Calculer la limite d'une suite avec un $(-1)^n$ ou un $\\cos/\\sin$",
+      "etapes": [
+        "Encadrer le terme oscillant, par exemple $-1\\leqslant(-1)^n\\leqslant 1$.",
+        "En déduire un encadrement de $u_n$ par deux suites $a_n\\leqslant u_n\\leqslant b_n$.",
+        "Vérifier que $(a_n)$ et $(b_n)$ ont la même limite $\\ell$.",
+        "Conclure par le théorème des gendarmes : $\\lim u_n=\\ell$."
+      ]
+    },
+    {
+      "t": "Étudier une suite $u_{n+1}=au_n+b$",
+      "etapes": [
+        "Calculer le point fixe $\\ell=\\dfrac{b}{1-a}$.",
+        "Poser $v_n=u_n-\\ell$ et montrer que $(v_n)$ est géométrique de raison $a$.",
+        "Écrire $v_n=v_0\\,a^{n}$ puis revenir à $u_n=v_n+\\ell$.",
+        "Conclure sur la limite via le comportement de $a^{n}$."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "On étudie une suite $(u_n)$ croissante et majorée par $4$ ; montrer par récurrence l'encadrement puis justifier que $(u_n)$ converge vers un réel de $[\\,0{,}7\\,;\\,4\\,]$.",
+      "loc": "Métropole, jour 2"
+    },
+    {
+      "y": 2023,
+      "s": "Suite définie par $u_{n+1}=0{,}9\\,u_n+1$ ; étudier la suite auxiliaire $v_n=u_n-10$, montrer qu'elle est géométrique et en déduire $\\lim\\limits_{n\\to+\\infty}u_n$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2025,
+      "s": "Encadrer $w_n$ entre deux suites convergeant vers la même limite et conclure par le théorème des gendarmes.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Dans une récurrence, ne JAMAIS oublier l'initialisation (une hérédité seule ne prouve rien) et ne jamais « supposer ce qu'on veut montrer » : l'hypothèse porte sur le rang $n$, la conclusion sur le rang $n+1$.",
+  "qcm": [
+    {
+      "q": "Pour $q=\\dfrac{1}{2}$, que vaut $\\lim\\limits_{n\\to+\\infty}q^{n}$ ?",
+      "opts": ["$+\\infty$", "$0$", "$1$", "n'existe pas"],
+      "ok": 1,
+      "why": "Comme $-1<\\tfrac{1}{2}<1$, on a $\\lim\\limits_{n\\to+\\infty}q^{n}=0$."
+    },
+    {
+      "q": "Pour $q=2$, que vaut $\\lim\\limits_{n\\to+\\infty}q^{n}$ ?",
+      "opts": ["$0$", "$2$", "$+\\infty$", "$1$"],
+      "ok": 2,
+      "why": "Comme $q>1$, $q^{n}$ tend vers $+\\infty$."
+    },
+    {
+      "q": "Que peut-on dire de $\\lim\\limits_{n\\to+\\infty}(-1)^{n}$ ?",
+      "opts": ["Elle vaut $0$", "Elle vaut $1$", "Elle vaut $-1$", "Elle n'existe pas"],
+      "ok": 3,
+      "why": "La suite oscille entre $1$ et $-1$ : elle diverge sans limite."
+    },
+    {
+      "q": "Une suite croissante et majorée par $5$ :",
+      "opts": ["converge vers une limite $\\ell\\leqslant 5$", "converge vers $5$", "tend vers $+\\infty$", "n'a pas de limite"],
+      "ok": 0,
+      "why": "Théorème de convergence monotone : elle converge, et sa limite vérifie $\\ell\\leqslant 5$ (pas forcément $5$)."
+    },
+    {
+      "q": "Suite arithmétique de premier terme $u_0=3$ et de raison $r=2$. Que vaut $u_n$ ?",
+      "opts": ["$3\\times 2^{n}$", "$3+2n$", "$2+3n$", "$3+2^{n}$"],
+      "ok": 1,
+      "why": "Pour une suite arithmétique, $u_n=u_0+nr=3+2n$."
+    },
+    {
+      "q": "Suite géométrique de premier terme $u_0=4$ et de raison $q=3$. Que vaut $u_n$ ?",
+      "opts": ["$4+3n$", "$4\\times 3^{n}$", "$3\\times 4^{n}$", "$12^{n}$"],
+      "ok": 1,
+      "why": "Pour une suite géométrique, $u_n=u_0\\,q^{n}=4\\times 3^{n}$."
+    },
+    {
+      "q": "On a $u_n\\leqslant v_n$ à partir d'un certain rang et $\\lim\\limits_{n\\to+\\infty}u_n=+\\infty$. Alors :",
+      "opts": ["$\\lim v_n=+\\infty$", "$\\lim v_n=0$", "$(v_n)$ converge", "on ne peut rien dire"],
+      "ok": 0,
+      "why": "Théorème de comparaison : $v_n$ est au-dessus de $u_n$ qui tend vers $+\\infty$, donc $\\lim v_n=+\\infty$."
+    },
+    {
+      "q": "Quel est le point fixe de la suite définie par $u_{n+1}=0{,}5\\,u_n+3$ ?",
+      "opts": ["$3$", "$1{,}5$", "$6$", "$0$"],
+      "ok": 2,
+      "why": "On résout $\\ell=0{,}5\\,\\ell+3$, soit $0{,}5\\,\\ell=3$, donc $\\ell=6$."
+    },
+    {
+      "q": "Que vaut $\\displaystyle\\sum_{k=0}^{n}\\left(\\dfrac{1}{2}\\right)^{k}$ quand $n\\to+\\infty$ ?",
+      "opts": ["$1$", "$+\\infty$", "$2$", "$\\dfrac{1}{2}$"],
+      "ok": 2,
+      "why": "Somme géométrique : $\\dfrac{1-(1/2)^{n+1}}{1-1/2}\\to\\dfrac{1}{1/2}=2$ car $(1/2)^{n+1}\\to 0$."
+    },
+    {
+      "q": "Que vaut $\\lim\\limits_{n\\to+\\infty}\\left(n+\\dfrac{1}{n}\\right)$ ?",
+      "opts": ["$0$", "$1$", "$+\\infty$", "forme indéterminée"],
+      "ok": 2,
+      "why": "$n\\to+\\infty$ et $\\tfrac{1}{n}\\to 0$, la somme tend vers $+\\infty$ (pas d'indétermination)."
+    },
+    {
+      "q": "Une suite décroissante et minorée par $0$ :",
+      "opts": ["tend vers $-\\infty$", "converge vers $0$", "converge vers une limite $\\ell\\geqslant 0$", "diverge"],
+      "ok": 2,
+      "why": "Convergence monotone : elle converge, et comme elle est minorée par $0$, sa limite vérifie $\\ell\\geqslant 0$."
+    },
+    {
+      "q": "Dans une récurrence, l'hypothèse de récurrence consiste à :",
+      "opts": ["supposer $P(n)$ vraie pour un rang $n$ fixé", "supposer $P(n)$ vraie pour tout $n$", "vérifier $P(0)$", "démontrer directement $P(n+1)$"],
+      "ok": 0,
+      "why": "On suppose $P(n)$ vraie à un rang $n$ donné, puis on en déduit $P(n+1)$. Supposer $P(n)$ pour tout $n$, ce serait supposer le résultat."
+    }
+  ],
+  "flash": [
+    {"front": "Terme général d'une suite arithmétique de raison $r$", "back": "$u_n=u_0+nr$"},
+    {"front": "Terme général d'une suite géométrique de raison $q$", "back": "$u_n=u_0\\,q^{n}$"},
+    {"front": "$\\lim\\limits_{n\\to+\\infty}q^{n}$ pour $q>1$", "back": "$+\\infty$"},
+    {"front": "$\\lim\\limits_{n\\to+\\infty}q^{n}$ pour $-1<q<1$", "back": "$0$"},
+    {"front": "$\\lim\\limits_{n\\to+\\infty}\\dfrac{1}{n}$", "back": "$0$"},
+    {"front": "Les trois étapes d'une récurrence", "back": "Initialisation, hérédité, conclusion"},
+    {"front": "Théorème de convergence monotone (suite croissante)", "back": "Toute suite croissante et majorée converge"},
+    {"front": "Théorème de convergence monotone (suite décroissante)", "back": "Toute suite décroissante et minorée converge"},
+    {"front": "Énoncé du théorème des gendarmes", "back": "Si $u_n\\leqslant w_n\\leqslant v_n$ et $u_n,v_n\\to\\ell$, alors $w_n\\to\\ell$"},
+    {"front": "Somme $\\displaystyle\\sum_{k=0}^{n}q^{k}$ pour $q\\neq 1$", "back": "$\\dfrac{1-q^{\\,n+1}}{1-q}$"},
+    {"front": "Point fixe de $u_{n+1}=au_n+b$ ($a\\neq 1$)", "back": "$\\ell=\\dfrac{b}{1-a}$"},
+    {"front": "Suite auxiliaire pour étudier $u_{n+1}=au_n+b$", "back": "$v_n=u_n-\\ell$, géométrique de raison $a$"}
+  ],
+  "vraifaux": [
+    {"q": "Toute suite croissante tend vers $+\\infty$.", "v": false, "why": "Faux : si elle est majorée, elle converge (théorème de convergence monotone). Exemple : $u_n=1-\\tfrac{1}{n}$ croît vers $1$."},
+    {"q": "Une suite majorée est nécessairement convergente.", "v": false, "why": "Faux : il faut aussi qu'elle soit croissante. $u_n=(-1)^n$ est majorée par $1$ mais ne converge pas."},
+    {"q": "Si $-1<q<1$, alors $\\lim\\limits_{n\\to+\\infty}q^{n}=0$.", "v": true, "why": "Vrai : c'est le comportement de référence de $q^{n}$ pour $|q|<1$."},
+    {"q": "Dans une récurrence, on peut se passer de l'initialisation si l'hérédité est démontrée.", "v": false, "why": "Faux : sans initialisation, rien ne garantit que la propriété démarre. Les deux étapes sont indispensables."},
+    {"q": "Une suite peut diverger sans tendre vers $+\\infty$ ni $-\\infty$.", "v": true, "why": "Vrai : $u_n=(-1)^n$ diverge en oscillant, sans limite infinie."},
+    {"q": "Le théorème des gendarmes exige que les deux suites encadrantes aient la même limite.", "v": true, "why": "Vrai : c'est la condition clé. Si les limites diffèrent, on ne peut pas conclure."},
+    {"q": "Si une suite converge vers $\\ell$, alors elle est bornée.", "v": true, "why": "Vrai : une suite convergente est toujours bornée (elle reste près de $\\ell$ à partir d'un rang, et a un nombre fini de termes avant)."},
+    {"q": "$\\lim\\limits_{n\\to+\\infty}(n-n^{2})=+\\infty$.", "v": false, "why": "Faux : $n-n^{2}=n(1-n)\\to-\\infty$ car le terme dominant $-n^2$ l'emporte."},
+    {"q": "Une suite géométrique de raison $q=-2$ a une limite.", "v": false, "why": "Faux : pour $q\\leqslant -1$, $q^{n}$ n'a pas de limite (les termes changent de signe et grandissent en valeur absolue)."},
+    {"q": "Si une suite est croissante et non majorée, alors elle tend vers $+\\infty$.", "v": true, "why": "Vrai : une suite croissante non majorée diverge vers $+\\infty$."}
+  ],
+  "qmethode": [
+    {
+      "q": "« On te demande de démontrer que $u_n\\leqslant 4$ pour tout entier $n$ » — que fais-tu ?",
+      "opts": ["Un raisonnement par récurrence", "Le théorème des gendarmes", "Le calcul de la limite", "Une étude de signe de $u_{n+1}-u_n$"],
+      "ok": 0,
+      "why": "Une propriété valable « pour tout $n$ » portant sur une suite définie par récurrence se démontre par récurrence."
+    },
+    {
+      "q": "« On te demande de montrer que $(u_n)$ converge, sans en demander la valeur » — quelle stratégie ?",
+      "opts": ["Montrer qu'elle est croissante et majorée (convergence monotone)", "Calculer directement $\\lim u_n$", "Montrer qu'elle est géométrique", "Encadrer par $(-1)^n$"],
+      "ok": 0,
+      "why": "Le théorème de convergence monotone donne l'existence de la limite sans avoir à la calculer."
+    },
+    {
+      "q": "« On te demande $\\lim\\limits_{n\\to+\\infty}\\dfrac{\\sin n}{n}$ » — que fais-tu ?",
+      "opts": ["Le théorème des gendarmes en encadrant $\\sin n$", "La convergence monotone", "Une récurrence", "Le point fixe"],
+      "ok": 0,
+      "why": "On encadre $-\\tfrac{1}{n}\\leqslant\\tfrac{\\sin n}{n}\\leqslant\\tfrac{1}{n}$, les bornes tendent vers $0$, donc la limite est $0$."
+    },
+    {
+      "q": "« On te demande d'étudier $u_{n+1}=0{,}8\\,u_n+5$ » — par quoi commences-tu ?",
+      "opts": ["Calculer le point fixe puis poser $v_n=u_n-\\ell$", "Faire une récurrence sur la monotonie", "Encadrer par les gendarmes", "Calculer la somme des termes"],
+      "ok": 0,
+      "why": "Pour une suite $u_{n+1}=au_n+b$, on cherche le point fixe $\\ell=\\tfrac{b}{1-a}=25$ et la suite auxiliaire $v_n=u_n-\\ell$ est géométrique."
+    },
+    {
+      "q": "« On te demande $\\lim\\limits_{n\\to+\\infty}\\left(2^{n}-n\\right)$ » — quel outil ?",
+      "opts": ["Les opérations sur les limites avec le terme dominant", "Le théorème des gendarmes", "Une récurrence", "La convergence monotone"],
+      "ok": 0,
+      "why": "$2^{n}$ croît bien plus vite que $n$ : par opérations, $2^{n}-n\\to+\\infty$ (le terme exponentiel domine)."
+    },
+    {
+      "q": "« On te demande de montrer qu'une suite est minorée par $0$ pour tout $n$ » — que fais-tu ?",
+      "opts": ["Une récurrence sur $u_n\\geqslant 0$", "Le calcul de la limite", "Le théorème des gendarmes", "La somme géométrique"],
+      "ok": 0,
+      "why": "Une minoration valable pour tout $n$ sur une suite récurrente se prouve par récurrence."
+    },
+    {
+      "q": "« On te demande la somme $u_0+u_1+\\dots+u_n$ d'une suite géométrique » — quelle formule ?",
+      "opts": ["$u_0\\dfrac{1-q^{\\,n+1}}{1-q}$", "$(n+1)\\dfrac{u_0+u_n}{2}$", "$u_0+nr$", "$u_0\\,q^{n}$"],
+      "ok": 0,
+      "why": "Somme de termes géométriques : $u_0\\times\\dfrac{1-q^{\\,n+1}}{1-q}$. La deuxième formule, elle, concerne les suites arithmétiques."
+    }
+  ]
+}

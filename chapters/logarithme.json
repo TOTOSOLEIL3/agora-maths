@@ -1,0 +1,243 @@
+{
+  "id": "logarithme",
+  "tag": "Analyse",
+  "title": "Logarithme népérien",
+  "intro": "La fonction logarithme népérien $\\ln$ est la fonction réciproque de l'exponentielle : elle transforme les produits en sommes, ce qui en fait l'outil idéal pour résoudre des équations où l'inconnue est en exposant (croissance, demi-vie, suites...). Attention permanente au domaine : $\\ln x$ n'existe que pour $x>0$.",
+  "objectifs": [
+    "Connaître la définition de $\\ln$ comme réciproque de $\\exp$ et les relations $\\ln(e^x)=x$, $e^{\\ln x}=x$",
+    "Maîtriser les propriétés algébriques (produit, quotient, puissance, racine)",
+    "Dériver $\\ln u$ et étudier le sens de variation d'une fonction faisant intervenir $\\ln$",
+    "Connaître les limites aux bornes et les croissances comparées",
+    "Résoudre équations et inéquations avec $\\ln$ en pensant systématiquement au domaine de validité"
+  ],
+  "cours": [
+    {
+      "t": "Définition et premières valeurs",
+      "d": "La fonction $\\ln$ est définie sur $]0;+\\infty[$ comme la réciproque de la fonction exponentielle. Ainsi, pour tout réel $x$, $\\ln(e^x)=x$, et pour tout $x>0$, $e^{\\ln x}=x$. On a $\\ln 1=0$ et $\\ln e=1$. Conséquence : $\\ln x = y \\iff x = e^y$ (avec $x>0$)."
+    },
+    {
+      "t": "Propriétés algébriques (fonctionnelles)",
+      "d": "Pour tous réels $a>0$ et $b>0$ et tout entier $n$ : $\\ln(ab)=\\ln a+\\ln b$ (relation fondamentale), $\\ln\\dfrac{a}{b}=\\ln a-\\ln b$, $\\ln\\dfrac{1}{b}=-\\ln b$, $\\ln(a^n)=n\\ln a$, et $\\ln\\sqrt{a}=\\dfrac12\\ln a$. C'est cette transformation produit $\\to$ somme qui fait toute la puissance du logarithme."
+    },
+    {
+      "t": "Dérivée",
+      "d": "La fonction $\\ln$ est dérivable sur $]0;+\\infty[$ et $(\\ln x)'=\\dfrac{1}{x}$. Par composition, si $u$ est dérivable et strictement positive sur un intervalle $I$, alors $\\ln u$ est dérivable sur $I$ et $(\\ln u)'=\\dfrac{u'}{u}$. Ne jamais oublier le $u'$ au numérateur."
+    },
+    {
+      "t": "Sens de variation et signe",
+      "d": "Comme $(\\ln x)'=\\dfrac{1}{x}>0$ sur $]0;+\\infty[$, la fonction $\\ln$ est strictement croissante sur $]0;+\\infty[$. Elle est donc bijective, ce qui justifie : pour $a>0$ et $b>0$, $\\ln a=\\ln b\\iff a=b$ et $\\ln a<\\ln b\\iff a<b$. De plus $\\ln x<0$ sur $]0;1[$, $\\ln x=0$ en $x=1$, et $\\ln x>0$ sur $]1;+\\infty[$."
+    },
+    {
+      "t": "Limites et croissances comparées",
+      "d": "Aux bornes : $\\lim\\limits_{x\\to+\\infty}\\ln x=+\\infty$ et $\\lim\\limits_{x\\to0^+}\\ln x=-\\infty$ (l'axe des ordonnées est asymptote verticale). Croissances comparées : $\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}=0$ (et plus généralement $\\dfrac{\\ln x}{x^n}\\to0$) et $\\lim\\limits_{x\\to0^+}x\\ln x=0$. Enfin la limite usuelle (nombre dérivé en 1) : $\\lim\\limits_{x\\to0}\\dfrac{\\ln(1+x)}{x}=1$."
+    }
+  ],
+  "formulaireTitre": "Formulaire — Logarithme népérien",
+  "formulaire": [
+    ["$\\ln(e^x)=x$", "$e^{\\ln x}=x\\ (x>0)$"],
+    ["$\\ln 1=0$", "$\\ln e=1$"],
+    ["$\\ln(ab)=\\ln a+\\ln b$", "$\\ln\\dfrac{a}{b}=\\ln a-\\ln b$"],
+    ["$\\ln(a^n)=n\\ln a$", "$\\ln\\sqrt{a}=\\dfrac12\\ln a$"],
+    ["$(\\ln x)'=\\dfrac{1}{x}$", "$(\\ln u)'=\\dfrac{u'}{u}$"],
+    ["$\\lim\\limits_{x\\to+\\infty}\\ln x=+\\infty$", "$\\lim\\limits_{x\\to0^+}\\ln x=-\\infty$"],
+    ["$\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}=0$", "$\\lim\\limits_{x\\to0^+}x\\ln x=0$"],
+    ["$\\lim\\limits_{x\\to0}\\dfrac{\\ln(1+x)}{x}=1$", "$\\ln a=\\ln b\\iff a=b\\ (a,b>0)$"]
+  ],
+  "methodes": [
+    {
+      "t": "Résoudre une équation avec $\\ln$",
+      "etapes": [
+        "Déterminer le domaine de validité : tout ce qui est sous un $\\ln$ doit être strictement positif",
+        "Utiliser les propriétés pour regrouper en un seul $\\ln$ de chaque côté",
+        "Appliquer $\\ln a=\\ln b\\iff a=b$ (ou passer à l'exponentielle si besoin)",
+        "Résoudre l'équation obtenue puis garder uniquement les solutions appartenant au domaine"
+      ]
+    },
+    {
+      "t": "Résoudre une inéquation avec $\\ln$",
+      "etapes": [
+        "Déterminer le domaine (arguments des $\\ln$ strictement positifs)",
+        "Se ramener à $\\ln A < \\ln B$ ou $\\ln A > \\ln B$",
+        "Comme $\\ln$ est strictement croissante, $\\ln A<\\ln B\\iff A<B$ (le sens est conservé)",
+        "Croiser l'ensemble obtenu avec le domaine de validité pour conclure"
+      ]
+    },
+    {
+      "t": "Étudier une fonction contenant $\\ln$",
+      "etapes": [
+        "Préciser l'ensemble de définition (argument du $\\ln$ strictement positif)",
+        "Calculer la dérivée avec $(\\ln u)'=\\dfrac{u'}{u}$ sans oublier le $u'$",
+        "Étudier le signe de la dérivée pour dresser le tableau de variations",
+        "Calculer les limites aux bornes (utiliser les croissances comparées en cas de forme indéterminée)"
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Soit $f$ définie sur $]0;+\\infty[$ par $f(x)=\\dfrac{\\ln x}{x}$. Étudier ses variations et déterminer $\\lim\\limits_{x\\to+\\infty}f(x)$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Résoudre dans $]0;+\\infty[$ l'inéquation $\\ln(2x-1)+\\ln(x)\\le \\ln(x+2)$ après avoir précisé le domaine.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "On considère $g(x)=x-\\ln x$ sur $]0;+\\infty[$. Montrer que $g$ admet un minimum et en déduire que pour tout $x>0$, $\\ln x\\le x-1$.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Trois pièges classiques : (1) $\\ln(a+b)\\ne\\ln a+\\ln b$ — le logarithme transforme les PRODUITS en sommes, pas les sommes ; (2) oublier la condition d'existence $x>0$ et garder des solutions hors domaine ; (3) oublier le $u'$ dans $(\\ln u)'=\\dfrac{u'}{u}$ (écrire $\\dfrac1u$ tout seul est faux).",
+  "qcm": [
+    {
+      "q": "Quel est l'ensemble de définition de $\\ln$ ?",
+      "opts": ["$\\mathbb{R}$", "$[0;+\\infty[$", "$]0;+\\infty[$", "$\\mathbb{R}^*$"],
+      "ok": 2,
+      "why": "$\\ln$ n'est définie que pour les réels strictement positifs : $]0;+\\infty[$."
+    },
+    {
+      "q": "Que vaut $\\ln(e^3)$ ?",
+      "opts": ["$3$", "$e^3$", "$\\ln 3$", "$\\dfrac{1}{3}$"],
+      "ok": 0,
+      "why": "$\\ln(e^x)=x$ pour tout réel $x$, donc $\\ln(e^3)=3$."
+    },
+    {
+      "q": "Pour $a>0$ et $b>0$, $\\ln\\dfrac{a}{b}$ est égal à :",
+      "opts": ["$\\dfrac{\\ln a}{\\ln b}$", "$\\ln a-\\ln b$", "$\\ln a+\\ln b$", "$\\ln(a-b)$"],
+      "ok": 1,
+      "why": "Propriété du quotient : $\\ln\\dfrac{a}{b}=\\ln a-\\ln b$."
+    },
+    {
+      "q": "La dérivée de $\\ln x$ sur $]0;+\\infty[$ est :",
+      "opts": ["$\\ln x$", "$x\\ln x$", "$\\dfrac{1}{x}$", "$-\\dfrac{1}{x^2}$"],
+      "ok": 2,
+      "why": "$(\\ln x)'=\\dfrac{1}{x}$."
+    },
+    {
+      "q": "Que vaut $\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x}$ ?",
+      "opts": ["$+\\infty$", "$1$", "$0$", "$-\\infty$"],
+      "ok": 2,
+      "why": "Croissance comparée : $x$ l'emporte sur $\\ln x$, donc la limite vaut $0$."
+    },
+    {
+      "q": "La dérivée de $f(x)=\\ln(x^2+1)$ est :",
+      "opts": ["$\\dfrac{2x}{x^2+1}$", "$\\dfrac{1}{x^2+1}$", "$\\dfrac{1}{2x}$", "$2x\\ln(x^2+1)$"],
+      "ok": 0,
+      "why": "Avec $u=x^2+1$, $u'=2x$, donc $(\\ln u)'=\\dfrac{u'}{u}=\\dfrac{2x}{x^2+1}$."
+    },
+    {
+      "q": "Que vaut $\\lim\\limits_{x\\to0^+}\\ln x$ ?",
+      "opts": ["$0$", "$1$", "$+\\infty$", "$-\\infty$"],
+      "ok": 3,
+      "why": "En $0^+$, $\\ln x\\to-\\infty$ (asymptote verticale en $x=0$)."
+    },
+    {
+      "q": "$\\ln(a^5)$ est égal à (pour $a>0$) :",
+      "opts": ["$(\\ln a)^5$", "$5\\ln a$", "$5+\\ln a$", "$\\dfrac{\\ln a}{5}$"],
+      "ok": 1,
+      "why": "$\\ln(a^n)=n\\ln a$, donc $\\ln(a^5)=5\\ln a$."
+    },
+    {
+      "q": "L'équation $\\ln x = 2$ a pour solution :",
+      "opts": ["$x=2$", "$x=e^2$", "$x=\\ln 2$", "$x=\\dfrac{1}{2}$"],
+      "ok": 1,
+      "why": "$\\ln x=2\\iff x=e^2$ (en repassant à l'exponentielle)."
+    },
+    {
+      "q": "Que vaut $\\lim\\limits_{x\\to0}\\dfrac{\\ln(1+x)}{x}$ ?",
+      "opts": ["$0$", "$+\\infty$", "$1$", "$e$"],
+      "ok": 2,
+      "why": "C'est le nombre dérivé de $\\ln(1+x)$ en $0$, qui vaut $1$."
+    },
+    {
+      "q": "La fonction $\\ln$ est :",
+      "opts": ["strictement décroissante sur $]0;+\\infty[$", "strictement croissante sur $]0;+\\infty[$", "constante", "croissante puis décroissante"],
+      "ok": 1,
+      "why": "Sa dérivée $\\dfrac1x$ est positive sur $]0;+\\infty[$ : $\\ln$ est strictement croissante."
+    },
+    {
+      "q": "Pour quels $x$ a-t-on $\\ln x>0$ ?",
+      "opts": ["$x>1$", "$x>0$", "$x>e$", "$0<x<1$"],
+      "ok": 0,
+      "why": "$\\ln$ s'annule en $1$ et est croissante, donc $\\ln x>0\\iff x>1$."
+    }
+  ],
+  "flash": [
+    {"front": "Dérivée de $\\ln x$ ?", "back": "$\\dfrac{1}{x}$"},
+    {"front": "Dérivée de $\\ln u$ ?", "back": "$\\dfrac{u'}{u}$"},
+    {"front": "$\\ln 1 = ?$", "back": "$0$"},
+    {"front": "$\\ln e = ?$", "back": "$1$"},
+    {"front": "$\\ln(ab) = ?$", "back": "$\\ln a+\\ln b$"},
+    {"front": "$\\ln\\dfrac{a}{b} = ?$", "back": "$\\ln a-\\ln b$"},
+    {"front": "$\\ln(a^n) = ?$", "back": "$n\\ln a$"},
+    {"front": "$\\lim\\limits_{x\\to+\\infty}\\ln x = ?$", "back": "$+\\infty$"},
+    {"front": "$\\lim\\limits_{x\\to0^+}\\ln x = ?$", "back": "$-\\infty$"},
+    {"front": "$\\lim\\limits_{x\\to+\\infty}\\dfrac{\\ln x}{x} = ?$", "back": "$0$"},
+    {"front": "$\\lim\\limits_{x\\to0^+}x\\ln x = ?$", "back": "$0$"},
+    {"front": "Ensemble de définition de $\\ln$ ?", "back": "$]0;+\\infty[$"}
+  ],
+  "vraifaux": [
+    {"q": "$\\ln(a+b)=\\ln a+\\ln b$", "v": false, "why": "Faux : $\\ln$ transforme les produits en sommes, pas les sommes. C'est $\\ln(ab)=\\ln a+\\ln b$."},
+    {"q": "$\\ln$ est définie sur $]0;+\\infty[$", "v": true, "why": "Vrai : l'argument d'un logarithme doit être strictement positif."},
+    {"q": "$(\\ln u)'=\\dfrac{1}{u}$", "v": false, "why": "Faux : il manque le $u'$. La bonne formule est $(\\ln u)'=\\dfrac{u'}{u}$."},
+    {"q": "$\\ln$ est strictement croissante sur son ensemble de définition", "v": true, "why": "Vrai : sa dérivée $\\dfrac1x$ est strictement positive sur $]0;+\\infty[$."},
+    {"q": "$\\ln(a^n)=(\\ln a)^n$", "v": false, "why": "Faux : $\\ln(a^n)=n\\ln a$, et non $(\\ln a)^n$."},
+    {"q": "$\\lim\\limits_{x\\to0^+}x\\ln x=0$", "v": true, "why": "Vrai : c'est une croissance comparée, $x$ l'emporte sur $\\ln x$ en $0^+$."},
+    {"q": "Pour $a>0$ et $b>0$, $\\ln a=\\ln b$ équivaut à $a=b$", "v": true, "why": "Vrai : $\\ln$ étant strictement croissante (donc injective), elle est bijective sur $]0;+\\infty[$."},
+    {"q": "$\\ln x<0$ pour tout $x$ compris entre $0$ et $1$", "v": true, "why": "Vrai : $\\ln$ s'annule en $1$ et est croissante, donc négative sur $]0;1[$."},
+    {"q": "$e^{\\ln x}=x$ pour tout réel $x$", "v": false, "why": "Faux : l'égalité $e^{\\ln x}=x$ n'a de sens que pour $x>0$ (sinon $\\ln x$ n'existe pas)."},
+    {"q": "L'axe des ordonnées est asymptote à la courbe de $\\ln$", "v": true, "why": "Vrai : $\\lim\\limits_{x\\to0^+}\\ln x=-\\infty$, donc la droite $x=0$ est asymptote verticale."}
+  ],
+  "qmethode": [
+    {
+      "q": "Pour résoudre l'équation $\\ln(x-3)=\\ln(2x+1)$, quelle est la PREMIÈRE chose à faire ?",
+      "opts": ["Déterminer le domaine : $x-3>0$ et $2x+1>0$", "Passer directement à $x-3=2x+1$", "Diviser par $\\ln$", "Appliquer l'exponentielle des deux côtés"],
+      "ok": 0,
+      "why": "On commence toujours par le domaine de validité, sinon on risque de garder des solutions interdites."
+    },
+    {
+      "q": "Pour dériver $f(x)=\\ln(3x+2)$, quelle formule appliquer ?",
+      "opts": ["$(\\ln u)'=\\dfrac{u'}{u}$ avec $u=3x+2$", "$(\\ln x)'=\\dfrac1x$ directement", "la dérivée d'un produit", "$(\\ln u)'=u'\\ln u$"],
+      "ok": 0,
+      "why": "C'est une composée : $u=3x+2$, $u'=3$, donc $f'(x)=\\dfrac{3}{3x+2}$."
+    },
+    {
+      "q": "Pour lever l'indétermination de $\\lim\\limits_{x\\to+\\infty}(x-\\ln x)$, quelle méthode ?",
+      "opts": ["Factoriser par $x$ : $x\\left(1-\\dfrac{\\ln x}{x}\\right)$", "Remplacer $\\ln x$ par $x$", "Dériver l'expression", "Conclure que la limite est $0$"],
+      "ok": 0,
+      "why": "On factorise par le terme dominant $x$ et on utilise $\\dfrac{\\ln x}{x}\\to0$, d'où une limite $+\\infty$."
+    },
+    {
+      "q": "Pour résoudre $\\ln x+\\ln(x-2)=\\ln 3$, quelle transformation utiliser à gauche ?",
+      "opts": ["$\\ln x+\\ln(x-2)=\\ln\\big(x(x-2)\\big)$", "$\\ln x+\\ln(x-2)=\\ln(2x-2)$", "$\\ln x+\\ln(x-2)=\\ln(x)\\times\\ln(x-2)$", "On ne peut pas regrouper"],
+      "ok": 0,
+      "why": "On utilise $\\ln a+\\ln b=\\ln(ab)$ pour obtenir un seul logarithme, puis on identifie les arguments."
+    },
+    {
+      "q": "Pour résoudre $e^x=5$, quelle méthode est la plus directe ?",
+      "opts": ["Appliquer $\\ln$ aux deux membres : $x=\\ln 5$", "Diviser par $e$", "Élever au carré", "Dériver"],
+      "ok": 0,
+      "why": "Puisque $\\ln(e^x)=x$, appliquer $\\ln$ donne directement $x=\\ln 5$."
+    },
+    {
+      "q": "Pour étudier le signe de $\\ln x-1$, on cherche d'abord quand cette expression s'annule. Quelle équation résoudre ?",
+      "opts": ["$\\ln x=1$, soit $x=e$", "$\\ln x=0$, soit $x=1$", "$x=1$", "$\\ln x=e$"],
+      "ok": 0,
+      "why": "$\\ln x-1=0\\iff\\ln x=1\\iff x=e$. L'expression est négative avant $e$, positive après."
+    },
+    {
+      "q": "Une inéquation $\\ln A<\\ln B$ (avec $A,B>0$) se simplifie en :",
+      "opts": ["$A<B$ (sens conservé)", "$A>B$ (sens inversé)", "$A=B$", "on ne peut rien dire"],
+      "ok": 0,
+      "why": "$\\ln$ étant strictement croissante, l'inégalité est conservée : $\\ln A<\\ln B\\iff A<B$."
+    },
+    {
+      "q": "Pour résoudre l'équation $2^n>1000$ d'inconnue entière $n$ (problème de seuil), quelle est la bonne approche ?",
+      "opts": ["Appliquer $\\ln$ : $n\\ln 2>\\ln 1000$, puis $n>\\dfrac{\\ln 1000}{\\ln 2}$", "Diviser par $2$", "Élever au carré", "Calculer $\\ln(2^n)$ comme $(\\ln 2)^n$"],
+      "ok": 0,
+      "why": "Le logarithme fait descendre l'exposant : $\\ln(2^n)=n\\ln 2$, ce qui ramène l'inconnue à un coefficient."
+    }
+  ]
+}

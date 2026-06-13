@@ -1,15 +1,19 @@
 # AGORA Maths 🧮
 
-Site de révision du **bac de spécialité Mathématiques (Terminale générale, programme post-réforme 2021)**, dans le prolongement d'[AGORA philo](https://agora-philo.fr). Mini-jeux + fiche de cours + formulaire, pour réviser en jouant.
+Site de révision du **bac de spécialité Mathématiques (Terminale générale, programme post-réforme 2021)**, dans le prolongement d'[AGORA philo](https://agora-philo.fr). Mini-jeux + fiches de cours + formulaires, pour réviser en jouant.
 
-> **Démo en cours** : seul le chapitre **Dérivation** (+ convexité) est complet pour l'instant.
+**Tout le programme : 15 chapitres**, ~630 questions. Pour chaque chapitre, une fiche (cours, formulaire, méthodes, annales, piège) + 4 mini-jeux.
 
-## Ce qu'il y a dedans
-- **Trouve la dérivée** — QCM, repère la bonne dérivée parmi les pièges classiques.
+## Les 4 jeux (par chapitre)
+- **QCM** — choisis la bonne réponse parmi les pièges classiques.
 - **Flashcards de formules** — recto/verso, le formulaire à retourner.
 - **Vrai / Faux** — démonte les contresens sur les théorèmes.
 - **Quelle méthode ?** — la bonne stratégie pour chaque type d'exo.
-- **La fiche Dérivation** — cours, formulaire complet, méthodes types, annales 2024-2025, le piège à éviter.
+
+Plus **Le Grand Mélange** : 12 questions tirées au sort dans tous les chapitres.
+
+## Les chapitres
+Suites & récurrence · Combinatoire · Limites & continuité · Dérivation & convexité · Exponentielle · Logarithme · Trigonométrie · Primitives & équa. diff. · Calcul intégral · Probabilités conditionnelles · Loi binomiale · Concentration & LGN · Géométrie dans l'espace · Produit scalaire · Algorithmique & Python.
 
 XP, niveaux et records sont conservés en local (`localStorage`, préfixe `agora_maths_`).
 

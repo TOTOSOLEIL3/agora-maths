@@ -1,0 +1,240 @@
+{
+  "id": "trigonometrie",
+  "tag": "Analyse",
+  "title": "Fonctions trigonométriques",
+  "intro": "On enroule la droite des réels autour du cercle trigonométrique : à chaque réel $x$ correspond un point dont l'abscisse est $\\cos x$ et l'ordonnée $\\sin x$. Tout l'enjeu du chapitre, c'est de manier les valeurs remarquables, les angles associés (symétries du cercle), et de dériver $\\sin$ et $\\cos$, y compris composés avec $ax+b$. Le piège n°1 du bac : travailler en radians, jamais en degrés.",
+  "objectifs": [
+    "Placer un réel sur le cercle trigonométrique et convertir degrés $\\leftrightarrow$ radians",
+    "Connaître par cœur les valeurs de $\\cos$ et $\\sin$ en $0,\\ \\dfrac{\\pi}{6},\\ \\dfrac{\\pi}{4},\\ \\dfrac{\\pi}{3},\\ \\dfrac{\\pi}{2}$",
+    "Utiliser parité, périodicité $2\\pi$ et formules des angles associés",
+    "Dériver les fonctions $\\sin$, $\\cos$ et leurs composées $\\sin(ax+b)$, $\\cos(ax+b)$",
+    "Résoudre des équations $\\cos x=\\cos a$ et $\\sin x=\\sin a$",
+    "Étudier et représenter une fonction trigonométrique simple"
+  ],
+  "cours": [
+    {
+      "t": "Cercle trigonométrique et radians",
+      "d": "Le cercle trigonométrique est le cercle de centre $O$ et de rayon $1$, orienté dans le sens direct (sens inverse des aiguilles d'une montre). Le radian est l'unité d'angle telle qu'un angle plat $180^\\circ$ vaut $\\pi$ rad. La conversion se fait par proportionnalité : $\\dfrac{\\text{angle en degrés}}{180}=\\dfrac{\\text{angle en radians}}{\\pi}$. Ainsi $90^\\circ=\\dfrac{\\pi}{2}$, $60^\\circ=\\dfrac{\\pi}{3}$, $45^\\circ=\\dfrac{\\pi}{4}$, $30^\\circ=\\dfrac{\\pi}{6}$, et un tour complet $360^\\circ=2\\pi$."
+    },
+    {
+      "t": "Enroulement et définition de cos et sin",
+      "d": "On enroule la droite réelle (graduée) autour du cercle : à chaque réel $x$ on associe un unique point $M(x)$ du cercle. Par définition, $\\cos x$ est l'abscisse de $M(x)$ et $\\sin x$ son ordonnée. Comme $M(x)$ est sur le cercle de rayon $1$, on a pour tout réel $x$ l'identité fondamentale $\\cos^2 x+\\sin^2 x=1$, et $-1\\le\\cos x\\le 1$, $-1\\le\\sin x\\le 1$."
+    },
+    {
+      "t": "Parité et périodicité",
+      "d": "Pour tout réel $x$ : $\\cos$ est paire, $\\cos(-x)=\\cos x$, et $\\sin$ est impaire, $\\sin(-x)=-\\sin x$. Les deux fonctions sont périodiques de période $2\\pi$ : $\\cos(x+2\\pi)=\\cos x$ et $\\sin(x+2\\pi)=\\sin x$. Conséquence graphique : la courbe de $\\cos$ est symétrique par rapport à l'axe des ordonnées, celle de $\\sin$ par rapport à l'origine."
+    },
+    {
+      "t": "Angles associés",
+      "d": "En exploitant les symétries du cercle, on relie les angles $-x$, $\\pi-x$, $\\pi+x$ et $\\dfrac{\\pi}{2}-x$ à $x$. Par exemple $\\cos(\\pi-x)=-\\cos x$ et $\\sin(\\pi-x)=\\sin x$ (symétrie par rapport à l'axe des ordonnées) ; $\\cos(\\pi+x)=-\\cos x$ et $\\sin(\\pi+x)=-\\sin x$ (symétrie centrale). Ces formules permettent de ramener tout calcul aux valeurs remarquables du premier quadrant."
+    },
+    {
+      "t": "Dérivées",
+      "d": "Les fonctions $\\sin$ et $\\cos$ sont dérivables sur $\\mathbb{R}$ et $(\\sin x)'=\\cos x$, $(\\cos x)'=-\\sin x$ (attention au signe « moins » !). Pour une composée, la règle $(u(ax+b))'=a\\,u'(ax+b)$ donne $(\\sin(ax+b))'=a\\cos(ax+b)$ et $(\\cos(ax+b))'=-a\\sin(ax+b)$. Ne jamais oublier le facteur $a$."
+    }
+  ],
+  "formulaireTitre": "Valeurs remarquables et formules à connaître",
+  "formulaire": [
+    ["$\\cos 0=1$", "$\\sin 0=0$"],
+    ["$\\cos\\dfrac{\\pi}{6}=\\dfrac{\\sqrt{3}}{2}$", "$\\sin\\dfrac{\\pi}{6}=\\dfrac{1}{2}$"],
+    ["$\\cos\\dfrac{\\pi}{4}=\\dfrac{\\sqrt{2}}{2}$", "$\\sin\\dfrac{\\pi}{4}=\\dfrac{\\sqrt{2}}{2}$"],
+    ["$\\cos\\dfrac{\\pi}{3}=\\dfrac{1}{2}$", "$\\sin\\dfrac{\\pi}{3}=\\dfrac{\\sqrt{3}}{2}$"],
+    ["$\\cos\\dfrac{\\pi}{2}=0$", "$\\sin\\dfrac{\\pi}{2}=1$"],
+    ["$\\cos^2 x+\\sin^2 x=1$", "$\\cos(-x)=\\cos x,\\ \\sin(-x)=-\\sin x$"],
+    ["$\\cos(\\pi-x)=-\\cos x$", "$\\sin(\\pi-x)=\\sin x$"],
+    ["$\\cos(\\pi+x)=-\\cos x$", "$\\sin(\\pi+x)=-\\sin x$"],
+    ["$(\\sin x)'=\\cos x$", "$(\\cos x)'=-\\sin x$"],
+    ["$(\\sin(ax+b))'=a\\cos(ax+b)$", "$(\\cos(ax+b))'=-a\\sin(ax+b)$"]
+  ],
+  "methodes": [
+    {
+      "t": "Calculer un cosinus/sinus d'un angle « pas remarquable » via les angles associés",
+      "etapes": [
+        "Repérer un angle remarquable proche : écrire l'angle sous la forme $\\pi-a$, $\\pi+a$, $-a$ ou $\\dfrac{\\pi}{2}-a$ avec $a\\in\\{0,\\frac{\\pi}{6},\\frac{\\pi}{4},\\frac{\\pi}{3},\\frac{\\pi}{2}\\}$",
+        "Appliquer la formule d'angle associé correspondante (attention aux signes selon le quadrant)",
+        "Remplacer par la valeur remarquable de $\\cos a$ ou $\\sin a$",
+        "Exemple : $\\cos\\dfrac{2\\pi}{3}=\\cos\\left(\\pi-\\dfrac{\\pi}{3}\\right)=-\\cos\\dfrac{\\pi}{3}=-\\dfrac{1}{2}$"
+      ]
+    },
+    {
+      "t": "Dériver une fonction trigonométrique composée",
+      "etapes": [
+        "Identifier la forme : est-ce $\\sin(ax+b)$, $\\cos(ax+b)$, ou un produit/quotient ?",
+        "Pour $\\sin(ax+b)$ : la dérivée est $a\\cos(ax+b)$ ; pour $\\cos(ax+b)$ : $-a\\sin(ax+b)$",
+        "Ne pas oublier le facteur $a$ et, pour $\\cos$, le signe « moins »",
+        "Exemple : $f(x)=\\cos(3x+1)\\Rightarrow f'(x)=-3\\sin(3x+1)$"
+      ]
+    },
+    {
+      "t": "Résoudre $\\cos x=\\cos a$ ou $\\sin x=\\sin a$ sur $\\mathbb{R}$",
+      "etapes": [
+        "Pour $\\cos x=\\cos a$ : les solutions sont $x=a+2k\\pi$ ou $x=-a+2k\\pi$, $k\\in\\mathbb{Z}$",
+        "Pour $\\sin x=\\sin a$ : les solutions sont $x=a+2k\\pi$ ou $x=\\pi-a+2k\\pi$, $k\\in\\mathbb{Z}$",
+        "Si on cherche les solutions dans un intervalle précis (ex. $[0;2\\pi[$), faire varier $k$ et ne garder que celles qui appartiennent à l'intervalle",
+        "Exemple : $\\cos x=\\dfrac{1}{2}=\\cos\\dfrac{\\pi}{3}$ donne $x=\\dfrac{\\pi}{3}+2k\\pi$ ou $x=-\\dfrac{\\pi}{3}+2k\\pi$"
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Soit $f(x)=\\cos(2x)$ sur $[0;\\pi]$. Calculer $f'(x)$ et étudier les variations de $f$.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "Résoudre dans $[0;2\\pi[$ l'équation $2\\cos^2 x-1=0$ (on pourra utiliser $\\cos^2 x+\\sin^2 x=1$).",
+      "loc": "Centres étrangers"
+    },
+    {
+      "y": 2022,
+      "s": "Soit $g(x)=\\sin\\left(3x-\\dfrac{\\pi}{4}\\right)$. Déterminer $g'(x)$ puis une équation de la tangente en $0$.",
+      "loc": "Métropole"
+    }
+  ],
+  "piege": "Le piège classique : confondre degrés et radians (toujours travailler en radians, et régler la calculatrice sur RAD). Deux autres erreurs sanctionnées : oublier le signe « moins » dans $(\\cos x)'=-\\sin x$, et oublier le facteur $a$ dans la dérivée d'une composée, par exemple écrire $(\\sin(2x))'=\\cos(2x)$ au lieu de $2\\cos(2x)$.",
+  "qcm": [
+    {
+      "q": "Combien vaut $\\cos\\dfrac{\\pi}{4}$ ?",
+      "opts": ["$\\dfrac{1}{2}$", "$\\dfrac{\\sqrt{2}}{2}$", "$\\dfrac{\\sqrt{3}}{2}$", "$1$"],
+      "ok": 1,
+      "why": "$\\cos\\dfrac{\\pi}{4}=\\sin\\dfrac{\\pi}{4}=\\dfrac{\\sqrt{2}}{2}$ (angle de $45^\\circ$)."
+    },
+    {
+      "q": "Combien vaut $\\sin\\dfrac{\\pi}{6}$ ?",
+      "opts": ["$\\dfrac{1}{2}$", "$\\dfrac{\\sqrt{2}}{2}$", "$\\dfrac{\\sqrt{3}}{2}$", "$0$"],
+      "ok": 0,
+      "why": "$\\sin\\dfrac{\\pi}{6}=\\dfrac{1}{2}$ ($30^\\circ$)."
+    },
+    {
+      "q": "Quelle est la dérivée de $f(x)=\\cos x$ ?",
+      "opts": ["$\\cos x$", "$\\sin x$", "$-\\sin x$", "$-\\cos x$"],
+      "ok": 2,
+      "why": "$(\\cos x)'=-\\sin x$ : attention au signe « moins »."
+    },
+    {
+      "q": "Quelle est la dérivée de $f(x)=\\sin(5x)$ ?",
+      "opts": ["$\\cos(5x)$", "$5\\cos(5x)$", "$-5\\cos(5x)$", "$5\\sin(5x)$"],
+      "ok": 1,
+      "why": "$(\\sin(ax+b))'=a\\cos(ax+b)$, donc ici $5\\cos(5x)$."
+    },
+    {
+      "q": "Combien vaut $\\cos\\dfrac{\\pi}{3}$ ?",
+      "opts": ["$\\dfrac{\\sqrt{3}}{2}$", "$\\dfrac{\\sqrt{2}}{2}$", "$\\dfrac{1}{2}$", "$0$"],
+      "ok": 2,
+      "why": "$\\cos\\dfrac{\\pi}{3}=\\dfrac{1}{2}$ et $\\sin\\dfrac{\\pi}{3}=\\dfrac{\\sqrt{3}}{2}$."
+    },
+    {
+      "q": "Que vaut $\\sin(\\pi+x)$ ?",
+      "opts": ["$\\sin x$", "$-\\sin x$", "$\\cos x$", "$-\\cos x$"],
+      "ok": 1,
+      "why": "Par symétrie centrale, $\\sin(\\pi+x)=-\\sin x$ (et $\\cos(\\pi+x)=-\\cos x$)."
+    },
+    {
+      "q": "À combien de radians correspond un angle de $90^\\circ$ ?",
+      "opts": ["$\\dfrac{\\pi}{4}$", "$\\dfrac{\\pi}{3}$", "$\\pi$", "$\\dfrac{\\pi}{2}$"],
+      "ok": 3,
+      "why": "$180^\\circ=\\pi$ rad, donc $90^\\circ=\\dfrac{\\pi}{2}$."
+    },
+    {
+      "q": "La fonction $\\cos$ est :",
+      "opts": ["paire", "impaire", "ni paire ni impaire", "croissante sur $\\mathbb{R}$"],
+      "ok": 0,
+      "why": "$\\cos(-x)=\\cos x$ : $\\cos$ est paire (et $\\sin$ est impaire)."
+    },
+    {
+      "q": "Quelle est la dérivée de $f(x)=\\cos(2x+1)$ ?",
+      "opts": ["$-2\\sin(2x+1)$", "$2\\sin(2x+1)$", "$-\\sin(2x+1)$", "$2\\cos(2x+1)$"],
+      "ok": 0,
+      "why": "$(\\cos(ax+b))'=-a\\sin(ax+b)$, soit $-2\\sin(2x+1)$."
+    },
+    {
+      "q": "Sachant $\\cos x=\\dfrac{3}{5}$, que vaut $\\sin^2 x$ ?",
+      "opts": ["$\\dfrac{3}{5}$", "$\\dfrac{16}{25}$", "$\\dfrac{9}{25}$", "$\\dfrac{4}{5}$"],
+      "ok": 1,
+      "why": "$\\sin^2 x=1-\\cos^2 x=1-\\dfrac{9}{25}=\\dfrac{16}{25}$."
+    },
+    {
+      "q": "Que vaut $\\cos\\dfrac{2\\pi}{3}$ ?",
+      "opts": ["$\\dfrac{1}{2}$", "$\\dfrac{\\sqrt{3}}{2}$", "$-\\dfrac{1}{2}$", "$-\\dfrac{\\sqrt{3}}{2}$"],
+      "ok": 2,
+      "why": "$\\cos\\dfrac{2\\pi}{3}=\\cos\\left(\\pi-\\dfrac{\\pi}{3}\\right)=-\\cos\\dfrac{\\pi}{3}=-\\dfrac{1}{2}$."
+    },
+    {
+      "q": "Quelle est la période de la fonction $\\sin$ ?",
+      "opts": ["$\\pi$", "$\\dfrac{\\pi}{2}$", "$2\\pi$", "$1$"],
+      "ok": 2,
+      "why": "$\\sin(x+2\\pi)=\\sin x$ : la période est $2\\pi$."
+    }
+  ],
+  "flash": [
+    {"front": "$\\cos\\dfrac{\\pi}{4}=\\ ?$", "back": "$\\dfrac{\\sqrt{2}}{2}$"},
+    {"front": "$\\sin\\dfrac{\\pi}{6}=\\ ?$", "back": "$\\dfrac{1}{2}$"},
+    {"front": "$\\cos\\dfrac{\\pi}{3}=\\ ?$", "back": "$\\dfrac{1}{2}$"},
+    {"front": "$\\sin\\dfrac{\\pi}{3}=\\ ?$", "back": "$\\dfrac{\\sqrt{3}}{2}$"},
+    {"front": "$\\cos\\dfrac{\\pi}{6}=\\ ?$", "back": "$\\dfrac{\\sqrt{3}}{2}$"},
+    {"front": "$(\\sin x)'=\\ ?$", "back": "$\\cos x$"},
+    {"front": "$(\\cos x)'=\\ ?$", "back": "$-\\sin x$"},
+    {"front": "$(\\sin(ax+b))'=\\ ?$", "back": "$a\\cos(ax+b)$"},
+    {"front": "$(\\cos(ax+b))'=\\ ?$", "back": "$-a\\sin(ax+b)$"},
+    {"front": "Identité fondamentale ?", "back": "$\\cos^2 x+\\sin^2 x=1$"},
+    {"front": "$\\sin(\\pi-x)=\\ ?$", "back": "$\\sin x$"},
+    {"front": "Conversion : $180^\\circ=\\ ?$ rad", "back": "$\\pi$"}
+  ],
+  "vraifaux": [
+    {"q": "$\\cos^2 x+\\sin^2 x=1$ pour tout réel $x$.", "v": true, "why": "C'est l'identité fondamentale, vraie partout sur $\\mathbb{R}$."},
+    {"q": "$(\\cos x)'=\\sin x$.", "v": false, "why": "Faux : $(\\cos x)'=-\\sin x$, il y a un signe « moins »."},
+    {"q": "La fonction $\\sin$ est impaire.", "v": true, "why": "$\\sin(-x)=-\\sin x$ : $\\sin$ est impaire."},
+    {"q": "$\\cos\\dfrac{\\pi}{4}=\\sin\\dfrac{\\pi}{4}$.", "v": true, "why": "Les deux valent $\\dfrac{\\sqrt{2}}{2}$."},
+    {"q": "Un angle de $30^\\circ$ vaut $\\dfrac{\\pi}{3}$ radians.", "v": false, "why": "Faux : $30^\\circ=\\dfrac{\\pi}{6}$. C'est $60^\\circ$ qui vaut $\\dfrac{\\pi}{3}$."},
+    {"q": "$(\\sin(2x))'=\\cos(2x)$.", "v": false, "why": "Faux : il manque le facteur $2$, c'est $2\\cos(2x)$."},
+    {"q": "La fonction $\\cos$ est périodique de période $2\\pi$.", "v": true, "why": "$\\cos(x+2\\pi)=\\cos x$ pour tout $x$."},
+    {"q": "$\\cos(\\pi-x)=\\cos x$.", "v": false, "why": "Faux : $\\cos(\\pi-x)=-\\cos x$ (c'est $\\sin(\\pi-x)=\\sin x$)."},
+    {"q": "Pour tout $x$, $-1\\le\\sin x\\le 1$.", "v": true, "why": "$\\sin x$ est une ordonnée sur le cercle de rayon $1$, donc bornée par $\\pm 1$."},
+    {"q": "L'équation $\\cos x=2$ admet des solutions réelles.", "v": false, "why": "Faux : $\\cos x\\in[-1;1]$, donc $\\cos x=2$ est impossible."}
+  ],
+  "qmethode": [
+    {
+      "q": "On veut calculer $\\sin\\dfrac{5\\pi}{6}$ sans calculatrice. Quelle méthode ?",
+      "opts": ["Écrire $\\dfrac{5\\pi}{6}=\\pi-\\dfrac{\\pi}{6}$ et utiliser $\\sin(\\pi-x)=\\sin x$", "Dériver $\\sin$", "Convertir en degrés puis utiliser la calculatrice", "Utiliser $\\cos^2+\\sin^2=1$ seul"],
+      "ok": 0,
+      "why": "On ramène à un angle remarquable : $\\sin\\dfrac{5\\pi}{6}=\\sin\\dfrac{\\pi}{6}=\\dfrac{1}{2}$."
+    },
+    {
+      "q": "Pour dériver $f(x)=\\sin(4x-3)$, on utilise :",
+      "opts": ["La dérivée d'un produit", "La formule $(\\sin(ax+b))'=a\\cos(ax+b)$", "La dérivée d'un quotient", "L'identité $\\cos^2+\\sin^2=1$"],
+      "ok": 1,
+      "why": "C'est une composée affine : $f'(x)=4\\cos(4x-3)$."
+    },
+    {
+      "q": "Pour résoudre $\\sin x=\\dfrac{1}{2}$ sur $\\mathbb{R}$, on procède par :",
+      "opts": ["Étude de signe", "Reconnaître $\\dfrac{1}{2}=\\sin\\dfrac{\\pi}{6}$ puis $x=\\dfrac{\\pi}{6}+2k\\pi$ ou $x=\\pi-\\dfrac{\\pi}{6}+2k\\pi$", "Tableau de variations", "Dériver les deux membres"],
+      "ok": 1,
+      "why": "Équation $\\sin x=\\sin a$ : solutions $x=a+2k\\pi$ ou $x=\\pi-a+2k\\pi$."
+    },
+    {
+      "q": "On donne $\\cos x=-\\dfrac{4}{5}$ avec $x\\in[0;\\pi]$. Pour trouver $\\sin x$ :",
+      "opts": ["Utiliser $\\sin^2 x=1-\\cos^2 x$ et choisir le signe selon l'intervalle", "Dériver", "Convertir en degrés", "Utiliser la périodicité $2\\pi$"],
+      "ok": 0,
+      "why": "$\\sin^2 x=1-\\dfrac{16}{25}=\\dfrac{9}{25}$, et sur $[0;\\pi]$ $\\sin x\\ge 0$ donc $\\sin x=\\dfrac{3}{5}$."
+    },
+    {
+      "q": "Pour étudier les variations de $f(x)=\\cos x$ sur $[0;\\pi]$, on :",
+      "opts": ["Calcule $f'(x)=-\\sin x$ et étudie son signe", "Calcule $f'(x)=\\sin x$", "Utilise la parité uniquement", "Affirme que $\\cos$ est toujours croissante"],
+      "ok": 0,
+      "why": "$f'(x)=-\\sin x\\le 0$ sur $[0;\\pi]$ (car $\\sin x\\ge 0$), donc $f$ est décroissante."
+    },
+    {
+      "q": "Pour obtenir une équation de la tangente à $f(x)=\\sin x$ en $0$, on calcule :",
+      "opts": ["$f(0)$ et $f'(0)=\\cos 0=1$, tangente $y=x$", "Seulement $f(0)$", "La dérivée seconde", "La période"],
+      "ok": 0,
+      "why": "$f(0)=0$, $f'(0)=\\cos 0=1$ : tangente $y=f'(0)(x-0)+f(0)=x$."
+    },
+    {
+      "q": "Pour montrer que $g(x)=\\cos^2 x+\\sin^2 x$ est constante, on peut :",
+      "opts": ["Dériver $g$ et montrer que $g'(x)=0$, ou invoquer directement l'identité fondamentale", "Tracer la courbe à la calculatrice", "Utiliser la parité", "Convertir en degrés"],
+      "ok": 0,
+      "why": "L'identité donne $g(x)=1$ ; en dérivant, $g'(x)=-2\\cos x\\sin x+2\\sin x\\cos x=0$, donc $g$ constante."
+    }
+  ]
+}

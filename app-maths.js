@@ -1,8 +1,8 @@
 /* ============================================================
-   AGORA MATHS — moteur (adapté du moteur AGORA philo)
+   AGORA MATHS — moteur multi-chapitres (adapté d'AGORA philo)
    Réutilise : XP/niveaux, records localStorage (préfixe agora_maths_),
    navigation par data-nav, écran de fin générique, RNG seedé.
-   Nouveauté maths : rendu des formules avec KaTeX.
+   Nouveauté maths : contenu data-driven (CHAPITRES) + rendu KaTeX.
    ============================================================ */
 
 const $ = sel => document.querySelector(sel);
@@ -24,6 +24,7 @@ const shuffle = arr => {
   return a;
 };
 const pick = (arr, n) => shuffle(arr).slice(0, n);
+const chapById = id => CHAPITRES.find(c => c.id === id);
 
 /* ---------- rendu des formules (KaTeX) ---------- */
 function renderMath(el) {
@@ -39,12 +40,12 @@ function renderMath(el) {
   } catch (e) { /* silencieux */ }
 }
 
-/* ---------- stockage (préfixe maths pour ne pas écraser la philo) ---------- */
+/* ---------- stockage (préfixe maths : n'écrase pas la philo) ---------- */
 const store = {
   get xp() { return Number(localStorage.getItem("agora_maths_xp") || 0); },
   set xp(v) { localStorage.setItem("agora_maths_xp", v); },
-  best(game) { return localStorage.getItem("agora_maths_best_" + game); },
-  setBest(game, v) { localStorage.setItem("agora_maths_best_" + game, v); }
+  best(key) { return localStorage.getItem("agora_maths_best_" + key); },
+  setBest(key, v) { localStorage.setItem("agora_maths_best_" + key, v); }
 };
 
 function levelFor(xp) {
@@ -58,16 +59,6 @@ function refreshHud() {
   $("#hud-level").textContent = levelFor(store.xp).name;
 }
 
-function refreshBests() {
-  document.querySelectorAll("[data-best]").forEach(el => {
-    const g = el.dataset.best;
-    const b = store.best(g);
-    if (b === null) return;
-    if (g === "flash") el.textContent = `Maîtrisées : ${b}/${FORMULES.length}`;
-    else el.textContent = `Record : ${b}/10`;
-  });
-}
-
 function gainXp(amount) {
   const before = levelFor(store.xp).name;
   store.xp = store.xp + amount;
@@ -75,10 +66,10 @@ function gainXp(amount) {
   return levelFor(store.xp).name !== before;
 }
 
-function updateBest(game, value, lowerIsBetter = false) {
-  const prev = store.best(game);
+function updateBest(key, value, lowerIsBetter = false) {
+  const prev = store.best(key);
   const isRecord = prev === null || (lowerIsBetter ? value < Number(prev) : value > Number(prev));
-  if (isRecord) store.setBest(game, value);
+  if (isRecord) store.setBest(key, value);
   return isRecord;
 }
 
@@ -91,55 +82,70 @@ function renderCountdown() {
   el.textContent = days > 0 ? `J−${days} avant l'écrit de spé maths` : "C'est le jour J — courage 💪";
 }
 
-/* ============================================================
-   PARTIE EN COURS (RNG seedé, comme AGORA — utile pour défis plus tard)
-   ============================================================ */
-let currentRun = null;
-function beginRun(key) {
-  currentRun = { game: key, seed: Math.floor(Math.random() * 2147483647) };
-  rand = mulberry32(currentRun.seed);
+/* ---------- grille des chapitres (accueil) ---------- */
+const TAG_PICTO = { "Analyse": "📈", "Probabilités": "🎲", "Géométrie": "📐", "Transversal": "🐍" };
+
+function renderChapGrid() {
+  const grid = $("#chap-grid");
+  if (!grid) return;
+  grid.innerHTML = CHAPITRES.map((c, i) => {
+    const best = store.best(c.id + ":qcm");
+    return `
+    <button class="game-card chap-card" data-nav="fiche:${c.id}">
+      <span class="pictogram">${TAG_PICTO[c.tag] || "🧮"}</span>
+      <span class="num">CHAP. ${String(i + 1).padStart(2, "0")} · ${c.tag}</span>
+      <h3>${c.title}</h3>
+      <p>${c.qcm.length} QCM · ${c.flash.length} flashcards · ${c.vraifaux.length} vrai/faux · ${c.qmethode.length} méthodes</p>
+      <span class="best">${best !== null ? "★ Record QCM : " + best + "/10" : "Fiche + 4 jeux →"}</span>
+    </button>`;
+  }).join("");
 }
+
+/* ============================================================
+   PARTIE EN COURS (RNG seedé)
+   ============================================================ */
+let currentChapId = null;
+function beginRun() { rand = mulberry32(Math.floor(Math.random() * 2147483647)); }
 
 /* ============================================================
    NAVIGATION
    ============================================================ */
-const GAMES = {
-  derivees: { title: "Trouve la dérivée", start: startDerivees },
-  flash:    { title: "Flashcards de formules", start: startFlash },
-  vf:       { title: "Vrai ou Faux", start: startVF },
-  methodes: { title: "Quelle méthode ?", start: startMethodes }
-};
-
 function show(viewId) {
   document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
   $("#" + viewId).classList.add("active");
   window.scrollTo({ top: 0 });
 }
 
-function nav(target) {
-  if (target === "home") { refreshBests(); show("view-home"); return; }
-  const game = GAMES[target];
-  if (!game) return;
-  $("#game-title").textContent = game.title;
-  setMeta("", "");
-  setProgress(0);
+const GAME_TITLES = { qcm: "Le QCM", flash: "Flashcards", vf: "Vrai ou Faux", qm: "Quelle méthode ?", mix: "Le Grand Mélange" };
+
+function play(game, chapId) {
+  currentChapId = chapId === "all" ? null : chapId;
+  const chap = chapById(chapId);
+  const prefix = chap ? chap.title + " · " : "";
+  $("#game-title").textContent = prefix + (GAME_TITLES[game] || "Jeu");
+  setMeta("", ""); setProgress(0);
   show("view-game");
-  game.start();
+  beginRun();
+  if (game === "qcm") startMCQ(chap.qcm, chapId, "qcm", "Choisis la bonne réponse");
+  else if (game === "qm") startMCQ(chap.qmethode, chapId, "qm", "Quelle est la bonne méthode ?");
+  else if (game === "flash") startFlash(chap, chapId);
+  else if (game === "vf") startVF(chap, chapId);
+  else if (game === "mix") startMix();
 }
 
 document.addEventListener("click", e => {
   const jump = e.target.closest("[data-jump]");
   if (jump) {
-    refreshBests();
-    show("view-home");
+    show("view-home"); renderChapGrid();
     requestAnimationFrame(() => document.getElementById(jump.dataset.jump)?.scrollIntoView({ behavior: "smooth" }));
     return;
   }
   const btn = e.target.closest("[data-nav]");
   if (!btn) return;
   const target = btn.dataset.nav;
-  if (target.startsWith("fiche:")) openFiche(target.slice(6));
-  else nav(target);
+  if (target === "home") { renderChapGrid(); show("view-home"); }
+  else if (target.startsWith("fiche:")) openFiche(target.slice(6));
+  else if (target.startsWith("play:")) { const [, g, id] = target.split(":"); play(g, id); }
 });
 
 /* ============================================================
@@ -154,22 +160,18 @@ function optionButton(label, idx) {
     <span class="key">${String.fromCharCode(65 + idx)}</span><span class="opt-body">${label}</span>
   </button>`;
 }
-
 function explainBlock(good, verdict, text) {
-  return `<div class="explain">
-    <span class="verdict ${good ? "good" : "bad"}">${verdict}</span>
-    ${text}
-  </div>`;
+  return `<div class="explain"><span class="verdict ${good ? "good" : "bad"}">${verdict}</span>${text}</div>`;
 }
 
 function mentionFor(score, total) {
-  const r = score / total;
+  const r = total ? score / total : 0;
   if (r === 1) return ["20/20 — copie parfaite", "Le correcteur range son stylo rouge. Respect."];
-  if (r >= 0.8) return ["Mention Très Bien", "Les dérivées n'ont plus aucun secret."];
-  if (r >= 0.7) return ["Mention Bien", "Solide. Encore un effort sur les composées."];
+  if (r >= 0.8) return ["Mention Très Bien", "Solide comme un théorème."];
+  if (r >= 0.7) return ["Mention Bien", "Très bon niveau. Encore un effort sur les pièges."];
   if (r >= 0.6) return ["Mention Assez Bien", "Les bases sont là, il reste à fiabiliser."];
-  if (r >= 0.5) return ["Admis·e de justesse", "Ça passe — mais relis le formulaire avant juin."];
-  return ["Rattrapage en vue", "Pas de panique : relis la fiche et rejoue. Ça rentre vite."];
+  if (r >= 0.5) return ["Admis·e de justesse", "Ça passe — relis la fiche avant juin."];
+  return ["Rattrapage en vue", "Pas de panique : relis la fiche et rejoue, ça rentre vite."];
 }
 
 function shareScore(text) {
@@ -177,7 +179,6 @@ function shareScore(text) {
   if (navigator.share) navigator.share({ title: "AGORA Maths", text, url }).catch(() => {});
   else { navigator.clipboard?.writeText(text + " " + url); toast("Score copié — colle-le à tes potes 📋"); }
 }
-
 function toast(msg) {
   let t = $("#toast");
   if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; document.body.appendChild(t); }
@@ -188,6 +189,7 @@ function toast(msg) {
 function endScreen({ score, total, xp, bestLine, replay }) {
   const [mention, comment] = mentionFor(score, total);
   const lvlUp = gainXp(xp);
+  const ficheBtn = currentChapId ? `<button class="btn" data-nav="fiche:${currentChapId}">Relire la fiche</button>` : "";
   stage().innerHTML = `
     <div class="endscreen">
       <span class="xp-gain">+${xp} XP${lvlUp ? " · NIVEAU SUPÉRIEUR : " + levelFor(store.xp).name + " !" : ""}</span>
@@ -198,22 +200,23 @@ function endScreen({ score, total, xp, bestLine, replay }) {
       <div class="actions">
         <button class="btn primary" id="btn-replay">Rejouer</button>
         <button class="btn" id="btn-share">Partager 📤</button>
-        <button class="btn" data-nav="fiche:derivation">Relire la fiche</button>
+        ${ficheBtn}
         <button class="btn" data-nav="home">Retour à l'arène</button>
       </div>
     </div>`;
   $("#btn-replay").addEventListener("click", replay);
   $("#btn-share").addEventListener("click", () =>
-    shareScore(`🧮 ${score}/${total} en révision de dérivation sur AGORA Maths. Tu fais mieux ?`));
+    shareScore(`🧮 ${score}/${total} en révision de maths sur AGORA. Tu fais mieux ?`));
 }
 
 /* ============================================================
-   JEU 01 · TROUVE LA DÉRIVÉE
+   JEU GÉNÉRIQUE · QCM à 4 options (sert pour "qcm" et "qm")
    ============================================================ */
-function startDerivees() {
-  beginRun("derivees");
-  const rounds = pick(DERIVEES, Math.min(10, DERIVEES.length));
+function startMCQ(pool, chapId, gameKey, labelText) {
+  const rounds = pick(pool, Math.min(10, pool.length));
+  const recordKey = chapId + ":" + gameKey;
   let i = 0, score = 0, streak = 0, maxStreak = 0;
+  const replay = () => { beginRun(); play(gameKey, chapId); };
 
   function round() {
     const cur = rounds[i];
@@ -223,8 +226,8 @@ function startDerivees() {
     setProgress(i / rounds.length);
     stage().innerHTML = `
       <div class="q-card">
-        <div class="label">Calcule la dérivée de</div>
-        <div class="question">$${cur.q}$</div>
+        <div class="label">${labelText}</div>
+        <div class="question">${cur.q}</div>
       </div>
       <div class="options">${order.map((x, idx) => optionButton(x.o, idx)).join("")}</div>
       <div id="feedback"></div>
@@ -241,33 +244,31 @@ function startDerivees() {
       });
       if (good) { score++; streak++; maxStreak = Math.max(maxStreak, streak); }
       else streak = 0;
-      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", cur.why);
+      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", cur.why || "");
       $("#next-zone").innerHTML = `<button class="btn primary" id="btn-next">${i + 1 < rounds.length ? "Suivant →" : "Voir le verdict"}</button>`;
       renderMath($("#feedback"));
       $("#btn-next").addEventListener("click", () => { i++; i < rounds.length ? round() : finish(); });
     }));
   }
-
   function finish() {
     setProgress(1);
-    const isRecord = updateBest("derivees", score);
+    const isRecord = updateBest(recordKey, score);
     endScreen({
-      score, total: rounds.length,
-      xp: score * 10 + maxStreak * 5,
-      bestLine: isRecord ? "★ Nouveau record !" : `Record : ${store.best("derivees")}/${rounds.length}`,
-      replay: startDerivees
+      score, total: rounds.length, xp: score * 10 + maxStreak * 5,
+      bestLine: isRecord ? "★ Nouveau record !" : `Record : ${store.best(recordKey)}/${rounds.length}`,
+      replay
     });
   }
   round();
 }
 
 /* ============================================================
-   JEU 02 · FLASHCARDS DE FORMULES
+   JEU · FLASHCARDS DE FORMULES
    ============================================================ */
-function startFlash() {
-  beginRun("flash");
-  const cards = shuffle(FORMULES);
+function startFlash(chap, chapId) {
+  const cards = shuffle(chap.flash);
   let i = 0, known = 0;
+  const replay = () => { beginRun(); play("flash", chapId); };
 
   function round() {
     const c = cards[i];
@@ -277,7 +278,7 @@ function startFlash() {
       <div class="flash-scene">
         <div class="flash-card" id="flash">
           <div class="flash-face front">
-            <span class="hint">La formule…</span>
+            <span class="hint">Recto</span>
             <span class="term">${c.front}</span>
             <span class="hint">tape pour retourner ↺</span>
           </div>
@@ -304,29 +305,25 @@ function startFlash() {
     $("#g-yes").addEventListener("click", () => { known++; advance(); });
     $("#g-no").addEventListener("click", advance);
   }
-
   function advance() { i++; i < cards.length ? round() : finish(); }
-
   function finish() {
     setProgress(1);
-    updateBest("flash", known);
+    updateBest(chapId + ":flash", known);
     endScreen({
-      score: known, total: cards.length,
-      xp: known * 8,
-      bestLine: `Formules sues d'affilée : ${known}/${cards.length}`,
-      replay: startFlash
+      score: known, total: cards.length, xp: known * 8,
+      bestLine: `Formules sues : ${known}/${cards.length}`, replay
     });
   }
   round();
 }
 
 /* ============================================================
-   JEU 03 · VRAI / FAUX
+   JEU · VRAI / FAUX
    ============================================================ */
-function startVF() {
-  beginRun("vf");
-  const rounds = pick(VRAIFAUX, Math.min(10, VRAIFAUX.length));
+function startVF(chap, chapId) {
+  const rounds = pick(chap.vraifaux, Math.min(10, chap.vraifaux.length));
   let i = 0, score = 0, streak = 0, maxStreak = 0;
+  const replay = () => { beginRun(); play("vf", chapId); };
 
   function round() {
     const cur = rounds[i];
@@ -357,33 +354,32 @@ function startVF() {
       });
       if (good) { score++; streak++; maxStreak = Math.max(maxStreak, streak); }
       else streak = 0;
-      $("#feedback").innerHTML = explainBlock(good, good ? "Bien vu !" : "Raté", cur.why);
+      $("#feedback").innerHTML = explainBlock(good, good ? "Bien vu !" : "Raté", cur.why || "");
       $("#next-zone").innerHTML = `<button class="btn primary" id="btn-next">${i + 1 < rounds.length ? "Suivant →" : "Voir le verdict"}</button>`;
       renderMath($("#feedback"));
       $("#btn-next").addEventListener("click", () => { i++; i < rounds.length ? round() : finish(); });
     }));
   }
-
   function finish() {
     setProgress(1);
-    const isRecord = updateBest("vf", score);
+    const isRecord = updateBest(chapId + ":vf", score);
     endScreen({
-      score, total: rounds.length,
-      xp: score * 10 + maxStreak * 5,
-      bestLine: isRecord ? "★ Nouveau record !" : `Record : ${store.best("vf")}/${rounds.length}`,
-      replay: startVF
+      score, total: rounds.length, xp: score * 10 + maxStreak * 5,
+      bestLine: isRecord ? "★ Nouveau record !" : `Record : ${store.best(chapId + ":vf")}/${rounds.length}`,
+      replay
     });
   }
   round();
 }
 
 /* ============================================================
-   JEU 04 · QUELLE MÉTHODE ?
+   JEU · LE GRAND MÉLANGE (QCM de tous les chapitres)
    ============================================================ */
-function startMethodes() {
-  beginRun("methodes");
-  const rounds = pick(METHODES, Math.min(10, METHODES.length));
+function startMix() {
+  const allQ = CHAPITRES.flatMap(c => c.qcm.map(q => ({ ...q, _chap: c.title })));
+  const rounds = pick(allQ, 12);
   let i = 0, score = 0, streak = 0, maxStreak = 0;
+  const replay = () => { beginRun(); play("mix", "all"); };
 
   function round() {
     const cur = rounds[i];
@@ -393,7 +389,7 @@ function startMethodes() {
     setProgress(i / rounds.length);
     stage().innerHTML = `
       <div class="q-card">
-        <div class="label">Quelle est la bonne méthode ?</div>
+        <div class="label">${cur._chap}</div>
         <div class="question">${cur.q}</div>
       </div>
       <div class="options">${order.map((x, idx) => optionButton(x.o, idx)).join("")}</div>
@@ -411,43 +407,53 @@ function startMethodes() {
       });
       if (good) { score++; streak++; maxStreak = Math.max(maxStreak, streak); }
       else streak = 0;
-      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Pas la bonne", cur.why);
+      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", cur.why || "");
       $("#next-zone").innerHTML = `<button class="btn primary" id="btn-next">${i + 1 < rounds.length ? "Suivant →" : "Voir le verdict"}</button>`;
       renderMath($("#feedback"));
       $("#btn-next").addEventListener("click", () => { i++; i < rounds.length ? round() : finish(); });
     }));
   }
-
   function finish() {
     setProgress(1);
-    const isRecord = updateBest("methodes", score);
+    const isRecord = updateBest("mix:all", score);
     endScreen({
-      score, total: rounds.length,
-      xp: score * 10 + maxStreak * 5,
-      bestLine: isRecord ? "★ Nouveau record !" : `Record : ${store.best("methodes")}/${rounds.length}`,
-      replay: startMethodes
+      score, total: rounds.length, xp: score * 12 + maxStreak * 6,
+      bestLine: isRecord ? "★ Nouveau record toutes catégories !" : `Record : ${store.best("mix:all")}/${rounds.length}`,
+      replay
     });
   }
   round();
 }
 
 /* ============================================================
-   FICHE DE COURS · DÉRIVATION
+   FICHE DE COURS (générique)
    ============================================================ */
 function openFiche(id) {
-  const c = FICHE_DERIVATION; // une seule fiche pour la démo
-  const tbl = rows => `<table class="formulaire"><thead><tr><th>Fonction</th><th>Dérivée</th></tr></thead>
-    <tbody>${rows.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join("")}</tbody></table>`;
+  const c = chapById(id);
+  if (!c) return;
+  const idx = CHAPITRES.indexOf(c);
+  const prev = CHAPITRES[(idx - 1 + CHAPITRES.length) % CHAPITRES.length];
+  const next = CHAPITRES[(idx + 1) % CHAPITRES.length];
+
+  const formTable = (c.formulaire && c.formulaire.length) ? `
+    <section class="fiche-sec">
+      <div class="sec-title">${c.formulaireTitre || "Le formulaire à connaître"}</div>
+      <table class="formulaire"><tbody>
+        ${c.formulaire.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join("")}
+      </tbody></table>
+    </section>` : "";
 
   $("#fiche-stage").innerHTML = `
-    <div class="fiche-back"><button class="btn ghost" data-nav="home">← L'arène</button></div>
+    <div class="fiche-back"><button class="btn ghost" data-nav="home">← Tous les chapitres</button></div>
     <header class="fiche-head">
-      <span class="tag">${c.tag} · Chapitre 01</span>
+      <span class="tag">${c.tag} · Chapitre ${String(idx + 1).padStart(2, "0")}/${CHAPITRES.length}</span>
       <h1>${c.title}</h1>
       <p class="lead">${c.intro}</p>
-      <div class="fiche-cta">
-        <button class="btn primary" data-nav="derivees">⚔ Trouve la dérivée · 10 questions</button>
-        <button class="btn" data-nav="flash">🃏 Flashcards</button>
+      <div class="fiche-games">
+        <button class="btn primary" data-nav="play:qcm:${c.id}">📈 QCM</button>
+        <button class="btn" data-nav="play:flash:${c.id}">🃏 Flashcards</button>
+        <button class="btn" data-nav="play:vf:${c.id}">⚖️ Vrai/Faux</button>
+        <button class="btn" data-nav="play:qm:${c.id}">🧭 Quelle méthode ?</button>
       </div>
     </header>
 
@@ -461,13 +467,7 @@ function openFiche(id) {
       ${c.cours.map(p => `<article class="cours-part"><h3>${p.t}</h3><p>${p.d}</p></article>`).join("")}
     </section>
 
-    <section class="fiche-sec">
-      <div class="sec-title">Le formulaire à connaître par cœur</div>
-      <div class="form-grid">
-        <div><h3 class="form-h">Dérivées usuelles</h3>${tbl(c.usuelles)}</div>
-        <div><h3 class="form-h">Opérations & composées</h3>${tbl(c.operations)}</div>
-      </div>
-    </section>
+    ${formTable}
 
     <section class="fiche-sec">
       <div class="sec-title">Les méthodes types</div>
@@ -478,12 +478,13 @@ function openFiche(id) {
         </article>`).join("")}
     </section>
 
+    ${(c.annales && c.annales.length) ? `
     <section class="fiche-sec">
-      <div class="sec-title">Tombé au bac — les vrais sujets</div>
+      <div class="sec-title">Tombé au bac — les types de sujets</div>
       <ul class="annales-list">
         ${c.annales.map(a => `<li><span class="an-year">${a.y}</span><span class="an-sub">${a.s}</span><span class="an-loc">${a.loc}</span></li>`).join("")}
       </ul>
-    </section>
+    </section>` : ""}
 
     <section class="fiche-sec">
       <div class="piege-box">
@@ -493,9 +494,9 @@ function openFiche(id) {
     </section>
 
     <nav class="fiche-nav">
-      <button class="btn" data-nav="vf">⚖️ Vrai / Faux</button>
-      <button class="btn danger" data-nav="derivees">⚔ S'entraîner</button>
-      <button class="btn primary" data-nav="methodes">🧭 Quelle méthode ?</button>
+      <button class="btn" data-nav="fiche:${prev.id}">← ${prev.title}</button>
+      <button class="btn danger" data-nav="play:qcm:${c.id}">⚔ S'entraîner</button>
+      <button class="btn primary" data-nav="fiche:${next.id}">${next.title} →</button>
     </nav>`;
 
   renderMath($("#fiche-stage"));
@@ -506,7 +507,7 @@ function openFiche(id) {
    INIT
    ============================================================ */
 refreshHud();
-refreshBests();
+renderChapGrid();
 renderCountdown();
 /* KaTeX est chargé en defer : on rend le math statique (hero, cartes) une fois prêt */
 window.addEventListener("load", () => renderMath(document.body));

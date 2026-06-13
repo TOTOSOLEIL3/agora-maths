@@ -1,0 +1,255 @@
+{
+  "id": "produit-scalaire",
+  "tag": "Géométrie",
+  "title": "Produit scalaire dans l'espace",
+  "intro": "Le produit scalaire, tu le connais déjà du plan : on le transpose ici dans l'espace muni d'un repère orthonormé. C'est l'outil roi pour parler d'angles, d'orthogonalité et de distances. Concrètement, il va te servir à trouver des vecteurs normaux, écrire l'équation cartésienne d'un plan, calculer des projetés orthogonaux et des distances point-plan. C'est un chapitre très calculatoire mais ultra rentable au bac : une fois la méthode en main, les points tombent tout seuls.",
+  "objectifs": [
+    "Calculer un produit scalaire dans l'espace (formule analytique $xx'+yy'+zz'$ et formule avec le cosinus).",
+    "Caractériser l'orthogonalité de deux vecteurs par $\\vec u\\cdot\\vec v=0$.",
+    "Reconnaître un vecteur normal à un plan et l'utiliser.",
+    "Déterminer une équation cartésienne de plan à partir d'un point et d'un vecteur normal.",
+    "Déterminer le projeté orthogonal d'un point sur une droite ou un plan, et en déduire une distance.",
+    "Trouver l'intersection d'une droite et d'un plan."
+  ],
+  "cours": [
+    {
+      "t": "Définition et expression analytique",
+      "d": "Pour deux vecteurs $\\vec u$ et $\\vec v$ de l'espace, le produit scalaire vaut $\\vec u\\cdot\\vec v=\\|\\vec u\\|\\,\\|\\vec v\\|\\cos\\theta$, où $\\theta$ est l'angle entre les deux vecteurs (formule valable si les deux sont non nuls). Dans un repère orthonormé, si $\\vec u(x,y,z)$ et $\\vec v(x',y',z')$, alors $\\vec u\\cdot\\vec v=xx'+yy'+zz'$. En particulier $\\vec u\\cdot\\vec u=\\|\\vec u\\|^2=x^2+y^2+z^2$, d'où la norme $\\|\\vec u\\|=\\sqrt{x^2+y^2+z^2}$. Le produit scalaire est un nombre réel, pas un vecteur."
+    },
+    {
+      "t": "Propriétés de calcul",
+      "d": "Le produit scalaire est symétrique ($\\vec u\\cdot\\vec v=\\vec v\\cdot\\vec u$), bilinéaire (on peut développer comme avec une multiplication : $\\vec u\\cdot(\\vec v+\\vec w)=\\vec u\\cdot\\vec v+\\vec u\\cdot\\vec w$ et $(k\\vec u)\\cdot\\vec v=k(\\vec u\\cdot\\vec v)$). On retrouve les identités du collège : $\\|\\vec u+\\vec v\\|^2=\\|\\vec u\\|^2+2\\,\\vec u\\cdot\\vec v+\\|\\vec v\\|^2$. Ces règles permettent de calculer un produit scalaire même sans coordonnées, en décomposant les vecteurs."
+    },
+    {
+      "t": "Orthogonalité",
+      "d": "Deux vecteurs $\\vec u$ et $\\vec v$ sont orthogonaux si et seulement si $\\vec u\\cdot\\vec v=0$. Le vecteur nul est orthogonal à tous les vecteurs. Attention : orthogonal n'est PAS synonyme de parallèle (colinéaire) — c'est même le contraire géométriquement. Un vecteur $\\vec n$ est dit normal à un plan $\\mathcal P$ s'il est orthogonal à tous les vecteurs directeurs de ce plan ; il suffit qu'il soit orthogonal à deux vecteurs directeurs non colinéaires de $\\mathcal P$."
+    },
+    {
+      "t": "Équation cartésienne d'un plan",
+      "d": "Tout plan $\\mathcal P$ de l'espace admet une équation cartésienne de la forme $ax+by+cz+d=0$, où $(a,b,c)\\neq(0,0,0)$. Le vecteur $\\vec n(a,b,c)$ est alors un vecteur normal au plan : les coefficients de $x$, $y$, $z$ donnent directement les coordonnées du vecteur normal. Réciproquement, le plan passant par $A(x_A,y_A,z_A)$ et de vecteur normal $\\vec n(a,b,c)$ a pour équation $a(x-x_A)+b(y-y_A)+c(z-z_A)=0$. Un point appartient au plan si et seulement si ses coordonnées vérifient l'équation."
+    },
+    {
+      "t": "Projeté orthogonal et distances",
+      "d": "Le projeté orthogonal $H$ d'un point $M$ sur un plan $\\mathcal P$ est le point de $\\mathcal P$ le plus proche de $M$ ; la droite $(MH)$ est dirigée par un vecteur normal de $\\mathcal P$. La distance de $M$ à $\\mathcal P$ est $MH$. De même, le projeté orthogonal de $M$ sur une droite $d$ est le point $H$ de $d$ tel que $\\overrightarrow{MH}$ soit orthogonal à un vecteur directeur de $d$. Ces projetés se calculent en cherchant l'intersection d'une droite (perpendiculaire) avec le plan ou la droite cible."
+    }
+  ],
+  "formulaireTitre": "Formules à connaître par cœur",
+  "formulaire": [
+    ["Définition (cosinus)", "$\\vec u\\cdot\\vec v=\\|\\vec u\\|\\,\\|\\vec v\\|\\cos\\theta$"],
+    ["Expression analytique", "$\\vec u\\cdot\\vec v=xx'+yy'+zz'$"],
+    ["Norme d'un vecteur", "$\\|\\vec u\\|=\\sqrt{x^2+y^2+z^2}$"],
+    ["Orthogonalité", "$\\vec u\\perp\\vec v\\iff\\vec u\\cdot\\vec v=0$"],
+    ["Carré scalaire", "$\\vec u\\cdot\\vec u=\\|\\vec u\\|^2$"],
+    ["Identité remarquable", "$\\|\\vec u+\\vec v\\|^2=\\|\\vec u\\|^2+2\\,\\vec u\\cdot\\vec v+\\|\\vec v\\|^2$"],
+    ["Équation de plan", "$ax+by+cz+d=0,\\ \\vec n(a,b,c)$"],
+    ["Plan par $A$ et normal $\\vec n$", "$a(x-x_A)+b(y-y_A)+c(z-z_A)=0$"],
+    ["Distance entre deux points", "$AB=\\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$"],
+    ["Cosinus de l'angle", "$\\cos\\theta=\\dfrac{\\vec u\\cdot\\vec v}{\\|\\vec u\\|\\,\\|\\vec v\\|}$"]
+  ],
+  "methodes": [
+    {
+      "t": "Trouver l'équation cartésienne d'un plan (point + vecteur normal)",
+      "etapes": [
+        "Repérer le vecteur normal $\\vec n(a,b,c)$ : ses coordonnées sont directement les coefficients $a$, $b$, $c$.",
+        "Écrire l'équation sous la forme $ax+by+cz+d=0$ avec $a$, $b$, $c$ connus, $d$ inconnu.",
+        "Injecter les coordonnées du point $A$ du plan dans l'équation pour trouver $d$.",
+        "Conclure en écrivant l'équation complète. Vérifier en re-substituant $A$ : on doit obtenir $0$."
+      ]
+    },
+    {
+      "t": "Trouver un vecteur normal à un plan défini par deux vecteurs directeurs",
+      "etapes": [
+        "Noter les deux vecteurs directeurs $\\vec u$ et $\\vec v$ non colinéaires du plan.",
+        "Poser $\\vec n(a,b,c)$ inconnu et écrire le système $\\vec n\\cdot\\vec u=0$ et $\\vec n\\cdot\\vec v=0$.",
+        "Résoudre le système (deux équations, trois inconnues) : on fixe une coordonnée et on déduit les autres.",
+        "Donner un vecteur normal simple (quitte à multiplier pour avoir des entiers)."
+      ]
+    },
+    {
+      "t": "Calculer la distance d'un point à un plan (via le projeté)",
+      "etapes": [
+        "Écrire la droite $d$ passant par $M$ et dirigée par le vecteur normal $\\vec n$ du plan (représentation paramétrique).",
+        "Remplacer $x$, $y$, $z$ paramétrés dans l'équation du plan pour trouver la valeur du paramètre $t$.",
+        "En déduire les coordonnées du projeté orthogonal $H$ (point d'intersection droite-plan).",
+        "Calculer la distance $MH=\\|\\overrightarrow{MH}\\|$."
+      ]
+    },
+    {
+      "t": "Trouver l'intersection d'une droite et d'un plan",
+      "etapes": [
+        "Écrire la représentation paramétrique de la droite : $x$, $y$, $z$ en fonction de $t$.",
+        "Substituer ces expressions dans l'équation cartésienne $ax+by+cz+d=0$ du plan.",
+        "Résoudre l'équation obtenue en $t$ : une solution donne un point d'intersection unique.",
+        "Reporter la valeur de $t$ dans la paramétrisation pour obtenir les coordonnées du point."
+      ]
+    }
+  ],
+  "annales": [
+    {
+      "y": 2024,
+      "s": "Dans un repère orthonormé, déterminer une équation cartésienne du plan passant par $A(1,0,2)$ et de vecteur normal $\\vec n(2,-1,3)$, puis calculer la distance du point $B(0,1,0)$ à ce plan.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2023,
+      "s": "On donne trois points $A$, $B$, $C$ non alignés. Montrer que $\\vec n(1,1,-1)$ est normal au plan $(ABC)$, en déduire une équation du plan, puis déterminer le projeté orthogonal de l'origine sur ce plan.",
+      "loc": "Métropole"
+    },
+    {
+      "y": 2022,
+      "s": "Soit la droite $d$ de représentation paramétrique donnée et le plan $\\mathcal P$ d'équation $x+2y-z+1=0$. Déterminer les coordonnées du point d'intersection de $d$ et de $\\mathcal P$.",
+      "loc": "Centres étrangers"
+    }
+  ],
+  "piege": "Le piège classique : les coefficients $a$, $b$, $c$ de l'équation $ax+by+cz+d=0$ SONT les coordonnées du vecteur normal $\\vec n(a,b,c)$ — pas besoin de calcul, on lit directement. Deuxième piège : orthogonal n'est pas parallèle ($\\vec u\\cdot\\vec v=0$ veut dire perpendiculaire, pas colinéaire). Troisième piège : ne confonds pas l'équation cartésienne d'un PLAN (une seule équation $ax+by+cz+d=0$) avec la représentation paramétrique d'une DROITE (trois équations avec un paramètre $t$).",
+  "qcm": [
+    {
+      "q": "Soit $\\vec u(1,2,-1)$ et $\\vec v(3,-1,2)$. Que vaut $\\vec u\\cdot\\vec v$ ?",
+      "opts": ["$-1$", "$3$", "$-3$", "$1$"],
+      "ok": 0,
+      "why": "$1\\times3+2\\times(-1)+(-1)\\times2=3-2-2=-1$."
+    },
+    {
+      "q": "Quelle est la norme du vecteur $\\vec u(2,-1,2)$ ?",
+      "opts": ["$5$", "$3$", "$\\sqrt{5}$", "$9$"],
+      "ok": 1,
+      "why": "$\\|\\vec u\\|=\\sqrt{2^2+(-1)^2+2^2}=\\sqrt{4+1+4}=\\sqrt{9}=3$."
+    },
+    {
+      "q": "Un vecteur normal au plan d'équation $3x-2y+z-5=0$ est :",
+      "opts": ["$\\vec n(-5,3,-2)$", "$\\vec n(3,2,1)$", "$\\vec n(3,-2,1)$", "$\\vec n(3,-2,-5)$"],
+      "ok": 2,
+      "why": "Les coefficients de $x$, $y$, $z$ donnent $\\vec n(3,-2,1)$ ; le terme constant $-5$ n'intervient pas."
+    },
+    {
+      "q": "Les vecteurs $\\vec u(1,2,3)$ et $\\vec v(2,-1,0)$ sont :",
+      "opts": ["colinéaires", "orthogonaux", "égaux", "ni l'un ni l'autre"],
+      "ok": 1,
+      "why": "$\\vec u\\cdot\\vec v=1\\times2+2\\times(-1)+3\\times0=2-2+0=0$, donc orthogonaux."
+    },
+    {
+      "q": "Le plan passant par $A(1,1,1)$ et de vecteur normal $\\vec n(1,0,2)$ a pour équation :",
+      "opts": ["$x+2z+3=0$", "$x+2z-3=0$", "$x+y+2z-4=0$", "$x+2z=0$"],
+      "ok": 1,
+      "why": "$1(x-1)+0(y-1)+2(z-1)=0$ donne $x+2z-3=0$."
+    },
+    {
+      "q": "Le point $M(2,0,-1)$ appartient-il au plan d'équation $x-y+2z=0$ ?",
+      "opts": ["Oui", "Non, on obtient $4$", "Non, on obtient $-2$", "On ne peut pas savoir"],
+      "ok": 0,
+      "why": "$2-0+2\\times(-1)=2-2=0$ : l'équation est vérifiée, donc $M$ appartient au plan."
+    },
+    {
+      "q": "Si $\\|\\vec u\\|=3$, $\\|\\vec v\\|=4$ et l'angle entre eux vaut $60°$, alors $\\vec u\\cdot\\vec v$ vaut :",
+      "opts": ["$12$", "$6$", "$6\\sqrt{3}$", "$0$"],
+      "ok": 1,
+      "why": "$\\vec u\\cdot\\vec v=3\\times4\\times\\cos(60°)=12\\times\\tfrac12=6$."
+    },
+    {
+      "q": "Deux plans sont parallèles si leurs vecteurs normaux sont :",
+      "opts": ["orthogonaux", "de produit scalaire nul", "colinéaires", "de même norme"],
+      "ok": 2,
+      "why": "Deux plans sont parallèles ssi leurs vecteurs normaux sont colinéaires (même direction normale)."
+    },
+    {
+      "q": "Que vaut $\\vec u\\cdot\\vec u$ pour $\\vec u(1,-2,2)$ ?",
+      "opts": ["$3$", "$\\sqrt{9}$", "$9$", "$0$"],
+      "ok": 2,
+      "why": "$\\vec u\\cdot\\vec u=\\|\\vec u\\|^2=1+4+4=9$."
+    },
+    {
+      "q": "Les plans $x+y+z=1$ et $2x+2y+2z=5$ sont :",
+      "opts": ["confondus", "sécants", "strictement parallèles", "perpendiculaires"],
+      "ok": 2,
+      "why": "Les normaux $(1,1,1)$ et $(2,2,2)$ sont colinéaires (plans parallèles), mais $2\\times1\\neq5$ donc pas confondus : strictement parallèles."
+    },
+    {
+      "q": "Pour que $\\vec n(1,k,2)$ soit orthogonal à $\\vec u(2,1,-1)$, il faut $k=$",
+      "opts": ["$0$", "$2$", "$-2$", "$4$"],
+      "ok": 0,
+      "why": "$\\vec n\\cdot\\vec u=2+k-2=k$ ; on veut $k=0$."
+    },
+    {
+      "q": "L'intersection d'une droite et d'un plan non parallèles est :",
+      "opts": ["vide", "une droite", "un point", "un plan"],
+      "ok": 2,
+      "why": "Si la droite n'est pas parallèle au plan, elle le perce en exactement un point."
+    }
+  ],
+  "flash": [
+    {"front": "Expression analytique de $\\vec u\\cdot\\vec v$ ?", "back": "$\\vec u\\cdot\\vec v=xx'+yy'+zz'$"},
+    {"front": "Norme de $\\vec u(x,y,z)$ ?", "back": "$\\|\\vec u\\|=\\sqrt{x^2+y^2+z^2}$"},
+    {"front": "Condition d'orthogonalité de $\\vec u$ et $\\vec v$ ?", "back": "$\\vec u\\cdot\\vec v=0$"},
+    {"front": "Définition du produit scalaire avec l'angle ?", "back": "$\\vec u\\cdot\\vec v=\\|\\vec u\\|\\,\\|\\vec v\\|\\cos\\theta$"},
+    {"front": "Que vaut $\\vec u\\cdot\\vec u$ ?", "back": "$\\|\\vec u\\|^2$"},
+    {"front": "Vecteur normal au plan $ax+by+cz+d=0$ ?", "back": "$\\vec n(a,b,c)$"},
+    {"front": "Équation du plan par $A$ de normal $\\vec n(a,b,c)$ ?", "back": "$a(x-x_A)+b(y-y_A)+c(z-z_A)=0$"},
+    {"front": "Comment montrer que $\\vec n$ est normal à un plan ?", "back": "$\\vec n$ orthogonal à deux vecteurs directeurs non colinéaires du plan"},
+    {"front": "Distance entre $A$ et $B$ dans l'espace ?", "back": "$AB=\\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$"},
+    {"front": "Cosinus de l'angle entre $\\vec u$ et $\\vec v$ ?", "back": "$\\cos\\theta=\\dfrac{\\vec u\\cdot\\vec v}{\\|\\vec u\\|\\,\\|\\vec v\\|}$"},
+    {"front": "Identité : $\\|\\vec u+\\vec v\\|^2=$ ?", "back": "$\\|\\vec u\\|^2+2\\,\\vec u\\cdot\\vec v+\\|\\vec v\\|^2$"},
+    {"front": "Deux plans parallèles : que dire des normaux ?", "back": "Ils sont colinéaires"}
+  ],
+  "vraifaux": [
+    {"q": "Le produit scalaire de deux vecteurs est un nombre réel.", "v": true, "why": "Oui, $\\vec u\\cdot\\vec v$ est un scalaire (réel), pas un vecteur."},
+    {"q": "Si $\\vec u\\cdot\\vec v=0$ alors $\\vec u$ et $\\vec v$ sont colinéaires.", "v": false, "why": "Faux : $\\vec u\\cdot\\vec v=0$ signifie qu'ils sont orthogonaux, c'est le contraire de colinéaires (sauf si l'un est nul)."},
+    {"q": "Les coefficients $a,b,c$ de $ax+by+cz+d=0$ sont les coordonnées d'un vecteur normal au plan.", "v": true, "why": "Exact : $\\vec n(a,b,c)$ est normal au plan, on le lit directement."},
+    {"q": "Dans un repère orthonormé, $\\vec u\\cdot\\vec u=\\|\\vec u\\|^2$.", "v": true, "why": "Vrai : le carré scalaire est égal au carré de la norme."},
+    {"q": "Un vecteur normal à un plan est parallèle à ce plan.", "v": false, "why": "Faux : un vecteur normal est orthogonal au plan, donc à tous ses vecteurs directeurs."},
+    {"q": "Une équation cartésienne d'un plan est de la forme $ax+by+cz+d=0$.", "v": true, "why": "Vrai, avec $(a,b,c)\\neq(0,0,0)$."},
+    {"q": "Le produit scalaire est commutatif : $\\vec u\\cdot\\vec v=\\vec v\\cdot\\vec u$.", "v": true, "why": "Vrai, le produit scalaire est symétrique."},
+    {"q": "Si l'angle entre $\\vec u$ et $\\vec v$ est obtus, alors $\\vec u\\cdot\\vec v>0$.", "v": false, "why": "Faux : pour un angle obtus, $\\cos\\theta<0$ donc $\\vec u\\cdot\\vec v<0$."},
+    {"q": "La distance d'un point $M$ à un plan est la longueur $MH$ où $H$ est le projeté orthogonal de $M$ sur le plan.", "v": true, "why": "Vrai : $H$ est le point du plan le plus proche de $M$."},
+    {"q": "Une droite et un plan ont toujours un point d'intersection unique.", "v": false, "why": "Faux : si la droite est parallèle au plan, l'intersection est vide ou la droite est incluse dans le plan."}
+  ],
+  "qmethode": [
+    {
+      "q": "On veut l'équation d'un plan dont on connaît un point et un vecteur normal. Quelle méthode ?",
+      "opts": ["Écrire $a(x-x_A)+b(y-y_A)+c(z-z_A)=0$ avec $\\vec n(a,b,c)$", "Faire une représentation paramétrique", "Calculer une norme", "Résoudre un système de trois équations"],
+      "ok": 0,
+      "why": "On utilise directement le vecteur normal pour les coefficients et on injecte le point."
+    },
+    {
+      "q": "On cherche un vecteur normal à un plan défini par deux vecteurs directeurs. Que fait-on ?",
+      "opts": ["On additionne les deux vecteurs directeurs", "On résout le système $\\vec n\\cdot\\vec u=0$ et $\\vec n\\cdot\\vec v=0$", "On calcule la norme de chaque vecteur", "On prend la moyenne des coordonnées"],
+      "ok": 1,
+      "why": "Le vecteur normal doit être orthogonal aux deux directeurs : on pose un système et on le résout."
+    },
+    {
+      "q": "Pour montrer qu'une droite est orthogonale à un plan, on vérifie que :",
+      "opts": ["Le vecteur directeur de la droite est colinéaire au vecteur normal du plan", "La droite coupe le plan", "Le vecteur directeur est dans le plan", "Les normes sont égales"],
+      "ok": 0,
+      "why": "Une droite est orthogonale au plan ssi son vecteur directeur est colinéaire à un vecteur normal du plan."
+    },
+    {
+      "q": "Pour trouver le projeté orthogonal d'un point sur un plan, on :",
+      "opts": ["Calcule directement la distance", "Trace la droite passant par le point dirigée par le vecteur normal, puis on cherche son intersection avec le plan", "Prend le milieu du point et de l'origine", "Résout l'équation du plan seule"],
+      "ok": 1,
+      "why": "Le projeté est l'intersection du plan avec la perpendiculaire (droite dirigée par le vecteur normal) passant par le point."
+    },
+    {
+      "q": "Pour trouver l'intersection d'une droite et d'un plan, on :",
+      "opts": ["Calcule un produit scalaire", "Substitue la paramétrisation de la droite dans l'équation du plan et on résout en $t$", "Vérifie l'orthogonalité", "Additionne les deux équations"],
+      "ok": 1,
+      "why": "On remplace $x,y,z$ par leur expression en $t$ dans l'équation du plan, puis on résout pour trouver $t$."
+    },
+    {
+      "q": "Pour calculer l'angle entre deux vecteurs, on utilise :",
+      "opts": ["$\\cos\\theta=\\dfrac{\\vec u\\cdot\\vec v}{\\|\\vec u\\|\\,\\|\\vec v\\|}$", "Le théorème de Pythagore", "Une représentation paramétrique", "La somme des coordonnées"],
+      "ok": 0,
+      "why": "On isole $\\cos\\theta$ dans la formule du produit scalaire, puis on en déduit $\\theta$."
+    },
+    {
+      "q": "Pour montrer que deux droites sont orthogonales dans l'espace, on :",
+      "opts": ["Vérifie que leurs vecteurs directeurs ont un produit scalaire nul", "Vérifie qu'elles se coupent", "Compare leurs équations cartésiennes", "Calcule leur distance"],
+      "ok": 0,
+      "why": "Deux droites sont orthogonales ssi le produit scalaire de leurs vecteurs directeurs est nul (sans forcément se couper)."
+    },
+    {
+      "q": "Pour montrer que trois points $A,B,C$ définissent un plan, on vérifie que :",
+      "opts": ["$\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ ne sont pas colinéaires", "$AB=AC$", "Le produit scalaire $\\overrightarrow{AB}\\cdot\\overrightarrow{AC}=0$", "Les trois points ont la même cote $z$"],
+      "ok": 0,
+      "why": "Trois points définissent un plan ssi ils ne sont pas alignés, c'est-à-dire $\\overrightarrow{AB}$ et $\\overrightarrow{AC}$ non colinéaires."
+    }
+  ]
+}
