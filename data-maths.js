@@ -5251,7 +5251,7 @@ const CHAPITRES = [
           "Car $\\delta$ augmente"
         ],
         "ok": 1,
-        "why": "$V(M_n)=\\dfrac{\\sigma^2}{n}$ décroît vers 0, donc la dispersion de M_n se réduit autour de \\mu$."
+        "why": "$V(M_n)=\\dfrac{\\sigma^2}{n}$ décroît vers 0, donc la dispersion de $M_n$ se réduit autour de $\\mu$."
       },
       {
         "q": "Dans une épreuve de Bernoulli répétée $n$ fois (paramètre $p$), que vaut $V(M_n)$ ?",

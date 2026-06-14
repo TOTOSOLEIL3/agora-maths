@@ -164,6 +164,15 @@ function explainBlock(good, verdict, text) {
   return `<div class="explain"><span class="verdict ${good ? "good" : "bad"}">${verdict}</span>${text}</div>`;
 }
 
+/* Échappe < et > UNIQUEMENT à l'intérieur des formules $...$ / $$...$$.
+   Sinon le navigateur prend « <B » pour une balise HTML et avale la suite.
+   Le HTML volontaire hors formule (<strong>, <code>, <pre>…) est préservé. */
+function mathHtml(s) {
+  if (s == null) return "";
+  return String(s).replace(/\$\$[\s\S]*?\$\$|\$[^$]*\$/g,
+    m => m.replace(/</g, "&lt;").replace(/>/g, "&gt;"));
+}
+
 function mentionFor(score, total) {
   const r = total ? score / total : 0;
   if (r === 1) return ["20/20 — copie parfaite", "Le correcteur range son stylo rouge. Respect."];
@@ -227,9 +236,9 @@ function startMCQ(pool, chapId, gameKey, labelText) {
     stage().innerHTML = `
       <div class="q-card">
         <div class="label">${labelText}</div>
-        <div class="question">${cur.q}</div>
+        <div class="question">${mathHtml(cur.q)}</div>
       </div>
-      <div class="options">${order.map((x, idx) => optionButton(x.o, idx)).join("")}</div>
+      <div class="options">${order.map((x, idx) => optionButton(mathHtml(x.o), idx)).join("")}</div>
       <div id="feedback"></div>
       <div class="next-zone" id="next-zone"></div>`;
     renderMath(stage());
@@ -244,7 +253,7 @@ function startMCQ(pool, chapId, gameKey, labelText) {
       });
       if (good) { score++; streak++; maxStreak = Math.max(maxStreak, streak); }
       else streak = 0;
-      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", cur.why || "");
+      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", mathHtml(cur.why || ""));
       $("#next-zone").innerHTML = `<button class="btn primary" id="btn-next">${i + 1 < rounds.length ? "Suivant →" : "Voir le verdict"}</button>`;
       renderMath($("#feedback"));
       $("#btn-next").addEventListener("click", () => { i++; i < rounds.length ? round() : finish(); });
@@ -279,12 +288,12 @@ function startFlash(chap, chapId) {
         <div class="flash-card" id="flash">
           <div class="flash-face front">
             <span class="hint">Recto</span>
-            <span class="term">${c.front}</span>
+            <span class="term">${mathHtml(c.front)}</span>
             <span class="hint">tape pour retourner ↺</span>
           </div>
           <div class="flash-face back">
             <span class="hint">Réponse</span>
-            <div class="flash-answer">${c.back}</div>
+            <div class="flash-answer">${mathHtml(c.back)}</div>
           </div>
         </div>
       </div>
@@ -332,7 +341,7 @@ function startVF(chap, chapId) {
     stage().innerHTML = `
       <div class="q-card">
         <div class="label">Vrai ou faux ?</div>
-        <div class="question">${cur.q}</div>
+        <div class="question">${mathHtml(cur.q)}</div>
       </div>
       <div class="options vf-buttons">
         <button class="opt" data-v="true"><span class="key">V</span><span>Vrai</span></button>
@@ -354,7 +363,7 @@ function startVF(chap, chapId) {
       });
       if (good) { score++; streak++; maxStreak = Math.max(maxStreak, streak); }
       else streak = 0;
-      $("#feedback").innerHTML = explainBlock(good, good ? "Bien vu !" : "Raté", cur.why || "");
+      $("#feedback").innerHTML = explainBlock(good, good ? "Bien vu !" : "Raté", mathHtml(cur.why || ""));
       $("#next-zone").innerHTML = `<button class="btn primary" id="btn-next">${i + 1 < rounds.length ? "Suivant →" : "Voir le verdict"}</button>`;
       renderMath($("#feedback"));
       $("#btn-next").addEventListener("click", () => { i++; i < rounds.length ? round() : finish(); });
@@ -390,9 +399,9 @@ function startMix() {
     stage().innerHTML = `
       <div class="q-card">
         <div class="label">${cur._chap}</div>
-        <div class="question">${cur.q}</div>
+        <div class="question">${mathHtml(cur.q)}</div>
       </div>
-      <div class="options">${order.map((x, idx) => optionButton(x.o, idx)).join("")}</div>
+      <div class="options">${order.map((x, idx) => optionButton(mathHtml(x.o), idx)).join("")}</div>
       <div id="feedback"></div>
       <div class="next-zone" id="next-zone"></div>`;
     renderMath(stage());
@@ -407,7 +416,7 @@ function startMix() {
       });
       if (good) { score++; streak++; maxStreak = Math.max(maxStreak, streak); }
       else streak = 0;
-      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", cur.why || "");
+      $("#feedback").innerHTML = explainBlock(good, good ? "Exact !" : "Raté", mathHtml(cur.why || ""));
       $("#next-zone").innerHTML = `<button class="btn primary" id="btn-next">${i + 1 < rounds.length ? "Suivant →" : "Voir le verdict"}</button>`;
       renderMath($("#feedback"));
       $("#btn-next").addEventListener("click", () => { i++; i < rounds.length ? round() : finish(); });
@@ -439,7 +448,7 @@ function openFiche(id) {
     <section class="fiche-sec">
       <div class="sec-title">${c.formulaireTitre || "Le formulaire à connaître"}</div>
       <table class="formulaire"><tbody>
-        ${c.formulaire.map(([a, b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join("")}
+        ${c.formulaire.map(([a, b]) => `<tr><td>${mathHtml(a)}</td><td>${mathHtml(b)}</td></tr>`).join("")}
       </tbody></table>
     </section>` : "";
 
@@ -448,7 +457,7 @@ function openFiche(id) {
     <header class="fiche-head">
       <span class="tag">${c.tag} · Chapitre ${String(idx + 1).padStart(2, "0")}/${CHAPITRES.length}</span>
       <h1>${c.title}</h1>
-      <p class="lead">${c.intro}</p>
+      <p class="lead">${mathHtml(c.intro)}</p>
       <div class="fiche-games">
         <button class="btn primary" data-nav="play:qcm:${c.id}">📈 QCM</button>
         <button class="btn" data-nav="play:flash:${c.id}">🃏 Flashcards</button>
@@ -459,12 +468,12 @@ function openFiche(id) {
 
     <section class="fiche-sec">
       <div class="sec-title">Ce qu'il faut savoir faire</div>
-      <ul class="prob-list">${c.objectifs.map(o => `<li>${o}</li>`).join("")}</ul>
+      <ul class="prob-list">${c.objectifs.map(o => `<li>${mathHtml(o)}</li>`).join("")}</ul>
     </section>
 
     <section class="fiche-sec">
       <div class="sec-title">L'essentiel du cours</div>
-      ${c.cours.map(p => `<article class="cours-part"><h3>${p.t}</h3><p>${p.d}</p></article>`).join("")}
+      ${c.cours.map(p => `<article class="cours-part"><h3>${mathHtml(p.t)}</h3><p>${mathHtml(p.d)}</p></article>`).join("")}
     </section>
 
     ${formTable}
@@ -473,8 +482,8 @@ function openFiche(id) {
       <div class="sec-title">Les méthodes types</div>
       ${c.methodes.map(m => `
         <article class="methode-card">
-          <h3>${m.t}</h3>
-          <ol class="methode-steps">${m.etapes.map(e => `<li>${e}</li>`).join("")}</ol>
+          <h3>${mathHtml(m.t)}</h3>
+          <ol class="methode-steps">${m.etapes.map(e => `<li>${mathHtml(e)}</li>`).join("")}</ol>
         </article>`).join("")}
     </section>
 
@@ -482,14 +491,14 @@ function openFiche(id) {
     <section class="fiche-sec">
       <div class="sec-title">Tombé au bac — les types de sujets</div>
       <ul class="annales-list">
-        ${c.annales.map(a => `<li><span class="an-year">${a.y}</span><span class="an-sub">${a.s}</span><span class="an-loc">${a.loc}</span></li>`).join("")}
+        ${c.annales.map(a => `<li><span class="an-year">${a.y}</span><span class="an-sub">${mathHtml(a.s)}</span><span class="an-loc">${a.loc}</span></li>`).join("")}
       </ul>
     </section>` : ""}
 
     <section class="fiche-sec">
       <div class="piege-box">
         <div class="ttl">⚠ Le piège à éviter</div>
-        <p>${c.piege}</p>
+        <p>${mathHtml(c.piege)}</p>
       </div>
     </section>
 
